@@ -77,53 +77,39 @@ xres = resolution[17:21]
 yres = resolution[22:26]
 
 # Set Bar and font sizes for different resolutions
-if xres >= "3840" and yres >= "2160": #4k
-  layout_margin=20
-  single_layout_margin=15  
-  layout_border_width=5
-  single_border_width=5
+
+# Common Settings
+
+layout_margin=5
+single_layout_margin=5 
+layout_border_width=5
+single_border_width=5
+
+if xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=30
   widget_width=450
-  max_ratio=0.85
-  ratio=0.65
   terminal_font_size=12
   if bar_position == "bottom":
-    bar_margin=[0,15,10,15]
+    bar_margin=[0,10,5,10]
   else:
-    bar_margin=[10,15,0,15]
-  weather_x=0.78
-  weather_y=0.90
-  weather_width=0.075
-  weather_height=0.09
+    bar_margin=[5,10,0,10]
 elif xres == "3840" and yres == "1080" or xres == "3834" and yres == "1080" or xres == "1920" and yres == "2160" or xres == "1920" and yres == "1080": #FullHD
-  layout_margin=5
-  single_layout_margin=5  
-  layout_border_width=4 
-  single_border_width=4
   bar_size=25
   widget_width=150
-  max_ratio=0.85
-  ratio=0.65
-  font_size=font_size-4
+  font_size=17
   terminal_font_size=9
   if bar_position == "bottom":
     bar_margin=[0,10,5,10]
   else:
     bar_margin=[5,10,0,10]
-  weather_x=0.60
-  weather_y=0.76
-  weather_width=0.14
-  weather_height=0.23
 else: # 1366 x 768 Macbook air 11"
   layout_margin=2
   single_layout_margin=2  
   layout_border_width=2
   single_border_width=2
-  font_size=font_size-7
+  font_size=14
   bar_size=20
   widget_width=100
-  max_ratio=0.50
-  ratio=0.50
   terminal_font_size=7
   bar_margin=[0,0,0,0]
 
@@ -137,6 +123,12 @@ if int(variables[10]) in [7,8,9,10,11,12,13]:
    groups_font = font_size - 8
 else:
    groups_font = font_size 
+
+# Rofi Configuration Files
+rofi_right = Rofi(rofi_args=['-theme', '~/.config/rofi/right.rasi'])
+rofi_network= Rofi(rofi_args=['-theme', '~/.config/rofi/network.rasi'])
+rofi_left= Rofi(rofi_args=['-theme', '~/.config/rofi/left.rasi'])
+rofi_session= Rofi(rofi_args=['-theme', '~/.config/rofi/session.rasi'])
 
 # Weather
 w_appkey = str(variables[3].strip()) # Get a key here https://home.openweathermap.org/users/sign_up 
@@ -244,6 +236,19 @@ def get_private_ip():
     except socket.gaierror:
         # Alternative method if gethostbyname fails
         ip = get_private_ip_alternative()
+    return ip
+
+def get_private_ip_alternative():
+    # Using an alternative method to get the private IP address
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # This IP address does not need to be reachable
+        s.connect(('10.255.255.255', 1))
+        ip = s.getsockname()[0]
+    except Exception:
+        ip = '127.0.0.1'
+    finally:
+        s.close()
     return ip
 
 private_ip = get_private_ip()
@@ -373,7 +378,7 @@ def network_widget(qtile):
     rofi_network.close()
   else:
     if index == 0:
-      qtile.spawn(home + '/.local/bin/wifi2')
+      qtile.spawn(home + '/.local/bin/SOS_Wifi_Menu')
     elif index==1:
       qtile.spawn("alacritty -e bash -c '. ~/.zshrc; bmon'")
     else:
@@ -545,62 +550,18 @@ def support_spectrumos(qtile):
     
     subprocess.run(["notify-send","-a", " SpectrumOS", "Thanks for supporting SpectrumOS"])
 
-## Update SpectrumOS
-### Pacman
-def pacman_packages(qtile):
-    packets = [
-        ''
-    ]
-    for packet in packets:
-        subprocess.run(["notify-send","-a", " SpectrumOS", "Installing -> %s" % packet])
-        subprocess.run(["sudo", "pacman", "-Syu", packet, "--noconfirm", "--needed"])
-
-## Update SpectrumOS
-
-
-# Turntable widget
-def turntable(qtile):
-  options = [' On', ' Off']
-  index, key = rofi_session.select(' Listen Turntable', options)
-  if key == -1:
-    rofi_left.close()
-  else:
-    if index == 0:
-      os.system('pactl load-module module-loopback source=48')
-    else:
-      os.system('pactl unload-module module-loopback')
-
-### AUR
-def aur_packages(qtile):
-    packets = [
-      'sndio'
-    ]
-    
-    for packet in packets:
-        subprocess.run([f"notify-send","-a", " SpectrumOS", "Installing -> %s" % packet])
-        subprocess.run(["paru", "-Syu", packet, "--noconfirm", "--needed"])
-
-## Update SpectrumOS version
-def update_ver(qtile):
-  variables[0] = remote_version + "\n"
-  with open(home + '/.config/qtile/variables', 'w') as file:
-      file.writelines(variables)
-  qtile.reload_config()
-  subprocess.run(["notify-send","-a", " SpectrumOS", "Updated to the version", "%s" % remote_version])
-
-
 # Control Panel Widget
 def control_panel(qtile):
   options = [
     ' Wallpaper Options',#0
     '     Set Random Wallpaper (⎇ + R)',
-    '     Select Wallpaper (❖ +  + E)',
+    '     Select Wallpaper (❖ +  + R)',
     ' Theme Options',#3
-    '     Set Color Scheme (⎇ +  + W)',
+    '     Set Color Scheme (⎇ +  + i)',
     '     Dark/Light Theme (❖ + D)',
     ' Bar Options',#6
-    '     Bar Position (❖ +  + W)',
-    '     Change Bar Theme (⎇ + W)',
+    '     Bar Position (❖ +  + I)',
+    '     Change Bar Theme (⎇ + i)',
     '    %s Toggle Bar Blur' %blur_icon,
     '    %s Toggle Groups' %str(variables[9].strip()),
     '     Change Groups Icons',
@@ -615,11 +576,10 @@ def control_panel(qtile):
     '     Monitor Temperature (❖ +  + O)',
     '     Monitor Layout (❖ +  + X)',
     '     Bluetooth Manager (❖ + T)',
-    '     Screen Recorder ( +  + R)',
-    ' Miscelaneous',#24
+    ' Miscelaneous',#23
     '     Screen Draw (❖ +  + P)',
     '     Pick Color (❖ + P)',
-    '     View Shortcuts (❖ + S)',
+    '     View Shortcuts (❖ +  + z)',
     '     Emojis ( +  + )',
     '     System Cleaner',
     ' Session Menu (❖ + X)',
@@ -633,7 +593,7 @@ def control_panel(qtile):
     if index == 1:
       qtile.function(change_wallpaper)
     elif index == 2:
-      qtile.spawn(home + '/.local/bin/selectwal')
+      qtile.spawn(home + '/.local/bin/SOS_Select_Wallpaper')
     elif index == 4:
       qtile.function(set_default_backend)
     elif index == 5:
@@ -649,15 +609,15 @@ def control_panel(qtile):
     elif index == 11:
       qtile.function(group_icon)
     elif index == 13:
-      subprocess.run(home + '/.local/bin/opener')
+      subprocess.run(home + '/.local/bin/SOS_Search')
     elif index == 14:
-      qtile.spawn('rofi -modi TODO:~/.local/bin/todo -show TODO -theme ~/.config/rofi/left.rasi')
+      qtile.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/left.rasi')
     elif index == 15:
       subprocess.Popen(home + '/.local/bin/notesfi', shell=True)
     elif index == 16:
       qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/launcher.rasi"')
     elif index == 17:
-      subprocess.run(home + '/.local/bin/calculator')
+      subprocess.run(home + '/.local/bin/SOS_Calculator')
     elif index == 18:
       qtile.function(network_widget)
     elif index == 19:
@@ -665,22 +625,20 @@ def control_panel(qtile):
     elif index == 20:
       qtile.function(nightLight_widget)
     elif index == 21:
-      subprocess.run(home + '/.local/bin/change_display')
+      subprocess.run(home + '/.local/bin/SOS_Multimonitor')
     elif index == 22:
-      subprocess.run(home + '/.local/bin/bluet')
+      subprocess.run(home + '/.local/bin/SOS_Bluetooth')
     elif index == 24:
-      subprocess.run(home + '/.local/bin/recorder')
-    elif index == 25:
       qtile.function(draw_widget)
-    elif index == 26:
+    elif index == 25:
       qtile.function(fargewidget)
-    elif index == 27:
+    elif index == 26:
       qtile.function(shortcuts)
-    elif index == 28:
+    elif index == 27:
       qtile.function(emojis)
+    elif index == 28:
+      qtile.spawn(home + '/.local/bin/SOS_Clean_System')
     elif index == 29:
-      qtile.spawn(home + '/.local/bin/cleansys')
-    elif index == 30:
       qtile.function(session_widget)
-    elif index == 31:
+    elif index == 30:
       qtile.function(support_spectrumos)

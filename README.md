@@ -1,2 +1,6 @@
 # dots
-New set of dotfiles, for spectrumOS
+
+## Rofi Widgets
+
+- Launcher
+

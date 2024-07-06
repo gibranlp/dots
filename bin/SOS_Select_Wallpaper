@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+# _____             _                 _____ _____ 
+#|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
+#|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
+#|_____|  _|___|___|_| |_| |___|_|_|_|_____|_____|
+#      |_|   
+# SpectrumOS - Embrace the Chromatic Symphony!
+# By: gibranlp <thisdoesnotwork@gibranlp.dev>
+# MIT licence 
+# 
+#
+# Array to store the variables read from the file
+variables=()
+
+# Read each line from the file and add it to the variables array
+while IFS= read -r line; do
+   variables+=("$line")
+done < ~/.config/qtile/variables
+
+# Function to set the wallpaper and perform additional configurations
+set_wall(){
+  # Set the wallpaper using wpg and generate a new color scheme
+  wpg ${variables[4]} -s $WALLPAPER --backend ${variables[2]}
+  
+  # Copy the selected wallpaper to the specified directory
+  cp $WALLPAPER "/usr/local/backgrounds/background.png"
+  
+  # Reload qtile configuration to apply changes
+  qtile cmd-obj -o cmd -f restart
+}
+
+# Function to get the wallpaper path using rofi
+get_wall(){
+  # Use rofi to select a wallpaper from the specified directory
+  rofi -show file-browser-extended -theme ~/.config/rofi/sel_wal.rasi \
+       -file-browser-dir ~/Pictures/Wallpapers \
+       -file-browser-disable-status \
+       -file-browser-stdout \
+       -file-browser-hide-parent
+}
+
+# Get the selected wallpaper path
+WALLPAPER=$(get_wall)
+
+# Check if a wallpaper was selected
+if [ -z "$WALLPAPER" ]; then
+      # Notify the user if no wallpaper was selected
+      notify-send -a ' SpectrumOS' " No Wall Selected!" 
+else
+      # Set the wallpaper if one was selected
+      set_wall
+fi

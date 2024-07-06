@@ -26,35 +26,31 @@ keys = [
     Key([mod], "Return", lazy.layout.spawn_split(rofi_launcher, "x")), # Open Rofi launcher on X split
     Key([mod, "shift"], "Return", lazy.layout.spawn_split(rofi_launcher, "y")), # Open Rofi launcher on Y split
 
-    Key([mod], "z",lazy.spawn(home + '/.local/bin/SOS_Wallpaper')), # Set random wallpaper
+    Key([alt], "r",lazy.spawn(home + '/.local/bin/SOS_Wallpaper')), # Set random wallpaper
 
     # Rofi Widgets
+    Key([alt],"l",lazy.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/left.rasi')),# Todo Manager
+
     Key([mod],"b",lazy.function(network_widget)), # Network Settings
-    Key([mod],"c",lazy.spawn(home + '/.local/bin/calculator')), # Calculator Widget
     Key([mod],"f",lazy.function(dark_white)), # Select Dark or Light Theme
-    Key([mod, "shift"], "e",lazy.spawn(home + '/.local/bin/selectwal')), # Select Wallpaper
-    Key([mod],"i",lazy.spawn(home + '/.local/bin/opener')),# Find Files
-
-     Key([mod], "n", lazy.spawn(home + '/.local/bin/notesfi')), # Notes Widget
-
-
-    Key([alt],"l",lazy.spawn('rofi -modi TODO:~/.local/bin/todo -show TODO -theme ~/.config/rofi/left.rasi')),# Todo Manager
-    Key(["control", "shift"], "Return", lazy.function(emojis)), # Open Rofi Emojis
-    
-    Key([mod, "Shift"],"z",lazy.function(shortcuts)), # Shortcuts widget
-        
+    Key([mod, "Shift"],"z",lazy.function(shortcuts)), # Shortcuts widget  
     Key([mod, "shift"],"i",lazy.function(bar_pos)), # Set bar position
     Key([mod, "shift"],"o",lazy.function(nightLight_widget)), # Set night light
+    Key(["control", "shift"], "Return", lazy.function(emojis)), # Open Rofi Emojis
     Key([mod],"p",lazy.function(fargewidget)), # Color Picker Widget
-    Key(["control", "shift"], "r", lazy.spawn(home + '/.local/bin/recorder')), # Recorder Widget
     Key([mod, "shift"],"p",lazy.function(draw_widget)), # Desktop draw widget
     Key([alt], "Return", lazy.function(control_panel)), # Search for files and folders
-    Key([mod], "m", lazy.spawn(home + '/.local/bin/bluet')), # Bluetooth widget
     Key([mod],"x",lazy.function(session_widget)), # Log out
-    
     Key([alt, "shift"],"i",lazy.function(set_default_backend)), # Set Default Color Scheme
     Key([alt],"i",lazy.function(change_theme)), # Change Theme
-    Key([mod, "shift"],"x",lazy.spawn(home + '/.local/bin/change_display')),# Monitor modes Widget
+
+
+    Key([mod], "n", lazy.spawn(home + '/.local/bin/SOS_Notes')), # Notes Widget
+    Key([mod, "shift"], "r",lazy.spawn(home + '/.local/bin/SOS_Select_Wallpaper')), # Select Wallpaper
+    Key([mod],"c",lazy.spawn(home + '/.local/bin/SOS_Calculator')), # Calculator Widget
+    Key([mod],"i",lazy.spawn(home + '/.local/bin/SOS_Search')),# Find Files
+    Key([mod], "m", lazy.spawn(home + '/.local/bin/SOS_Bluetooth')), # Bluetooth widget
+    Key([mod, "shift"],"x",lazy.spawn(home + '/.local/bin/SOS_Multimonitor')),# Monitor modes Widget
     
     #Sudo
     Key([alt, "shift"], "Return", lazy.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/launcher.rasi"')), # Open Rofi launcher as Sudo
@@ -278,8 +274,8 @@ def init_layouts():
          "tab_bar.tab.fg_color": color[3],
          "tab_bar.tab.font_family": main_font,
          "tab_bar.tab.font_size": font_size,
-         "tab_bar.tab.active.bg_color": color[1],
-         "tab_bar.tab.active.fg_color": color[1],
+         "tab_bar.tab.active.bg_color": color[7],
+         "tab_bar.tab.active.fg_color": color[7],
          "tab_bar.margin": [2,5,0,5],
       }),
  ]
