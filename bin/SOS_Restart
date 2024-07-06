@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# _____             _                 _____ _____ 
+#|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
+#|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
+#|_____|  _|___|___|_| |_| |___|_|_|_|_____|_____|
+#      |_|   
+# SpectrumOS - Embrace the Chromatic Symphony!
+# By: gibranlp <thisdoesnotwork@gibranlp.dev>
+# MIT licence 
+# 
+#
+
+function delete_files(){
+    rm -rf ~/.config/google-chrome/Default/Pywal
+    rm -rf ~/.config/wpg/schemes/*
+}
+
+function copy_files(){
+    sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
+    cp ~/.cache/wal/dunstrc ~/.config/dunst/
+    cp ~/.cache/wal/config ~/.config/cava/
+    cp ~/.cache/wal/flameshot.ini ~/.config/flameshot/
+    sudo cp ~/.cache/wal/SpectrumOS.rasi /root/.cache/wal/
+
+}
+
+function kill(){
+    pkill dunst
+    pkill -USR1 cava
+}
+
+function run(){
+    ~/.local/bin/grubupdate
+    unclutter -idle 1 & 
+    dunst &
+    walogram &
+    pywal-discord &
+    pywalfox update &
+    picom -b &
+    xsettingsd &
+}
+
+delete_files 
+copy_files
+kill 
+run 
+wal -R
