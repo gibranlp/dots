@@ -30,7 +30,17 @@ function copy_dotfiles(){
     cp .shortcuts ~/
 }
 
+# Install Lightdm
+function install_lightdm(){
+    sudo cp ~/dots/lightdm/lightdm.conf /etc/lightdm/
+    sudo cp ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
+    sudo cp ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+    sudo cp -r ~/dots/lightdm/theme/SpectrumOS /usr/share/lightdm-webkit/themes/
+    sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
+}
 
-bin_scripts
-qtile_files
-copy_dotfiles
+
+#bin_scripts
+#qtile_files
+#copy_dotfiles
+install_lightdm
