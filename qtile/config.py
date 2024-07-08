@@ -46,7 +46,7 @@ keys = [
 
 
     Key([mod], "n", lazy.spawn(home + '/.local/bin/SOS_Notes')), # Notes Widget
-    Key([mod, "shift"], "r",lazy.spawn(home + '/.local/bin/SOS_Select_Wallpaper')), # Select Wallpaper
+    Key([alt, "shift"], "r",lazy.spawn(home + '/.local/bin/SOS_Select_Wallpaper')), # Select Wallpaper
     Key([mod],"c",lazy.spawn(home + '/.local/bin/SOS_Calculator')), # Calculator Widget
     Key([mod],"i",lazy.spawn(home + '/.local/bin/SOS_Search')),# Find Files
     Key([mod], "m", lazy.spawn(home + '/.local/bin/SOS_Bluetooth')), # Bluetooth widget
@@ -135,8 +135,6 @@ keys = [
     
     Key([mod], 'period', lazy.next_screen()), # Send Cursor to next screen
 
-    Key(["control", alt], "Return", lazy.layout.toggle_split()), # Toggle Split
-
     # Brightness
     Key([], "XF86MonBrightnessUp", lazy.spawn("sudo xbacklight -inc 5")), # Aument Brightness
     Key(["control", alt], "p", lazy.spawn("sudo xbacklight -inc 5")), # Aument Brightness
@@ -154,7 +152,7 @@ keys = [
     Key([], "XF86AudioPrev", lazy.spawn("playerctl --player=%any previous")), # Previous Song
 
     # Window hotkeys
-    Key([alt], "g", lazy.window.toggle_fullscreen()), # Toggle Current window ;n
+    Key([alt], "f", lazy.window.toggle_fullscreen()), # Toggle Current window ;n
     Key([alt, "shift"], "f", lazy.window.toggle_floating()), # Toggle current window floating
     Key([mod], "space", lazy.next_layout()), # Cycle layouts
 
@@ -228,7 +226,7 @@ groups.append(ScratchPad("scratchpad", [
       x=0.75, y=0.05, width=0.20, height=0.9, opacity=0.9,
       on_focus_lost_hide=False),
 
-   DropDown("music", "alacritty -e bash -c '. ~/.zshrc; ncspot'",
+   DropDown("music", "alacritty -e bash -c '. ~/.zshrc; cmus'",
       x=0.05, y=0.0, width=0.9, height=0.7, opacity=0.9,
       on_focus_lost_hide=False),
                
@@ -282,9 +280,20 @@ def init_layouts():
 layouts = init_layouts()
 
 floating_layout = layout.Floating(
-   border_width=layout_border_width,
+    border_width=layout_border_width,
     border_normal=color[0],
     border_focus=color[2],
+    float_rules=[
+        # Run the utility of `xprop` to see the wm class and name of an X client.
+        *layout.Floating.default_float_rules,
+        Match(wm_class="confirmreset"),  # gitk
+        Match(wm_class="makebranch"),  # gitk
+        Match(wm_class="maketag"),  # gitk
+        Match(wm_class="ssh-askpass"),  # ssh-askpass
+        Match(title="branchdialog"),  # gitk
+        Match(title="pinentry"),  # GPG key password entry
+        Match(title="Xephyr"), # lightdm testing
+    ]
 )
 
 # Drag floating layouts.
@@ -299,18 +308,7 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-    ]
-)
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

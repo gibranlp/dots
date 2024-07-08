@@ -21,12 +21,55 @@ from qtile_extras import widget
 from qtile_extras.popup.toolkit import (PopupRelativeLayout, PopupWidget)
 from qtile_extras.widget.decorations import (BorderDecoration,PowerLineDecoration,RectDecoration)
 from rofi import Rofi
-from variables import *
+from colors import *
 
 #### Variables ####
 # Modifiers
 mod = "mod4"
 alt = "mod1"
+
+#### Import Configuration File ####
+
+## Import config
+file = open(home + '/.config/qtile/variables', 'r')
+variables=file.readlines()
+
+## Read picom.conf for blur in the bar
+file = open(home + '/.config/picom/picom.conf', 'r')
+bar_blur=file.readlines()
+current_blur = bar_blur[279].strip()
+
+if current_blur == '"QTILE_INTERNAL:32c = 0"':
+  new_blur = '"QTILE_INTERNAL:32c = 1"' + "\n"
+  bar_blur[279] = new_blur
+  blur_icon=''
+else:
+  new_blur = '"QTILE_INTERNAL:32c = 0"' + "\n"
+  bar_blur[279] = new_blur
+  blur_icon=''
+
+## Get Terminal Fontsize
+file = open(home + '/.config/alacritty/alacritty.toml', 'r')
+term_size=file.readlines()
+terminal_font_size = term_size[21].strip()
+
+# Wallpaper Options
+light=str(variables[4].strip()) # Option for light themes
+
+## Sticky Windows
+
+sticky_windows=[]
+
+## Move Window to current Group
+@lazy.function
+def toggle_sticky_windows(qtile, window=None):
+    if window is None:
+        window = qtile.current_screen.group.current_window
+    if window in sticky_windows:
+        sticky_windows.remove(window)
+    else:
+        sticky_windows.append(window)
+    return window
 
 # Terminal 
 terminal = "alacritty"
@@ -49,10 +92,11 @@ hide_unused_groups=bool(str(variables[8].strip()))
 
 # Themes
 current_theme=str(variables[1].strip())
-themes_dir = home + str(variables[5].strip())
+themes_dir = os.path.expanduser("~/.config/qtile/themes")
+theme_files = [f for f in os.listdir(themes_dir) if os.path.isfile(os.path.join(themes_dir, f))]
+theme = [os.path.splitext(f)[0] for f in theme_files]
 theme_dest = (home + "/.config/qtile/theme.py")
 theme_file = themes_dir + "/" + current_theme
-theme=['Spectrum', 'Miasma', 'Minimal', 'Monochrome', 'Monochrome2', 'no_bar']
 
 # Pywal Backends Options: Wal, Colorz, Colorthief, Haishoku
 def_backend=str(variables[2].strip())
