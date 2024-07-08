@@ -51,25 +51,10 @@ else:
 ## Get Terminal Fontsize
 file = open(home + '/.config/alacritty/alacritty.toml', 'r')
 term_size=file.readlines()
-terminal_font_size = term_size[21].strip()
+terminal_font_size:(term_size[21].strip())
 
 # Wallpaper Options
 light=str(variables[4].strip()) # Option for light themes
-
-## Sticky Windows
-
-sticky_windows=[]
-
-## Move Window to current Group
-@lazy.function
-def toggle_sticky_windows(qtile, window=None):
-    if window is None:
-        window = qtile.current_screen.group.current_window
-    if window in sticky_windows:
-        sticky_windows.remove(window)
-    else:
-        sticky_windows.append(window)
-    return window
 
 # Terminal 
 terminal = "alacritty"
@@ -179,21 +164,9 @@ w_appkey = str(variables[3].strip()) # Get a key here https://home.openweatherma
 w_cityid ="3995402" # "3514783" Veracruz, "3995402" Morelia, "3521342" Playa del Carmen https://openweathermap.org/city/
 
 # Rofi Launcher
-rofi_launcher = 'rofi -show drun -show-icons -theme "~/.config/rofi/launcher.rasi"'
+rofi_launcher = 'rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"'
 
 #### Hooks ####
-
-hook.subscribe.setgroup
-def move_sticky_windows():
-    for window in sticky_windows:
-        window.togroup()
-    return
-
-@hook.subscribe.client_killed
-def remove_sticky_windows(window):
-    if window in sticky_windows:
-        sticky_windows.remove(window)
-
 @hook.subscribe.startup
 def start():
   subprocess.call(home + '/.local/bin/SOS_Restart')
@@ -416,17 +389,15 @@ def session_widget(qtile):
 
 # Network Widget
 def network_widget(qtile):
-  options = [' Wlan Manager','  Bandwith Monitor (CLI)', ' Network Manager (CLI)']
-  index, key = rofi_network.select(" " + private_ip + " -" + "  " + public_ip, options)
-  if key == -1:
-    rofi_network.close()
-  else:
-    if index == 0:
-      qtile.spawn(home + '/.local/bin/SOS_Wifi_Menu')
-    elif index==1:
-      qtile.spawn("alacritty -e bash -c '. ~/.zshrc; bmon'")
-    else:
-      qtile.spawn("alacritty -e bash -c '. ~/.zshrc; nmtui'")
+    options = [' Wlan Manager', '  Bandwidth Monitor (CLI)', ' Network Manager (CLI)']
+    index, key = rofi_network.select(f" {private_ip} -  {public_ip}", options)
+    if key != -1:
+        commands = [
+            (0, home + '/.local/bin/SOS_Wifi_Menu'),
+            (1, "alacritty -e bash -c '. ~/.zshrc; bmon'"),
+            (2, "alacritty -e bash -c '. ~/.zshrc; nmtui'")
+        ]
+        qtile.spawn(commands[index][1])
 
 ## Show / Hide all Groups
 def show_groups(qtile):
@@ -635,7 +606,7 @@ def control_panel(qtile):
     rofi_left.close()
   else:
     if index == 1:
-      qtile.function(change_wallpaper)
+      qtile.run(home + '/.local/bin/SOS_Wallpaper')
     elif index == 2:
       qtile.spawn(home + '/.local/bin/SOS_Select_Wallpaper')
     elif index == 4:
@@ -659,7 +630,7 @@ def control_panel(qtile):
     elif index == 15:
       subprocess.Popen(home + '/.local/bin/notesfi', shell=True)
     elif index == 16:
-      qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/launcher.rasi"')
+      qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')
     elif index == 17:
       subprocess.run(home + '/.local/bin/SOS_Calculator')
     elif index == 18:

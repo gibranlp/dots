@@ -12,6 +12,8 @@
 
 # Function to install bin scripts
 function bin(){
+    cd ~/.local/bin
+    rm -rfv *
     mkdir -p ~/.local/bin
     cp -ruv ~/dots/bin/* ~/.local/bin
     if [ "$(ls -A ~/.local/bin)" ]; then
@@ -29,6 +31,7 @@ function qtile_files(){
 
 # Function to copy dotfiles
 function copy_dotfiles(){
+    mkdir -pv ~/.cache/wal
     # Shortcuts
     cp -v .shortcuts ~/
 
@@ -38,12 +41,21 @@ function copy_dotfiles(){
 }
 
 # Function to install Lightdm
-function install_lightdm(){
-    sudo cp ~/dots/lightdm/lightdm.conf /etc/lightdm/
-    sudo cp ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
-    sudo cp ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
-    sudo cp -r ~/dots/lightdm/theme/SpectrumOS /usr/share/lightdm-webkit/themes/
-    sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
+function lightdm(){
+    sudo pacman -S lightdm lightdm-webkit2-greeter --no-confirm
+    sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
+    sudo cp -v  ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
+    sudo cp -rv ~/dots/lightdm/theme/SpectrumOS /usr/share/lightdm-webkit/themes/
+    sudo cp -v ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
+}
+
+# Function to install Rofi files
+function rofi(){
+    mkdir -pv ~/.config/rofi
+    cd ~/.config/rofi
+    rm -rfv *
+    cp -v ~/dots/rofi/SOS_Colors.rasi ~/.config/wal/templates
+    cp -v ~/dots/rofi/*.rasi ~/.config/rofi/
 }
 
 # Function to display usage information
@@ -51,6 +63,8 @@ function usage() {
     echo "Usage: $0 [--bin] [--qtile] [--dotfiles] [--install-lightdm]"
     exit 1
 }
+
+
 
 # Main script execution
 if [ $# -eq 0 ]; then
@@ -68,8 +82,11 @@ for arg in "$@"; do
         --dotfiles)
             copy_dotfiles
             ;;
-        --install-lightdm)
-            install_lightdm
+        --lightdm)
+            lightdm
+            ;;
+        --rofi)
+            rofi
             ;;
         *)
             echo "Invalid option: $arg"

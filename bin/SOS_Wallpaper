@@ -39,4 +39,5 @@ set_wall(){
   fi
 }
 set_wall
-qtile cmd-obj -o cmd -f restart 
+#qtile cmd-obj -o cmd -f restart
+pkill -SIGUSR1 qtile

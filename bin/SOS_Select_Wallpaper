@@ -26,7 +26,7 @@ set_wall(){
   cp $WALLPAPER "/usr/local/backgrounds/background.png"
   
   # Reload qtile configuration to apply changes
-  qtile cmd-obj -o cmd -f restart
+  pkill -SIGUSR1 qtile
 }
 
 # Function to get the wallpaper path using rofi
