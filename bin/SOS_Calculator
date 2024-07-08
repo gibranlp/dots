@@ -11,7 +11,7 @@
 #
 # Check if rofi or dmenu is installed and set the menu command accordingly
 if [[ -n $(command -v rofi) ]]; then
-    menu="$(command -v rofi) -dmenu -theme ~/.config/rofi/calculator.rasi"
+    menu="$(command -v rofi) -dmenu -theme ~/.config/rofi/SOS_Calculator.rasi"
 elif [[ -n $(command -v dmenu) ]]; then
     menu="$(command -v dmenu)"
 else

@@ -117,7 +117,7 @@ single_border_width=5
 if xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=30
   widget_width=450
-  terminal_font_size=12
+  terminal_font_size=14
   if bar_position == "bottom":
     bar_margin=[0,10,5,10]
   else:
@@ -325,7 +325,7 @@ def shortcuts(qtile):
 
 # Display Emojis
 def emojis(qtile):
-  subprocess.run("rofi -modi emoji -show emoji -theme '~/.config/rofi/emojis.rasi' -emoji-format {emoji}",shell=True)
+  subprocess.run("rofi -modi emoji -show emoji -theme '~/.config/rofi/SOS_Emoji.rasi' -emoji-format {emoji}",shell=True)
 
 # NightLight widget
 def nightLight_widget(qtile):
