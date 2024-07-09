@@ -1,5 +1,5 @@
 /*****----- Global Properties -----*****/
-@import "~/.cache/wal/SpectrumOS.rasi" 
+@import "~/.cache/wal/SOS_Colors.rasi" 
 
 /*****----- Configuration -----*****/
 configuration {

@@ -3,19 +3,19 @@
 
 /*****----- Configuration -----*****/
 configuration {
-    show-icons:                 false;
-}
-
+    show-icons:                 true;
+    }
+    
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
     transparency:                "real";
     location:                    center;
     anchor:                      center;
-    fullscreen:                  false;
-    width:                       70%;
-    height:                      70%;
-    x-offset:                    300px;
+    fullscreen:                  true;
+    width:                       0%;
+    height:                      0%;
+    x-offset:                    200px;
     y-offset:                    0px;
     border-radius:               0px 10px 10px 0px;
 
@@ -32,12 +32,12 @@ mainbox {
     spacing:                     0px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    [ "inputbar", "listbox" ];
+    children:                    ["listbox" ];
 }
 
 listbox {
-    spacing:                     10px;
-    padding:                     10px;
+    spacing:                     0px;
+    padding:                     0px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "message", "listview" ];
@@ -47,24 +47,25 @@ listbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     100px 0px;
+    padding:                     50px 0px;
     background-color:            transparent;
     background-image:            url("/usr/local/backgrounds/background.png", width);
     text-color:                  @foreground;
-    orientation:                 horizontal;
-    children:                    ["prompt", "entry"];
+    orientation:                 vertical;
+    children:                    ["textbox-prompt-colon"];
     border-radius:               0px 10px 0px 0px;
     horizontal-align:            0.5;
 
 }
 
-prompt {
-    padding:                     12px 16px;    
+textbox-prompt-colon{
+    enabled:                     true;
+    expand:                      false;
+    str:                         " Select Wallpaper";
+    padding:                     13px 15px;
     border-radius:               0px 5px 5px 0px;
     background-color:            @background;
-    text-color:                  @color1;
-    horizontal-align:            0.5;
-    text:                         " Emojis: ";
+    text-color:                  @color3;
 }
 
 entry {
@@ -79,8 +80,8 @@ entry {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     20;
-    lines:                       1;
+    columns:                     10;
+    lines:                       0;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -104,7 +105,7 @@ element {
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
-    
+    orientation:                 vertical;
 }
 element normal.normal {
     background-color:            inherit;
@@ -119,7 +120,7 @@ element normal.active {
     text-color:                  @foreground;
 }
 element selected.normal {
-    background-color:            @color3;
+    background-color:            @color1;
     text-color:                  @background;
 }
 element selected.urgent {
@@ -133,7 +134,7 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        30px;
+    size:                        250px;
     cursor:                      inherit;
 }
 element-text {
@@ -142,7 +143,6 @@ element-text {
     cursor:                      inherit;
     vertical-align:              0.5;
     horizontal-align:            0.5;
-    font:                        "Noto Color Emoji 25";
 }
 
 /*****----- Message -----*****/
@@ -150,7 +150,7 @@ message {
     background-color:            transparent;
 }
 textbox {
-    padding:                     12px;
+    padding:                     5px;
     border-radius:               5px;
     background-color:            @background;
     text-color:                  @foreground;

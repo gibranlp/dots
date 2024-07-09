@@ -32,7 +32,7 @@ set_wall(){
 # Function to get the wallpaper path using rofi
 get_wall(){
   # Use rofi to select a wallpaper from the specified directory
-  rofi -show file-browser-extended -theme ~/.config/rofi/sel_wal.rasi \
+  rofi -show file-browser-extended -theme ~/.config/rofi/SOS_Wallpaper.rasi \
        -file-browser-dir ~/Pictures/Wallpapers \
        -file-browser-disable-status \
        -file-browser-stdout \
