@@ -45,7 +45,7 @@ function install_zsh(){
 
 # Copy Picom Files
 
-function intall_picom(){
+function install_picom(){
     # Picom
     mkdir -p ~/.config/picom
     cp -v ~/dots/picom/picom.conf ~/.config/picom

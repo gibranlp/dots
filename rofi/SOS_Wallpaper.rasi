@@ -32,7 +32,7 @@ mainbox {
     spacing:                     0px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    ["listbox" ];
+    children:                    ["listview" ];
 }
 
 listbox {
@@ -100,8 +100,8 @@ listview {
 element {
     enabled:                     true;
     spacing:                     0px;
-    padding:                     0px;
-    border-radius:               5px;
+    padding:                     5px;
+    border-radius:               0px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
@@ -134,7 +134,7 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        250px;
+    size:                        200px;
     cursor:                      inherit;
 }
 element-text {
@@ -151,7 +151,7 @@ message {
 }
 textbox {
     padding:                     5px;
-    border-radius:               5px;
+    border-radius:               0px;
     background-color:            @background;
     text-color:                  @foreground;
     vertical-align:              0.5;
