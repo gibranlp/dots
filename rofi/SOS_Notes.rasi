@@ -1,21 +1,17 @@
 /*****----- Global Properties -----*****/
-@import "~/.cache/wal/SOS_Colors.rasi" 
+@import "~/.cache/wal/SpectrumOS.rasi" 
 
-/*****----- Configuration -----*****/
-configuration {
-    show-icons:                 true;
-    }
-    
+
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    center;
+    location:                    west;
     anchor:                      center;
-    fullscreen:                  true;
-    width:                       0%;
-    height:                      0%;
-    x-offset:                    0px;
+    fullscreen:                  false;
+    width:                       500px;
+    height:                      100%;
+    x-offset:                    250px;
     y-offset:                    0px;
     border-radius:               0px;
 
@@ -23,7 +19,7 @@ window {
     enabled:                     true;
     cursor:                      "default";
     background-color:            @background;
-    padding:                     2px;
+    padding:                     4px;
 }
 
 /*****----- Main Box -----*****/
@@ -32,40 +28,38 @@ mainbox {
     spacing:                     0px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    ["listview" ];
+    children:                    [ "inputbar", "listbox" ];
 }
 
 listbox {
-    spacing:                     0px;
-    padding:                     0px;
+    spacing:                     20px;
+    padding:                     20px;
     background-color:            transparent;
-    orientation:                 horizontal;
-    children:                    ["listview" ];
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     20px 0px;
+    padding:                     100px 0px;
     background-color:            transparent;
     background-image:            url("/usr/local/backgrounds/background.png", width);
     text-color:                  @foreground;
-    orientation:                 vertical;
-    children:                    ["textbox-prompt-colon"];
-    border-radius:               0px 10px 0px 0px;
+    orientation:                 horizontal;
+    children:                    ["prompt", "entry"];
+    border-radius:               0px;
     horizontal-align:            0.5;
 
 }
 
-textbox-prompt-colon{
-    enabled:                     true;
-    expand:                      false;
-    str:                         " Select Wallpaper";
-    padding:                     13px 15px;
+prompt {
+    padding:                     12px 16px;    
     border-radius:               0px 5px 5px 0px;
     background-color:            @background;
-    text-color:                  @color3;
+    text-color:                  @color1;
+    horizontal-align:            0.5;
 }
 
 entry {
@@ -80,7 +74,7 @@ entry {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     10;
+    columns:                     1;
     lines:                       0;
     cycle:                       true;
     dynamic:                     true;
@@ -89,7 +83,8 @@ listview {
     reverse:                     false;
     fixed-height:                true;
     fixed-columns:               true;
-    spacing:                     0px;
+    
+    spacing:                     10px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
@@ -99,14 +94,12 @@ listview {
 /*****----- Elements -----*****/
 element {
     enabled:                     true;
-    spacing:                     0px;
-    padding:                     2px 0;
-    margin:                      0;
-    border-radius:               0px;
+    spacing:                     10px;
+    padding:                     12px;
+    border-radius:               5px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
-    orientation:                 vertical;
 }
 element normal.normal {
     background-color:            inherit;
@@ -121,7 +114,7 @@ element normal.active {
     text-color:                  @foreground;
 }
 element selected.normal {
-    background-color:            @color1;
+    background-color:            @color3;
     text-color:                  @background;
 }
 element selected.urgent {
@@ -135,15 +128,15 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        200px;
+    size:                        40px;
     cursor:                      inherit;
 }
 element-text {
-    text-color: rgba(0, 0, 0, 0);  /* Transparent text */
-    font: "monospace 0";  /* Set font size to zero */
-    padding: 0;
-    margin: 0;
-    border: 0;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0;
 }
 
 /*****----- Message -----*****/
@@ -151,8 +144,8 @@ message {
     background-color:            transparent;
 }
 textbox {
-    padding:                     5px;
-    border-radius:               0px;
+    padding:                     12px;
+    border-radius:               5px;
     background-color:            @background;
     text-color:                  @foreground;
     vertical-align:              0.5;

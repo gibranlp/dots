@@ -22,7 +22,7 @@ article_library="$HOME/Articles/"
 # <<------ Main ------>> #
 create_document() {
   # Use rofi to prompt the user to select the type of document to create
-  document_type=$(echo -e "Markdown\nLaTeX" | rofi -dmenu -i -p "Type of Note?" -theme "~/.config/rofi/left.rasi")
+  document_type=$(echo -e "Markdown\nLaTeX" | rofi -dmenu -i -p "Type of Note?" -theme "~/.config/rofi/SOS_Notes.rasi")
 
   # Check if the user cancelled the prompt
   if [ -z "$document_type" ]; then
@@ -48,7 +48,7 @@ create_document() {
   esac
 
   # Use rofi to prompt the user to enter a name for the note
-  cn_name=$(rofi -dmenu -p "Note Name:" -theme "~/.config/rofi/left.rasi")
+  cn_name=$(rofi -dmenu -p "Note Name:" -theme "~/.config/rofi/SOS_Notes.rasi")
 
   # Check if the user cancelled the prompt
   if [ -z "$cn_name" ]; then
@@ -58,7 +58,7 @@ create_document() {
   # Check if the file already exists
   if [ -f "$directory/$cn_name.$EXTENSION" ]; then
     # Prompt the user to confirm if they want to overwrite the file
-    if ! (echo -e "Yes\nNo" | rofi -dmenu -p "Note exists. Overwrite?" -theme "~/.config/rofi/left.rasi" | grep -q "Yes"); then
+    if ! (echo -e "Yes\nNo" | rofi -dmenu -p "Note exists. Overwrite?" -theme "~/.config/rofi/SOS_Notes.rasi" | grep -q "Yes"); then
       return
     fi
   fi
@@ -72,7 +72,7 @@ create_document() {
 open_document() {
   # Search for PDF, EPUB, and MOBI files and open the selected one with the viewer
   document=$(rg --files --iglob "*.pdf" --iglob "*.epub" --iglob "*.mobi" $directory)
-  selected_document=$(echo "$document" | rofi -dmenu -i -p " Open:" -theme "~/.config/rofi/left.rasi")
+  selected_document=$(echo "$document" | rofi -dmenu -i -p " Open:" -theme "~/.config/rofi/SOS_Notes.rasi")
   if [[ -n $selected_document ]]; then
     $VIEW "$selected_document"
   fi
@@ -81,7 +81,7 @@ open_document() {
 edit_notes() {
   # Search for Markdown, Wiki, and LaTeX files and open the selected one in the editor
   document=$(rg --files --iglob "*.md" --iglob "*.wiki" --iglob "*.tex" $directory)
-  selected_document=$(echo "$document" | rofi -dmenu -i -p " Open:" -theme "~/.config/rofi/shortcuts.rasi")
+  selected_document=$(echo "$document" | rofi -dmenu -i -p " Open:" -theme "~/.config/rofi/SOS_Notes.rasi")
   if [[ -n $selected_document ]]; then
     $TERMINAL -e $EDITOR "$selected_document"
   fi
@@ -89,7 +89,7 @@ edit_notes() {
 
 download_books() {
   # Prompt the user to enter a book name and download it using libby
-  bookname=$(echo "" | rofi -dmenu -p "Enter book name:" -theme "~/.config/rofi/left.rasi")
+  bookname=$(echo "" | rofi -dmenu -p "Enter book name:" -theme "~/.config/rofi/SOS_Notes.rasi")
   if [ -z "$bookname" ]; then
       echo "No book name entered"
       exit 1
@@ -101,7 +101,7 @@ download_books() {
 
 main() {
   # Prompt the user to select "Library" or "Articles" using rofi
-  selected_dir=$(echo -e " Create Note\n View Notes\n Library\n Articles\n Download Books" | rofi -dmenu -i -p " Choose:" -theme "~/.config/rofi/left.rasi")
+  selected_dir=$(echo -e " Create Note\n View Notes\n Library\n Articles\n Download Books" | rofi -dmenu -i -p " Choose:" -theme "~/.config/rofi/SOS_Notes.rasi")
 
   # Set the directory based on the user's selection and perform the corresponding action
   if [[ -n $selected_dir ]]; then

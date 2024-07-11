@@ -9,9 +9,123 @@
 # MIT licence 
 # 
 #
+# Install Base Packages
+function install_base() {
+    packets=(
+        'xorg-server' 'xorg-xinit' 'xorg-xrandr' 'feh' 'unclutter' 'fuse-exfat'
+        'base-devel' 'alsa-utils' 'pulseaudio-alsa' 'pavucontrol' 'openssh'
+        'alacritty' 'xcolor' 'playerctl' 'scrot' 'flameshot' 'rofi' 'surfraw'
+        'python-pip' 'ranger' 'lxappearance' 'bmon' 'acpilight' 'lm_sensors'
+        'nm-connection-editor' 'arandr' 'python-psutil' 'python-xdg'
+        'python-iwlib' 'python-dateutil' 'ueberzug' 'xsettingsd' 'zsh' 'dunst'
+        'tk' 'transmission-cli' 'vlc' 'kdeconnect' 'reflector' 'rsync' 'curl'
+        'cmus' 'bc' 'neofetch' 'firefox' 'xorg-xkill' 'xdg-user-dirs' 'bluez'
+        'bluez-tools' 'bluez-utils' 'ripgrep' 'blueman' 'htop' 'jp2a' 'locate'
+        'os-prober' 'gnome-disk-utility' 'networkmanager' 'unzip' 'xarchiver'
+        'tlp' 'gvfs' 'barrier' 'noto-fonts' 'noto-fonts-cjk' 'noto-fonts-emoji'
+        'ttf-dejavu' 'ttf-liberation' 'ttf-opensans' 'libayatana-appindicator'
+        'tumbler' 'redshift' 'libmicrodns' 'protobuf' 'neovim' 'xorg-xdpyinfo'
+        'fd' 'fzf' 'cups' 'thefuck' 'pamixer' 'gvfs-mtp' 'gvfs-nfs' 'gvfs-smb'
+        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr'
+    )
 
-# Install bin scripts
-function bin(){
+    for packet in "${packets[@]}"; do
+        echo "Instalando --> ${packet}"
+        sudo pacman -S "${packet}" --noconfirm --needed
+    done
+}
+
+# Install Paru AUR Helper
+function install_paru(){
+  git clone https://aur.archlinux.org/paru.git 
+  cd paru 
+  makepkg -si --noconfirm
+  cd ..
+  rm -rf paru
+} 
+
+# Install AUR Packages
+function install_aur_packages() {
+    packets=(
+        'qtile-git' 'farge' 'qtile-extras-git' 'caffeine' 'discord' 'pywal-discord-git'
+        'visual-studio-code-bin' 'pulseaudio-bluetooth' 'telegram-desktop'
+        'google-chrome' 'wpgtk-git' 'insect' 'cava-git' 'thunar-extended'
+        'thunar-volman' 'hugo' 'gromit-mpx-git' 'nbfc' 'ntfs-3g'
+        'i3lock-color' 'i3lock-fancy-git' 'picom-ftlabs-git' 'lazy-docker'
+        'rofi-emoji' 'zathura-pdf-mupdf' 'zathura-pywal-git' 'zathura-ps'
+        'python-rofi-git' 'lyrics-in-terminal' 'picom-ftlabs-git'
+        'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
+        'discord' 'whatsdesk-bin' 'lyrics-in-terminal'
+    )
+
+    for packet in "${packets[@]}"; do
+        echo "Instalando --> ${packet}"
+        paru -S "${packet}" --noconfirm
+    done
+}
+
+## Actualizar Grub
+function grub_update(){
+# Archivo de configuración de GRUB
+GRUB_CONFIG="/etc/default/grub"
+
+# Imagen de fondo para GRUB
+BACKGROUND_IMAGE="/usr/local/backgrounds/background.png"
+
+# Verificar si el archivo de configuración de GRUB existe
+if [ -f "$GRUB_CONFIG" ]; then
+    # Asegurarse de que la imagen de fondo tenga permisos correctos
+    sudo chmod +r $BACKGROUND_IMAGE
+
+    # Agregar o modificar las líneas necesarias en el archivo de configuración de GRUB
+
+    # Agregar o modificar la línea GRUB_CMDLINE_LINUX_DEFAULT
+    if grep -q "^GRUB_CMDLINE_LINUX_DEFAULT" "$GRUB_CONFIG"; then
+        sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 quiet splash"/' "$GRUB_CONFIG"
+    else
+        echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"' | sudo tee -a "$GRUB_CONFIG"
+    fi
+
+    # Agregar o modificar la línea GRUB_GFXMODE
+    if grep -q "^GRUB_GFXMODE" "$GRUB_CONFIG"; then
+        sudo sed -i 's/^GRUB_GFXMODE=.*/GRUB_GFXMODE=auto/' "$GRUB_CONFIG"
+    else
+        echo 'GRUB_GFXMODE=auto' | sudo tee -a "$GRUB_CONFIG"
+    fi
+
+    # Agregar o modificar la línea GRUB_BACKGROUND
+    if grep -q "^GRUB_BACKGROUND" "$GRUB_CONFIG"; then
+        sudo sed -i "s|^GRUB_BACKGROUND=.*|GRUB_BACKGROUND=\"$BACKGROUND_IMAGE\"|" "$GRUB_CONFIG"
+    else
+        echo "GRUB_BACKGROUND=\"$BACKGROUND_IMAGE\"" | sudo tee -a "$GRUB_CONFIG"
+    fi
+
+    # Agregar o modificar la línea GRUB_TERMINAL_OUTPUT
+    if grep -q "^GRUB_TERMINAL_OUTPUT" "$GRUB_CONFIG"; then
+        sudo sed -i 's/^GRUB_TERMINAL_OUTPUT=.*/GRUB_TERMINAL_OUTPUT=gfxterm/' "$GRUB_CONFIG"
+    else
+        echo 'GRUB_TERMINAL_OUTPUT=gfxterm' | sudo tee -a "$GRUB_CONFIG"
+    fi
+
+    # Agregar o modificar la línea GRUB_DISABLE_OS_PROBER
+    if grep -q "^GRUB_DISABLE_OS_PROBER" "$GRUB_CONFIG"; then
+        sudo sed -i 's/^GRUB_DISABLE_OS_PROBER=.*/GRUB_DISABLE_OS_PROBER=false/' "$GRUB_CONFIG"
+    else
+        echo 'GRUB_DISABLE_OS_PROBER=false' | sudo tee -a "$GRUB_CONFIG"
+    fi
+
+    # Actualizar la configuración de GRUB
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
+    echo "Configuración de GRUB actualizada correctamente."
+else
+    echo "El archivo de configuración de GRUB no existe: $GRUB_CONFIG"
+    exit 1
+fi
+}
+
+# Install bin scripts Files
+function install_bin(){
     cd ~/.local/bin
     rm -rfv *
     mkdir -p ~/.local/bin
@@ -30,7 +144,6 @@ function install_qtile(){
 }
 
 # Alacritty
-
 function install_alacritty(){
     # Alacritty
     mkdir -p ~/.config/alacritty
@@ -39,12 +152,15 @@ function install_alacritty(){
 
 # Copy ZSH Files
 function install_zsh(){
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    sudo chsh -s $(which zsh) gibranlp
     cp -v ~/dots/.zshrc ~/
     cp -v ~/dots/oh-my-zsh/* ~/.oh-my-zsh/themes/
 }
 
 # Copy Picom Files
-
 function install_picom(){
     # Picom
     mkdir -p ~/.config/picom
@@ -53,12 +169,26 @@ function install_picom(){
 
 # Copy Depenendencies
 function install_dependencies(){
-    mkdir -pv ~/.cache/wal
+    cp -rv ~/dots/cache/* ~/.cache/
     # Shortcuts
     cp -v .shortcuts ~/
 
     # Logo Cli
     cp -v ~/dots/logo_cli.png ~/
+
+    # Enable Touchpad in Laptops
+    sudo cp -v ~/dots/touchpad/30-touchpad.conf /etc/X11/xorg.conf.d/
+
+    # Copy Fonts
+    mkdir -pv  ~/.fonts
+    cp -v ~/dots/.fonts/* ~/.fonts
+
+    # Copy Gromit config file
+    cp -v ~/dots/gromit-mpx/gromit-mpx.cfg ~/.config/
+
+    # Generate all Folders
+    mkdir -pv ~/Documents ~/Public ~/Downloads ~/notable ~/books ~/Articles
+
 }
 
 # Copy Wallpapers
@@ -69,8 +199,15 @@ function install_wallpapers(){
     cp -v ~/dots/Wallpapers/* ~/Pictures/Wallpapers
 }
 
-# Copy Dunst Files
+# Install Plymouth
+function install_plymouth(){
+  paru -S plymouth-git --no-confirm
+  sudo cp -rv ~/dotfiles/plymouth/themes/spectrumos /usr/share/plymouth/themes/
+  sudo plymouth-set-default-theme -R spectrumos
+  sudo mkinitcpio -P
+}
 
+# Copy Dunst Files
 function install_dunst(){
     mkdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/dunst
@@ -85,7 +222,7 @@ function install_lightdm(){
     sudo cp -v ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
     sudo cp -rv ~/dots/lightdm/theme/SpectrumOS /usr/share/lightdm-webkit/themes/
     sudo cp -v ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
-    sudo mkdir -p /usr/local/themes
+    sudo mkdir -pv /usr/local/themes
     sudo cp -rv ~/.local/share/themes/FlatColor /usr/local/themes
     sudo chown -R $USER:$USER /usr/local/themes/FlatColor
     sudo ln -s /usr/local/themes/FlatColor /usr/share/themes/FlatColor
@@ -101,13 +238,126 @@ function install_rofi(){
     cp -v ~/dots/rofi/*.rasi ~/.config/rofi/
 }
 
+# Copy Cava Files
+function install_cava(){
+    mdir -pv ~/.config/wal/templates
+    mkdir -pv ~/.config/cava
+    cp -v ~/dotfiles/.config/cava/config ~/.config/wal/templates
+}
+
+# Copy Flameshot Files
+function install_flameshot(){
+    mdir -pv ~/.config/wal/templates
+    mkdir -pv ~/.config/flameshot
+    cp -v ~/dotfiles/.config/flameshot/flameshot.ini ~/.config/wal/templates
+
+}
+
+# Copy Thunar Config Files
+function install_thunar(){
+    cp -v ~/dots/gtk-3.0/* .config/gtk-3.0/
+}
+
+# Copy Neofetch Files
+
+function install_neofetch(){
+    mkdir -pv ~/.config/neofetch
+    cp -v ~/dots/neofetch/config.conf ~/.config/neofetch/
+}
+
+# Copy Ranger Files
+function install_ranger(){
+    mkdir -pv ~/.config/ranger
+    cp -v ~/dots/ranger/rc.conf ~/.config/ranger/
+}
+
 # Function to display usage information
 function usage() {
     echo "Usage: $0 [--bin] [--qtile] [--alacritty] [--zsh] [--picom] [--dependencies] [--wallpapers] [--lightdm] [--rofi] [--dunst]"
     exit 1
 }
 
+# Copy Xsettingsd Files
+function install_xsettings(){
+    mkdir -pv ~/.config/xsettingsd
+    cp -v ~/dotfiles/.config/xsettingsd/xsettingsd.conf ~/.config/xsettingsd/
+}
 
+# Copy Pulseaudio Files
+function install_pulseaudio(){
+    sudo cp ~/dots/pulseaudio/system.pa /etc/pulse/system.pa
+}
+
+# Post Operations 
+function post_operations(){
+  wpg-install.sh -gio
+  sudo usermod -aG network $USER
+  sudo timedatectl set-ntp true
+  xdg-settings set default-web-browser brave.desktop
+  fc-cache -f -v
+  #timedatectl set-timezone America/Mexico_City
+  
+  sudo systemctl enable bluetooth.service
+  sudo systemctl start bluetooth.service
+  sudo systemctl enable sshd.service
+  sudo systemctl start sshd.service
+  sudo systemctl enable tlp.service
+  journalctl --vacuum-size=100M
+  journalctl --vacuum-time=2weeks
+  timedatectl set-local-rtc 1
+  
+}
+
+# Install Docker 
+function install_docker(){
+  sudo pacman -S docker docker-buildx docker-compose --noconfirm --needed
+  sudo systemctl enable docker.service
+  sudo systemctl start docker.service
+  sudo usermod -aG docker $USER
+}
+
+## Install Optimus
+function install_optimus(){
+  sudo pacman -S nvidia nvidia-utils xf86-video-intel bumblebee mesa --noconfirm
+  sudo systemctl enable bumblebeed
+  sudo systemctl start bumblebeed
+  sudo gpasswd -a $USER bumblebee
+  sudo pacman -S primus --noconfirm
+}
+
+# Function to run all installation steps
+function run_all() {
+    install_alacritty
+    install_aur_packages
+    install_base
+    install_bin
+    install_cava
+    install_dependencies
+    install_docker
+    install_dunst
+    install_flameshot
+    grub_update
+    install_lightdm
+    install_neofetch
+    install_optimus
+    install_paru
+    install_picom
+    install_plymouth
+    post_operations
+    install_pulseaudio
+    install_qtile
+    install_ranger
+    install_rofi
+    install_thunar
+    install_wallpapers
+    install_xsettings
+}
+
+# Function to display usage information
+function usage() {
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings]"
+    exit 1
+}
 
 # Main script execution
 if [ $# -eq 0 ]; then
@@ -116,35 +366,80 @@ fi
 
 for arg in "$@"; do
     case $arg in
-        --bin)
-            bin
-            ;;
-        --qtile)
-            install_qtile
+        --all)
+            run_all
             ;;
         --alacritty)
             install_alacritty
             ;;
-        --zsh)
-            install_zsh
+        --aur-packages)
+            install_aur_packages
             ;;
-        --picom)
-            install_picom
+        --base)
+            install_base
+            ;;
+        --bin)
+            install_bin
+            ;;
+        --cava)
+            install_cava
             ;;
         --dependencies)
             install_dependencies
             ;;
-        --wallpapers)
-            install_wallpapers
+        --docker)
+            install_docker
+            ;;
+        --dunst)
+            install_dunst
+            ;;
+        --flameshot)
+            install_flameshot
+            ;;
+        --grub)
+            grub_update
             ;;
         --lightdm)
             install_lightdm
             ;;
+        --neofetch)
+            install_neofetch
+            ;;
+        --optimus)
+            install_optimus
+            ;;
+        --paru)
+            install_paru
+            ;;
+        --picom)
+            install_picom
+            ;;
+        --plymouth)
+            install_plymouth
+            ;;
+        --post)
+            post_operations
+            ;;
+        --pulseaudio)
+            install_pulseaudio
+            ;;
+        --qtile)
+            install_qtile
+            ;;
+        --ranger)
+            install_ranger
+            ;;
         --rofi)
             install_rofi
             ;;
-        --dunst)
-            install_dunst
+        --thunar)
+            install_thunar
+            ;;
+        --wallpapers)
+            install_wallpapers
+            ;;
+        --xsettings)
+            install_xsettings
             ;;
         *)
             echo "Invalid option: $arg"

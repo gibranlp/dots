@@ -293,15 +293,15 @@ public_ip = get_public_ip()
 # Call Calendar Notification
 
 def calendar_notification(qtile):{
-  subprocess.call(home + '/.local/bin/calendar')
+  subprocess.call(home + '/.local/bin/SOS_Calendar')
 }
 
 def calendar_notification_prev(qtile):{
-  subprocess.call([home + '/.local/bin/calendar', 'prev'])
+  subprocess.call([home + '/.local/bin/SOS_Calendar', 'prev'])
 }
 
 def calendar_notification_next(qtile):{
-  subprocess.call([home + '/.local/bin/calendar', 'next'])
+  subprocess.call([home + '/.local/bin/SOS_Calendar', 'next'])
 }
    
 ## Rofi Widgets

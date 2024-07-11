@@ -1,0 +1,21 @@
+set $wallpaper /home/gibranlp/Pictures/Wallpapers/wall3.png
+
+set $background #131311
+set $foreground #f3f0e2
+
+set $color0 #131311
+set $color1 #4E7A8A
+set $color2 #4391A7
+set $color3 #A0A897
+set $color4 #C3BBA3
+set $color5 #DACBA9
+set $color6 #E4D3AE
+set $color7 #f3f0e2
+set $color8 #aaa89e
+set $color9 #4E7A8A
+set $color10 #4391A7
+set $color11 #A0A897
+set $color12 #C3BBA3
+set $color13 #DACBA9
+set $color14 #E4D3AE
+set $color15 #f3f0e2
