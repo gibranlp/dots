@@ -36,7 +36,11 @@ get_wall(){
        -file-browser-dir ~/Pictures/Wallpapers \
        -file-browser-disable-status \
        -file-browser-stdout \
-       -file-browser-hide-parent
+       -file-browser-hide-parent \ 
+       -file-browser-exclude '*.sh'
+       
+       
+
 }
 
 # Get the selected wallpaper path
