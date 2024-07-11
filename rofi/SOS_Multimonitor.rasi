@@ -1,17 +1,17 @@
 /*****----- Global Properties -----*****/
-@import "~/.cache/wal/SOS_Colors.rasi" 
+@import "~/.cache/wal/SpectrumOS.rasi" 
 
 
 /*****----- Main Window -----*****/
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    center;
+    location:                    west;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       550px;
-    height:                      50%;
-    x-offset:                    0px;
+    width:                       500px;
+    height:                      100%;
+    x-offset:                    250px;
     y-offset:                    0px;
     border-radius:               0px;
 
@@ -68,9 +68,6 @@ entry {
     background-color:            @color1;
     text-color:                  @background;
     horizontal-align:            0;
-    placeholder:                 "  Search";
-    placeholder-color:           @color1;
-    cursor-color:                @background;
 }
 
 
@@ -78,7 +75,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       4;
+    lines:                       0;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

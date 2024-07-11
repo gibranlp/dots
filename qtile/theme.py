@@ -63,22 +63,9 @@ def init_widgets_list():
         scroll_repeat=True,
         scroll_step=1,
       ),
-      widget.WidgetBox(
-        text_closed='',
-        text_open='',
+      widget.TextBox(
+        text="",
         foreground=secondary_color[6],
-        widgets=[
-            widget.Visualiser(
-              background=secondary_color[6],
-              bar_colour=secondary_color[0],
-              width=widget_width - 50,
-              bars=16,
-              channels='stereo',
-              framerate=30,
-              hide=True,
-              mouse_callbacks={'Button1': lambda: qtile.spawn(terminal  + " -e cava")},
-            ),
-            ]
       ),
       widget.Mpris2(
         background=color[6],
@@ -93,9 +80,22 @@ def init_widgets_list():
         scroll_repeat=True,
         scroll_delay=0.1,
       ),
-      widget.TextBox(
-        text="",
+      widget.WidgetBox(
+        text_closed='',
+        text_open='',
         foreground=secondary_color[6],
+        widgets=[
+            widget.Visualiser(
+              background=secondary_color[6],
+              bar_colour=secondary_color[0],
+              width=150,
+              bars=20,
+              channels='stereo',
+              framerate=30,
+              hide=True,
+              mouse_callbacks={'Button1': lambda: qtile.spawn(terminal  + " -e cava")},
+            ),
+            ]
       ),
       widget.WidgetBox(
         background=color[5],

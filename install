@@ -10,7 +10,7 @@
 # 
 #
 
-# Function to install bin scripts
+# Install bin scripts
 function bin(){
     cd ~/.local/bin
     rm -rfv *
@@ -21,47 +21,64 @@ function bin(){
     fi
 }
 
-# Function to copy Qtile files
-function qtile_files(){
+# Qtile files
+function install_qtile(){
     mkdir -pv ~/.config/qtile
     cd ~/.config/qtile
     rm -rfv *
     cp -rv ~/dots/qtile/* ~/.config/qtile/
 }
 
-# Function to copy dotfiles
-function copy_dotfiles(){
-    mkdir -pv ~/.cache/wal
-    
+# Alacritty
+
+function install_alacritty(){
     # Alacritty
     mkdir -p ~/.config/alacritty
     cp -v ~/dots/alacritty/alacritty.toml ~/.config/alacritty
-    
-    # Shortcuts
-    cp -v .shortcuts ~/
+}
 
+# Copy ZSH Files
+function install_zsh(){
+    cp -v ~/dots/.zshrc ~/
+    cp -v ~/dots/oh-my-zsh/* ~/.oh-my-zsh/themes/
+}
+
+# Copy Picom Files
+
+function intall_picom(){
     # Picom
     mkdir -p ~/.config/picom
     cp -v ~/dots/picom/picom.conf ~/.config/picom
+}
 
-    # Zsh
-    cp -v ~/dots/.zshrc ~/
-    cp -v ~/dots/oh-my-zsh/* ~/.oh-my-zsh/themes/
+# Copy Depenendencies
+function install_dependencies(){
+    mkdir -pv ~/.cache/wal
+    # Shortcuts
+    cp -v .shortcuts ~/
 
     # Logo Cli
     cp -v ~/dots/logo_cli.png ~/
+}
 
-    # Wallpapers
+# Copy Wallpapers
+function install_wallpapers(){
     sudo mkdir -pv /usr/local/backgrounds
     sudo chown -R $USER:$USER /usr/local/backgrounds
     sudo cp -v ~/dots/Wallpapers/wall1.png /usr/local/backgrounds/background.png
     cp -v ~/dots/Wallpapers/* ~/Pictures/Wallpapers
+}
 
-    # Color Theme for Root and Lightdm 
+# Copy Dunst Files
+
+function install_dunst(){
+    mkdir -pv ~/.config/wal/templates
+    mkdir -pv ~/.config/dunst
+    cp -v ~/dots/dunst/dunstrc ~/.config/wal/templates
 }
 
 # Function to install Lightdm
-function lightdm(){
+function install_lightdm(){
     sudo pacman -S lightdm lightdm-webkit2-greeter --no-confirm
     sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
@@ -75,7 +92,8 @@ function lightdm(){
 }
 
 # Function to install Rofi files
-function rofi(){
+function install_rofi(){
+    mdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/rofi
     cd ~/.config/rofi
     rm -rfv *
@@ -85,7 +103,7 @@ function rofi(){
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--bin] [--qtile] [--dotfiles] [--install-lightdm]"
+    echo "Usage: $0 [--bin] [--qtile] [--alacritty] [--zsh] [--picom] [--dependencies] [--wallpapers] [--lightdm] [--rofi] [--dunst]"
     exit 1
 }
 
@@ -102,16 +120,31 @@ for arg in "$@"; do
             bin
             ;;
         --qtile)
-            qtile_files
+            install_qtile
             ;;
-        --dotfiles)
-            copy_dotfiles
+        --alacritty)
+            install_alacritty
+            ;;
+        --zsh)
+            install_zsh
+            ;;
+        --picom)
+            install_picom
+            ;;
+        --dependencies)
+            install_dependencies
+            ;;
+        --wallpapers)
+            install_wallpapers
             ;;
         --lightdm)
-            lightdm
+            install_lightdm
             ;;
         --rofi)
-            rofi
+            install_rofi
+            ;;
+        --dunst)
+            install_dunst
             ;;
         *)
             echo "Invalid option: $arg"

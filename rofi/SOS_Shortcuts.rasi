@@ -9,8 +9,8 @@ window {
     location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       550px;
-    height:                      50%;
+    width:                       500px;
+    height:                      80%;
     x-offset:                    0px;
     y-offset:                    0px;
     border-radius:               0px;
@@ -29,6 +29,7 @@ mainbox {
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "inputbar", "listbox" ];
+    horizontal-align:            0.5;
 }
 
 listbox {
@@ -37,6 +38,7 @@ listbox {
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "message", "listview" ];
+    horizontal-align:            0.5;
 }
 
 /*****----- Inputbar -----*****/
@@ -63,14 +65,15 @@ prompt {
 }
 
 entry {
-    padding:                     12px 16px;    
+    padding:                     12px 14px;    
     border-radius:               5px 0px 0px 5px;
     background-color:            @color1;
     text-color:                  @background;
     horizontal-align:            0;
     placeholder:                 "  Search";
-    placeholder-color:           @color1;
+    placeholder-color:           @background;
     cursor-color:                @background;
+    vertical-align:              0.5;
 }
 
 
@@ -78,7 +81,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       4;
+    lines:                       0;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -91,6 +94,7 @@ listview {
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
+    horizontal-align:            0.5;
     
 }
 
@@ -103,6 +107,7 @@ element {
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
+    horizontal-align:            0.5;
 }
 element normal.normal {
     background-color:            inherit;
@@ -139,7 +144,7 @@ element-text {
     text-color:                  inherit;
     cursor:                      inherit;
     vertical-align:              0.5;
-    horizontal-align:            0;
+    horizontal-align:            0.5;
 }
 
 /*****----- Message -----*****/

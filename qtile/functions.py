@@ -91,8 +91,8 @@ backend=['wal','colorz','colorthief','haishoku']
 layout_margin=10 # Layout margins
 single_layout_margin=10 # Single window margin 
 ## Borders
-layout_border_width=5 # Layout border width
-single_border_width=5 # Single border width
+layout_border_width=3 # Layout border width
+single_border_width=3 # Single border width
 
 # Bar Position
 bar_position=str(variables[6].strip())
@@ -108,7 +108,6 @@ yres = resolution[22:26]
 # Set Bar and font sizes for different resolutions
 
 # Common Settings
-
 layout_margin=5
 single_layout_margin=5 
 layout_border_width=5
@@ -117,7 +116,7 @@ single_border_width=5
 if xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=30
   widget_width=450
-  terminal_font_size=11
+  terminal_font_size=10
   if bar_position == "bottom":
     bar_margin=[0,10,5,10]
   else:
@@ -139,7 +138,7 @@ else: # 1366 x 768 Macbook air 11"
   font_size=14
   bar_size=20
   widget_width=100
-  terminal_font_size=7
+  terminal_font_size=8
   bar_margin=[0,0,0,0]
 
 # Set the right Terminal Font size
@@ -325,7 +324,7 @@ def set_default_backend(qtile):
 
 # Display Shortcuts widget
 def shortcuts(qtile):
-  subprocess.run("cat ~/.shortcuts | rofi -theme '~/.config/rofi/shortcuts.rasi' -i -dmenu -p ' Shortcuts:'",shell=True)
+  subprocess.run("cat ~/.shortcuts | rofi -theme '~/.config/rofi/SOS_Shortcuts.rasi' -i -dmenu -p ' Shortcuts:'",shell=True)
 
 # Display Emojis
 def emojis(qtile):

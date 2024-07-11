@@ -1,0 +1,5 @@
+#! /bin/sh
+# Run this in Cmus
+#:set status_display_program=~/.local/bin/cmus_notifications
+
+cmus_notify --title "$(printf "  %s\n%s" "{title}" " {artist}")" --body "$(printf "<b> Album:</b> {album}\n<b>Duration:</b> {duration}")" "$*"

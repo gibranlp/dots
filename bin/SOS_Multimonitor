@@ -72,7 +72,7 @@ function select_output() {
   case ${#menu} in
     0) return "${err_no_options}" ;;
     1) echo "${menu}" ;;
-    *) echo ${(F)menu} | rofi -theme ~/.config/rofi/left.rasi -dmenu -l 10 -p "$1" ;;
+    *) echo ${(F)menu} | rofi -theme ~/.config/rofi/SOS_Multimonitor.rasi -dmenu -l 10 -p "$1" ;;
   esac
 }
 
@@ -93,7 +93,7 @@ right of ${anchor}
 above ${anchor}
 below ${anchor}
 mirror ${anchor}
-off" | rofi -theme ~/.config/rofi/left.rasi -dmenu -l 10 -p " Position  $1" | read selection
+off" | rofi -theme ~/.config/rofi/SOS_Multimonitor.rasi -dmenu -l 10 -p " Position  $1" | read selection
 
   case "${selection[(w)1]}" in
     left) echo "--left-of ${anchor}" ;;
@@ -120,7 +120,7 @@ function select_mode() {
     | grep x \
     | cat <(echo auto) -)"
 
-  echo "${menu}" | rofi -theme ~/.config/rofi/left.rasi -dmenu -l 10 -p " Mode  $1" | read selection
+  echo "${menu}" | rofi -theme ~/.config/rofi/SOS_Multimonitor.rasi -dmenu -l 10 -p " Mode  $1" | read selection
 
   case "${selection}" in
     'auto') echo '--auto' ;;
@@ -136,7 +136,7 @@ function select_rotation() {
   echo "normal
 left
 right
-inverted" | rofi -theme ~/.config/rofi/left.rasi -dmenu -l 10 -p " Rotation  $1" | read selection
+inverted" | rofi -theme ~/.config/rofi/SOS_Multimonitor.rasi -dmenu -l 10 -p " Rotation  $1" | read selection
 
   case "${selection}" in
     normal) echo "--rotate normal" ;;

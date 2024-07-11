@@ -55,7 +55,8 @@ keys = [
     Key([alt, "shift"], "Return", lazy.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')), # Open Rofi launcher as Sudo
 
     # Apps
-    Key([mod],"e",lazy.spawn('thunar')),# Thunar
+    Key([mod],"e",lazy.layout.spawn_split('thunar', "x")),# Open Thunar
+    Key([mod, "shift"],"e",lazy.layout.spawn_split('thunar', "y")),# Open Thunar y
 
     # Layout Focus
     Key([mod], "i", 
