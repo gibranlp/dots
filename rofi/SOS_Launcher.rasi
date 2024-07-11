@@ -21,15 +21,15 @@ window {
     anchor:                      center;
     fullscreen:                  false;
     width:                       50%;
-    height:                      50%;
+    height:                      60%;
     x-offset:                    0px;
     y-offset:                    0px;
-    border-radius:               10px;
+    border-radius:               0px;
     /* properties for all widgets */
     enabled:                     true;
     cursor:                      "default";
     background-color:            @background;
-    padding:                     2px;
+    padding:                     4px;
 }
 
 /*****----- Main Box -----*****/
@@ -60,7 +60,7 @@ inputbar {
     text-color:                  @color1;
     orientation:                 horizontal;
     children:                    [ "textbox-prompt-colon", "entry", "mode-switcher" ];
-    border-radius:               10px 10px 0px 0px;
+    border-radius:               0px;
     horizontal-align:            0.5;
 
 }
@@ -111,8 +111,8 @@ button selected {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     4;
-    lines:                       3;
+    columns:                     5;
+    lines:                       0;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;

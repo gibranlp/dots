@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # _____             _                 _____ _____ 
 #|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
 #|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
@@ -12,51 +12,39 @@
 # Define the path to the to-do file
 TODO_FILE=~/notable/to-do
 
-# Check if the to-do file exists, if not, create it
 if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
 fi
 
-# Function to add a to-do item to the to-do file
 function add_todo() {
     echo -e "-> $*" >> "${TODO_FILE}"
 }
 
-# Function to remove a to-do item from the to-do file
 function remove_todo() {
-    # If the DONE_FILE variable is set, append the removed item to it
     if [[ ! -z "$DONE_FILE" ]]; then
-        echo "${*}" >> "${DONE_FILE}"
+    	echo "${*}" >> "${DONE_FILE}"
     fi
-    # Remove the to-do item from the to-do file
     sed -i "/^${*}$/d" "${TODO_FILE}"
+    
 }
 
-# Function to get and display all to-do items
 function get_todos() {
     echo "$(cat "${TODO_FILE}")"
 }
 
-# Main logic to process command-line arguments
 if [ -z "$@" ]; then
-    # If no arguments are provided, display all to-do items
     get_todos
 else
-    # Escape special characters in the arguments
     LINE=$(echo "${@}" | sed "s/\([^a-zA-Z0-9]\)/\\\\\\1/g")
     LINE_UNESCAPED=${@}
-    
-    # If the argument starts with '+', add it as a to-do item
     if [[ $LINE_UNESCAPED == +* ]]; then
-        LINE_UNESCAPED=$(echo $LINE_UNESCAPED | sed s/^+//g | sed s/^\s+//g)
+        LINE_UNESCAPED=$(echo $LINE_UNESCAPED | sed s/^+//g |sed s/^\s+//g )
         add_todo ${LINE_UNESCAPED}
     else
-        # Otherwise, if the argument matches an existing to-do item, remove it
         MATCHING=$(grep "^${LINE_UNESCAPED}$" "${TODO_FILE}")
         if [[ -n "${MATCHING}" ]]; then
             remove_todo ${LINE_UNESCAPED}
         fi
     fi
-    # Display the updated list of to-do items
     get_todos
 fi

@@ -21,9 +21,9 @@ window {
 
     /* properties for all widgets */
     enabled:                     true;
-    border-radius:               10px;
+    border-radius:               0px;
     background-color:            @background;
-    padding:                     2px;
+    padding:                     4px;
 }
 
 /*****----- Main Box -----*****/
@@ -53,7 +53,7 @@ inputbar {
     text-color:                  @color1;
     orientation:                 horizontal;
     children:                    ["entry", "prompt"];
-    border-radius:               10px 10px 0px 0px;
+    border-radius:               0px;
 
 }
 

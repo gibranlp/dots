@@ -17,13 +17,13 @@ window {
     height:                      0%;
     x-offset:                    200px;
     y-offset:                    0px;
-    border-radius:               0px 10px 10px 0px;
+    border-radius:               0px;
 
     /* properties for all widgets */
     enabled:                     true;
     cursor:                      "default";
     background-color:            @background;
-    padding:                     2px;
+    padding:                     4px;
 }
 
 /*****----- Main Box -----*****/
@@ -47,7 +47,7 @@ listbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     50px 0px;
+    padding:                     20px 0px;
     background-color:            transparent;
     background-image:            url("/usr/local/backgrounds/background.png", width);
     text-color:                  @foreground;

@@ -28,7 +28,7 @@ keys = [
     Key([alt], "r",lazy.spawn(home + '/.local/bin/SOS_Wallpaper')), # Set random wallpaper
 
     # Rofi Widgets
-    Key([alt],"l",lazy.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/left.rasi')),# Todo Manager
+    Key([alt],"t",lazy.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi')),# Todo Manager
 
     Key([mod],"b",lazy.function(network_widget)), # Network Settings
     Key([mod],"f",lazy.function(dark_white)), # Select Dark or Light Theme

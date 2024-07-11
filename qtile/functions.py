@@ -117,7 +117,7 @@ single_border_width=5
 if xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=30
   widget_width=450
-  terminal_font_size=14
+  terminal_font_size=11
   if bar_position == "bottom":
     bar_margin=[0,10,5,10]
   else:
@@ -154,10 +154,14 @@ else:
    groups_font = font_size 
 
 # Rofi Configuration Files
+SOS_Backend= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Backend.rasi'])
+SOS_Themes= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Themes.rasi'])
+SOS_Panel= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Panel.rasi'])
+
 rofi_right = Rofi(rofi_args=['-theme', '~/.config/rofi/right.rasi'])
-rofi_network= Rofi(rofi_args=['-theme', '~/.config/rofi/network.rasi'])
+SOS_Network= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Network.rasi'])
 rofi_left= Rofi(rofi_args=['-theme', '~/.config/rofi/left.rasi'])
-rofi_session= Rofi(rofi_args=['-theme', '~/.config/rofi/session.rasi'])
+
 
 # Weather
 w_appkey = str(variables[3].strip()) # Get a key here https://home.openweathermap.org/users/sign_up 
@@ -306,7 +310,7 @@ def calendar_notification_next(qtile):{
 ## Set default backend
 def set_default_backend(qtile):
   options = backend
-  index, key = rofi_session.select(' Backend -> ' + def_backend.capitalize() , options)
+  index, key = SOS_Backend.select(' Backend -> ' + def_backend.capitalize() , options)
   if key == -1 or index == 4:
     rofi_left.close()
   else:
@@ -330,7 +334,7 @@ def emojis(qtile):
 # NightLight widget
 def nightLight_widget(qtile):
   options = [' Night Time(3500k)', ' Neutral (6500k)', ' Cool (7500k)']
-  index, key = rofi_session.select('  Night Light', options)
+  index, key = SOS_Backend.select('  Night Light', options)
   if key == -1:
     rofi_left.close()
   else:
@@ -347,7 +351,7 @@ def nightLight_widget(qtile):
 # Farge Widget
 def fargewidget(qtile):
   options = [' Hex',' RGB']
-  index, key = rofi_session.select('  Color Picker', options)
+  index, key = SOS_Backend.select('  Color Picker', options)
   if key == -1:
     rofi_left.close()
   else:
@@ -359,7 +363,7 @@ def fargewidget(qtile):
 # Draw Widget
 def draw_widget(qtile):
   options = [' Draw', ' Exit']
-  index, key = rofi_session.select('  Screen Draw', options)
+  index, key = SOS_Backend.select('  Screen Draw', options)
   if key == -1:
     rofi_left.close()
   else:
@@ -372,9 +376,9 @@ def draw_widget(qtile):
 # Logout widget
 def session_widget(qtile):
   options = ['','','', '','']
-  index, key = rofi_session.select('  Session', options)
+  index, key = SOS_Backend.select('  Session', options)
   if key == -1:
-    rofi_session.close()
+    SOS_Backend.close()
   else:
     if index == 0:
       qtile.function(i3lock_colors)
@@ -390,7 +394,7 @@ def session_widget(qtile):
 # Network Widget
 def network_widget(qtile):
     options = [' Wlan Manager', '  Bandwidth Monitor (CLI)', ' Network Manager (CLI)']
-    index, key = rofi_network.select(f" {private_ip} -  {public_ip}", options)
+    index, key = SOS_Network.select(f" {private_ip} -  {public_ip}", options)
     if key != -1:
         commands = [
             (0, home + '/.local/bin/SOS_Wifi_Menu'),
@@ -430,7 +434,7 @@ def group_icon(qtile):
     '         ',
     'TERM DEV WWW SYS DOC VIRT MSG MUS VID GFX'
     ]
-  index, key = rofi_session.select(' Group Icons ', options)
+  index, key = SOS_Backend.select(' Group Icons ', options)
   if key == -1:
     rofi_left.close()
   else:
@@ -442,7 +446,7 @@ def group_icon(qtile):
 ## Select Dark or Light Theming
 def dark_white(qtile):
   options = [' Dark', ' Light']
-  index, key = rofi_session.select(' Theme -> ' + str(variables[7].strip()), options)
+  index, key = SOS_Backend.select(' Theme -> ' + str(variables[7].strip()), options)
   if key == -1 or index == 2:
     rofi_left.close()
   else:
@@ -471,7 +475,7 @@ def dark_white(qtile):
 ## Select Bar Position Top or Bottom
 def bar_pos(qtile):
   options = ['Top', 'Bottom', 'Toggle Bar']
-  index, key = rofi_session.select(' Bar -> ' + bar_position , options)
+  index, key = SOS_Backend.select(' Bar -> ' + bar_position , options)
   if key == -1:
     rofi_left.close()
   else:
@@ -493,7 +497,7 @@ def bar_pos(qtile):
 # Change Theme widget
 def change_theme(qtile):
   options = theme
-  index, key = rofi_session.select('  Theme -> ' + current_theme , options)
+  index, key = SOS_Themes.select('  Theme -> ' + current_theme , options)
   if key == -1:
     rofi_left.close()
     subprocess.run(["notify-send","-a", " SpectrumOS", "No Theme Selected!"])
@@ -510,7 +514,7 @@ def change_theme(qtile):
 # Screenshot widget
 def screenshot(qtile):
   options = [' Area', ' Screen', ' Window',  ' 5s Screen']
-  index, key = rofi_session.select('  Screenshot', options)
+  index, key = SOS_Backend.select('  Screenshot', options)
   if key == -1:
     rofi_left.close()
   else:
@@ -554,7 +558,7 @@ def show_keyboard_layout(qtile):
 ## Support SpectrumOS
 def support_spectrumos(qtile):
   options = [' Become a Patreon', ' Buy me a Coffee']
-  index, key = rofi_session.select(' Support SpectrumOS', options)
+  index, key = SOS_Backend.select(' Support SpectrumOS', options)
   if key == -1 or index == 2:
     rofi_left.close()
   else:
@@ -601,9 +605,9 @@ def control_panel(qtile):
     ' Support SpectrumOS',    
     ]
     
-  index, key = rofi_left.select('  Control Panel', options)
+  index, key = SOS_Panel.select('  Control Panel', options)
   if key == -1:
-    rofi_left.close()
+    SOS_Panel.close()
   else:
     if index == 1:
       qtile.run(home + '/.local/bin/SOS_Wallpaper')

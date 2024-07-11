@@ -32,21 +32,46 @@ function qtile_files(){
 # Function to copy dotfiles
 function copy_dotfiles(){
     mkdir -pv ~/.cache/wal
+    
+    # Alacritty
+    mkdir -p ~/.config/alacritty
+    cp -v ~/dots/alacritty/alacritty.toml ~/.config/alacritty
+    
     # Shortcuts
     cp -v .shortcuts ~/
 
     # Picom
     mkdir -p ~/.config/picom
     cp -v ~/dots/picom/picom.conf ~/.config/picom
+
+    # Zsh
+    cp -v ~/dots/.zshrc ~/
+    cp -v ~/dots/oh-my-zsh/* ~/.oh-my-zsh/themes/
+
+    # Logo Cli
+    cp -v ~/dots/logo_cli.png ~/
+
+    # Wallpapers
+    sudo mkdir -pv /usr/local/backgrounds
+    sudo chown -R $USER:$USER /usr/local/backgrounds
+    sudo cp -v ~/dots/Wallpapers/wall1.png /usr/local/backgrounds/background.png
+    cp -v ~/dots/Wallpapers/* ~/Pictures/Wallpapers
+
+    # Color Theme for Root and Lightdm 
 }
 
 # Function to install Lightdm
 function lightdm(){
     sudo pacman -S lightdm lightdm-webkit2-greeter --no-confirm
     sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
-    sudo cp -v  ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
+    sudo cp -v ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
+    sudo cp -v ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
     sudo cp -rv ~/dots/lightdm/theme/SpectrumOS /usr/share/lightdm-webkit/themes/
     sudo cp -v ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
+    sudo mkdir -p /usr/local/themes
+    sudo cp -rv ~/.local/share/themes/FlatColor /usr/local/themes
+    sudo chown -R $USER:$USER /usr/local/themes/FlatColor
+    sudo ln -s /usr/local/themes/FlatColor /usr/share/themes/FlatColor
 }
 
 # Function to install Rofi files
