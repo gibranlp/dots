@@ -78,7 +78,7 @@ def init_widgets_list():
                   widget.Visualiser(
                     background=secondary_color[6],
                     bar_colour=secondary_color[0],
-                    width=widget_width - 50,
+                    width=150,
                     bars=16,
                     channels='stereo',
                     framerate=60,

@@ -42,14 +42,14 @@ listbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     100px 0px;
+    padding:                     80px 0px;
     background-color:            transparent;
     background-image:            url("/usr/local/backgrounds/background.png", width);
     text-color:                  @foreground;
     orientation:                 horizontal;
     children:                    ["prompt"];
     border-radius:               0px;
-    horizontal-align:               0.5;
+    horizontal-align:            0.5;
 
 }
 
