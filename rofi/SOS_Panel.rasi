@@ -68,6 +68,10 @@ entry {
     background-color:            @color1;
     text-color:                  @background;
     horizontal-align:            0;
+    text-color:                  @color5;
+    placeholder:                 "  Search";
+    placeholder-color:           @color1;
+    cursor-color:                @background;
 }
 
 
