@@ -276,20 +276,6 @@ def init_widgets_list():
               text_format=' ',
             ),
             widget.TextBox(
-              foreground=secondary_color[2],
-              background=color[5],
-              padding=-1,
-              fontsize=font_size+5,
-              text="░",
-            ),
-            widget.KeyboardLayout(
-              background=secondary_color[2],
-              configured_keyboards=['us intl', 'latam'],
-              foreground=color[0],
-              decorations=[BorderDecoration(colour=color[0], border_width=2)],
-              padding=5,
-            ),
-            widget.TextBox(
               foreground=color[3],
               background=secondary_color[2],
               padding=-1,

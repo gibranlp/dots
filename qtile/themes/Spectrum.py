@@ -277,20 +277,6 @@ def init_widgets_list():
               length=5,
               background=transparent,
             ),
-            widget.TextBox(
-              decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
-              text="",
-              foreground=secondary_color[4],
-            ),
-            widget.KeyboardLayout(
-              decorations=[RectDecoration(colour=secondary_color[4], radius=[0,7,7,0], filled=True)],
-              configured_keyboards=['us intl', 'latam'],
-              foreground=secondary_color[0],
-            ),
-            widget.Spacer(
-              length=5,
-              background=transparent,
-            ),
             widget.UPowerWidget(
                border_charge_colour=secondary_color[3],
                border_colour=secondary_color[0],

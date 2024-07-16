@@ -16,7 +16,7 @@ from pathlib import Path
 import requests
 from libqtile import bar, hook, layout, qtile, widget
 from qtile_bonsai import Bonsai
-from libqtile.config import ScratchPad, DropDown, Click, Drag, Group, Key, Match, Screen
+from libqtile.config import ScratchPad, DropDown, Click, Drag, Group, Key, KeyChord, Match, Screen
 from qtile_extras import widget
 from qtile_extras.popup.toolkit import (PopupRelativeLayout, PopupWidget)
 from qtile_extras.widget.decorations import (BorderDecoration,PowerLineDecoration,RectDecoration)
@@ -37,15 +37,15 @@ variables=file.readlines()
 ## Read picom.conf for blur in the bar
 file = open(home + '/.config/picom/picom.conf', 'r')
 bar_blur=file.readlines()
-current_blur = bar_blur[279].strip()
+current_blur = bar_blur[284].strip()
 
 if current_blur == '"QTILE_INTERNAL:32c = 0"':
   new_blur = '"QTILE_INTERNAL:32c = 1"' + "\n"
-  bar_blur[279] = new_blur
+  bar_blur[284] = new_blur
   blur_icon=''
 else:
   new_blur = '"QTILE_INTERNAL:32c = 0"' + "\n"
-  bar_blur[279] = new_blur
+  bar_blur[284] = new_blur
   blur_icon=''
 
 ## Get Terminal Fontsize
@@ -168,6 +168,7 @@ w_cityid ="3995402" # "3514783" Veracruz, "3995402" Morelia, "3521342" Playa del
 
 # Rofi Launcher
 rofi_launcher = 'rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"'
+sudo_rofi_launcher = 'sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"'
 
 #### Hooks ####
 @hook.subscribe.startup
@@ -526,34 +527,6 @@ def screenshot(qtile):
     else:
       subprocess.run("flameshot full --path ~/Pictures/Screenshot.png --delay 5000",shell=True)
 
-# Popup Widgets
-def show_keyboard_layout(qtile):
-    controls = [
-        PopupWidget(
-            widget=widget.KeyboardLayout(
-              configured_keyboards=['us intl', 'latam'],
-              foreground=color[1],
-            ),
-            width=1,
-            height=1,
-        )
-    ]
-
-    layout = PopupRelativeLayout(
-        qtile,
-        pos_x=0.8,
-        pos_y=0.8,
-        width=100,
-        height=50,
-        controls=controls,
-        background=color[0],
-        initial_focus=None,
-        close_on_click=False,
-        hide_on_mouse_leave=True,
-        keyboard_navigation=True,
-    )
-    layout.show(centered=True)
-
 ## Support SpectrumOS
 def support_spectrumos(qtile):
   options = [' Become a Patreon', ' Buy me a Coffee']
@@ -629,7 +602,7 @@ def control_panel(qtile):
     elif index == 13:
       subprocess.run(home + '/.local/bin/SOS_Search')
     elif index == 14:
-      qtile.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/left.rasi')
+      qtile.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi')
     elif index == 15:
       subprocess.Popen(home + '/.local/bin/notesfi', shell=True)
     elif index == 16:

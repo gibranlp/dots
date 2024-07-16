@@ -206,15 +206,6 @@ def init_widgets_list():
         background=secondary_color[1],
         mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
       ),
-      widget.TextBox( 
-        text="",
-        foreground=secondary_color[4],
-      ),
-      widget.KeyboardLayout(
-        background=secondary_color[4],
-        configured_keyboards=['us intl', 'latam'],
-        foreground=secondary_color[0],
-      ),
       widget.UPowerWidget(
           border_charge_colour=secondary_color[3],
           border_colour=secondary_color[0],

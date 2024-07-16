@@ -22,115 +22,113 @@ keys = [
     Key([mod], "r", lazy.spawncmd()), # Launch Prompt
 
     # SpectrumOS
-    Key([mod], "Return", lazy.layout.spawn_split(rofi_launcher, "x")), # Open Rofi launcher on X split
-    Key([mod, "shift"], "Return", lazy.layout.spawn_split(rofi_launcher, "y")), # Open Rofi launcher on Y split
+    Key([mod], "x", lazy.layout.spawn_split(rofi_launcher, "x")), # Open Rofi launcher on X split
+    Key([mod], "y", lazy.layout.spawn_split(rofi_launcher, "y")), # Open Rofi launcher on Y split
 
-    Key([alt], "r",lazy.spawn(home + '/.local/bin/SOS_Wallpaper')), # Set random wallpaper
+    Key([mod], "z",lazy.spawn(home + '/.local/bin/SOS_Wallpaper')), # Set random wallpaper
 
     # Rofi Widgets
-    Key([alt],"t",lazy.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi')),# Todo Manager
+    KeyChord([mod], "e", [
+       Key([],"1",lazy.spawn(home + '/.local/bin/SOS_Select_Wallpaper')), # Select Wallpaper
+       Key([],"2",lazy.function(change_theme)), # Change Theme
+       Key([],"3",lazy.function(set_default_backend)), # Set Default Color Scheme
+       Key([],"4",lazy.function(dark_white)), # Select Dark or Light Theme
+       Key([],"5",lazy.function(bar_pos)), # Set Position of Bar Top / Bottom
+       Key([],"6",lazy.function(show_groups)), # Toggle show all groups
+       Key([],"7",lazy.function(group_icon)), # Change Groups Icons
+       Key([],"8",lazy.function(toggle_bar_blur)), # Toggle Blur on Bar
+    ]),
 
+    Key([mod], "Return", lazy.function(control_panel)), # Search for files and folders
+    Key([mod, "shift"],"Return",lazy.function(shortcuts)), # Shortcuts widget 
+
+    Key([mod],"c",lazy.spawn(home + '/.local/bin/SOS_Calculator')), # Calculator Widget
+    Key([mod],"m",lazy.spawn(home + '/.local/bin/SOS_Multimonitor')),# Monitor modes Widget
+
+    Key([mod],"n",lazy.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi')),# Todo Manager
+    Key([mod, "shift"], "n", lazy.spawn(home + '/.local/bin/SOS_Notes')), # Notes Widget
     Key([mod],"b",lazy.function(network_widget)), # Network Settings
-    Key([mod],"f",lazy.function(dark_white)), # Select Dark or Light Theme
-    Key([mod, "Shift"],"z",lazy.function(shortcuts)), # Shortcuts widget  
-    Key([alt, "shift"],"w",lazy.function(bar_pos)), # Set bar position
+    Key([mod, "shift"], "b", lazy.spawn(home + '/.local/bin/SOS_Bluetooth')), # Bluetooth widget
+    Key([mod],"v", lazy.function(emojis)), # Open Rofi Emojis
+    Key([mod],"f",lazy.spawn(home + '/.local/bin/SOS_Search')),# Find Files
+    Key([],"x",lazy.function(session_widget)), # Log out
+     
     Key([mod, "shift"],"o",lazy.function(nightLight_widget)), # Set night light
-    Key(["control", "shift"], "Return", lazy.function(emojis)), # Open Rofi Emojis
     Key([mod],"p",lazy.function(fargewidget)), # Color Picker Widget
     Key([mod, "shift"],"p",lazy.function(draw_widget)), # Desktop draw widget
-    Key([alt], "Return", lazy.function(control_panel)), # Search for files and folders
-    Key([mod],"x",lazy.function(session_widget)), # Log out
-    Key([mod, "shift"],"w",lazy.function(set_default_backend)), # Set Default Color Scheme
-    Key([mod],"w",lazy.function(change_theme)), # Change Theme
 
-
-    Key([mod], "n", lazy.spawn(home + '/.local/bin/SOS_Notes')), # Notes Widget
-    Key([alt, "shift"], "r",lazy.spawn(home + '/.local/bin/SOS_Select_Wallpaper')), # Select Wallpaper
-    Key([mod],"c",lazy.spawn(home + '/.local/bin/SOS_Calculator')), # Calculator Widget
-    Key([alt],"w",lazy.spawn(home + '/.local/bin/SOS_Search')),# Find Files
-    Key([mod, "shift"], "b", lazy.spawn(home + '/.local/bin/SOS_Bluetooth')), # Bluetooth widget
-    Key([mod, "shift"],"x",lazy.spawn(home + '/.local/bin/SOS_Multimonitor')),# Monitor modes Widget
-    
     #Sudo
-    Key([alt, "shift"], "Return", lazy.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')), # Open Rofi launcher as Sudo
-
+    KeyChord([mod], "u", [
+       Key([], "x", lazy.layout.spawn_split(sudo_rofi_launcher, "x")), # Open Rofi launcher on X split as Sudo
+        Key([], "y", lazy.layout.spawn_split(sudo_rofi_launcher, "y")), # Open Rofi launcher on Y split as Sudo
+    ]),
     # Apps
-    Key([mod],"e",lazy.layout.spawn_split('thunar', "x")),# Open Thunar
-    Key([mod, "shift"],"e",lazy.layout.spawn_split('thunar', "y")),# Open Thunar y
+    #Key([mod],"e",lazy.layout.spawn_split('thunar', "x")),# Open Thunar
+    #Key([mod, "shift"],"e",lazy.layout.spawn_split('thunar', "y")),# Open Thunar y
 
     # Layout Focus
-    Key([mod], "i", 
-        lazy.layout.up()
-    ),
-    Key([mod], "j", 
-        lazy.layout.left()
-    ),
-    Key([mod], "k", 
-        lazy.layout.down()
-    ),
-    Key([mod], "l", 
-        lazy.layout.right()
-    ),
+    Key([mod], "w",lazy.layout.up()),
+    Key([mod], "Up",lazy.layout.up()),
+    Key([mod], "a",lazy.layout.left()),
+    Key([mod], "Left",lazy.layout.left()),
+    Key([mod], "s",lazy.layout.down()),
+    Key([mod], "Down",lazy.layout.down()),
+    Key([mod], "d",lazy.layout.right()),
+    Key([mod], "Right",lazy.layout.right()),
 
     # Layout Resize
-    Key([mod, "shift"], "i", 
-        lazy.layout.resize("up", 30)
-    ),
-    Key([mod, "shift"], "j", 
-        lazy.layout.resize("left", 30)
-    ),
-    Key([mod, "shift"], "k", 
-        lazy.layout.resize("down", 30)
-    ),
-    Key([mod, "shift"], "l", 
-        lazy.layout.resize("right", 30)
-    ),
+    KeyChord([mod, "shift"], "w", [
+        Key([], "w",lazy.layout.resize("up", 30)),
+        Key([], "a",lazy.layout.resize("left", 30)),
+        Key([], "s",lazy.layout.resize("down", 30)),
+        Key([], "d",lazy.layout.resize("right", 30)),
+        Key([], "Up",lazy.layout.resize("up", 30)),
+        Key([], "Left",lazy.layout.resize("left", 30)),
+        Key([], "Down",lazy.layout.resize("down", 30)),
+        Key([], "Right",lazy.layout.resize("right", 30))
+        ],
+        mode=True),
 
-    # Layout swap
-    Key([alt], "i", 
-        lazy.layout.swap("up")
-    ),
-    Key([alt], "j", 
-        lazy.layout.swap("left")
-    ),
-    Key([alt], "k", 
-        lazy.layout.swap("down")
-    ),
-    Key([alt], "l", 
-        lazy.layout.swap("right")
-    ),
-
-    # Layout Push
-    Key([alt, "shift"], "i", 
-        lazy.layout.push_in("up")
-    ),
-    Key([alt, "shift"], "j", 
-        lazy.layout.push_in("left")
-    ),
-    Key([alt, "shift"], "k", 
-        lazy.layout.push_in("down")
-    ),
-    Key([alt, "shift"], "l", 
-        lazy.layout.push_in("right")
-    ),
-
+    # Layout Swap
+    KeyChord([mod, "shift"], "s", [
+        Key([], "w",lazy.layout.swap("up")),
+        Key([], "a",lazy.layout.swap("left")),
+        Key([], "s",lazy.layout.swap("down")),
+        Key([], "d",lazy.layout.swap("right")),
+        Key([], "Up",lazy.layout.swap("up")),
+        Key([], "Left",lazy.layout.swap("left")),
+        Key([], "Down",lazy.layout.swap("down")),
+        Key([], "Right",lazy.layout.swap("right"))
+        ],
+        mode=True),
+    
+    # Layout Push In
+    KeyChord([mod, "shift"], "d", [
+        Key([], "w",lazy.layout.push_in("up")),
+        Key([], "a",lazy.layout.push_in("left")),
+        Key([], "s",lazy.layout.push_in("down")),
+        Key([], "d",lazy.layout.push_in("right")),
+        Key([], "Up",lazy.layout.push_in("up")),
+        Key([], "Left",lazy.layout.push_in("left")),
+        Key([], "Down",lazy.layout.push_in("down")),
+        Key([], "Right",lazy.layout.push_in("right")),
+        ],
+        mode=True),
+    
+    # Layout Pull Out
+    KeyChord([mod, "shift"], "a",[
+       Key([], "a",lazy.layout.pull_out(position="previous")),
+       Key([], "Left",lazy.layout.pull_out(position="previous")),
+       Key([], "d",lazy.layout.pull_out(position="next")),
+       Key([], "Right",lazy.layout.pull_out(position="next")),
+    ]),
+    
     # Layout merge tabs
-    Key([mod], "Tab", 
-        lazy.layout.next_tab()
-    ),
-    Key([mod, "shift"], "Tab", 
-        lazy.layout.merge_tabs("previous")
-    ),
+    Key([mod], "Tab",lazy.layout.next_tab()),
+    Key([mod, "shift"], "Tab",lazy.layout.merge_tabs("previous")),
     
     # Pull out to tab
-    Key([alt], "Tab",
-        lazy.layout.pull_out_to_tab(),
-    ),
-    
-    Key([alt, "shift"], "Tab", 
-        lazy.layout.shuffle_down(),
-        lazy.layout.swap_right()
-        ), # Swap Right Up
+    Key([alt], "Tab",lazy.layout.pull_out_to_tab()),
     
     Key([mod], 'period', lazy.next_screen()), # Send Cursor to next screen
 
@@ -153,10 +151,6 @@ keys = [
     # Window hotkeys
     Key([alt], "f", lazy.window.toggle_fullscreen()), # Toggle Current window ;n
     Key([alt, "shift"], "f", lazy.window.toggle_floating()), # Toggle current window floating
-    Key([mod], "space", lazy.next_layout()), # Cycle layouts
-
-    # Keyboard
-    Key([alt], "space", lazy.widget["keyboardlayout"].next_keyboard()), # Change Keyboard Layout
 
     # Screenshots
     Key([], "Print", lazy.function(screenshot)),
@@ -170,16 +164,12 @@ keys = [
     Key(["control", "shift"], "n",  lazy.spawn("dunstctl  history-pop")), # Show Notificaction history
 
     # Kill window            
-    Key([alt], "Escape", lazy.spawn('xkill')), # Click window to close
+    Key(["control"], "Escape", lazy.spawn('xkill')), # Click window to close
 
     # Scratchpads
     Key(["shift"], 'F12', lazy.group['scratchpad'].dropdown_toggle("music")),
     Key(["control","shift"], 'F12', lazy.group['scratchpad'].dropdown_toggle("lyrics")),
     Key([alt], 'F12', lazy.group['scratchpad'].dropdown_toggle("htop")),
-    Key([alt], 'F11', lazy.group['scratchpad'].dropdown_toggle("weather")),
-
-    # Show Keyboard Layouts
-    Key([mod],"g",lazy.function(show_keyboard_layout)), # Run i3lock 
 ]
 
 ##### Groups ####

@@ -325,6 +325,12 @@ function install_optimus(){
   sudo pacman -S primus --noconfirm
 }
 
+# Function to Install Steam on Nvidia
+
+function install_steam(){
+    sudo pacman -S --needed nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loaderparu game-devices-udev
+}
+
 # Function to run all installation steps
 function run_all() {
     install_alacritty
@@ -355,7 +361,7 @@ function run_all() {
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings]"
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
     exit 1
 }
 
@@ -441,6 +447,11 @@ for arg in "$@"; do
         --xsettings)
             install_xsettings
             ;;
+        --update)
+            install_qtile
+            install_picom
+            install_neofetch
+        ;;
         *)
             echo "Invalid option: $arg"
             usage
