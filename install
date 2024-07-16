@@ -184,7 +184,7 @@ function install_dependencies(){
     cp -v ~/dots/.fonts/* ~/.fonts
 
     # Copy Gromit config file
-    cp -v ~/dots/gromit-mpx/gromit-mpx.cfg ~/.config/
+    cp -v ~/dots/gromit-mpx/* ~/.config/
 
     # Generate all Folders
     mkdir -pv ~/Documents ~/Public ~/Downloads ~/notable ~/books ~/Articles
