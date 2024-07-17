@@ -194,6 +194,7 @@ function install_dependencies(){
 
 # Copy Wallpapers
 function install_wallpapers(){
+    mkdir -p ~/Pictures/Wallpapers
     sudo mkdir -pv /usr/local/backgrounds
     sudo chown -R $USER:$USER /usr/local/backgrounds
     sudo cp -v ~/dots/Wallpapers/wall1.png /usr/local/backgrounds/background.png
