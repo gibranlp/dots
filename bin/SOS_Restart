@@ -20,7 +20,7 @@ function copy_files(){
     cp ~/.cache/wal/dunstrc ~/.config/dunst/
     cp ~/.cache/wal/config ~/.config/cava/
     cp ~/.cache/wal/flameshot.ini ~/.config/flameshot/
-    sudo cp ~/.cache/wal/SpectrumOS.rasi /root/.cache/wal/
+    sudo cp ~/.cache/wal/SOS_Colors.rasi /root/.cache/wal/
 
 }
 

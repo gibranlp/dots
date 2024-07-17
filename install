@@ -163,7 +163,7 @@ function install_zsh(){
     git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
     sudo chsh -s $(which zsh) gibranlp
-    cp -v ~/dots/.zshrc ~/
+    cp -v ~/dots/zsh/.zshrc ~/
     cp -v ~/dots/oh-my-zsh/* ~/.oh-my-zsh/themes/
 }
 
@@ -188,7 +188,7 @@ function install_dependencies(){
 
     # Copy Fonts
     mkdir -pv  ~/.fonts
-    cp -v ~/dots/.fonts/* ~/.fonts
+    cp -v ~/dots/fonts/* ~/.fonts
 
     # Copy Gromit config file
     cp -v ~/dots/gromit-mpx/* ~/.config/
@@ -234,6 +234,7 @@ function install_lightdm(){
     sudo cp -rv ~/.local/share/themes/FlatColor /usr/local/themes
     sudo chown -R $USER:$USER /usr/local/themes/FlatColor
     sudo ln -s /usr/local/themes/FlatColor /usr/share/themes/FlatColor
+    sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
 }
 
 # Function to install Rofi files
