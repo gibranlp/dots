@@ -454,6 +454,9 @@ for arg in "$@"; do
             install_picom
             install_neofetch
         ;;
+        --zsh)
+            install_zsh
+        ;;
         *)
             echo "Invalid option: $arg"
             usage
