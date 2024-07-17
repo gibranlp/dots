@@ -64,6 +64,12 @@ function install_aur_packages() {
     done
 }
 
+# Function to install Pip packages
+
+function install_pip(){
+    pip install -r pip-dependencies.txt --break-system-packages
+}
+
 ## Actualizar Grub
 function grub_update(){
 # Archivo de configuración de GRUB
@@ -365,7 +371,7 @@ function run_all() {
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
     exit 1
 }
 
@@ -423,6 +429,9 @@ for arg in "$@"; do
             ;;
         --picom)
             install_picom
+            ;;
+        --picom)
+            install_pip
             ;;
         --plymouth)
             install_plymouth
