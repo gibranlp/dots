@@ -430,7 +430,7 @@ for arg in "$@"; do
         --picom)
             install_picom
             ;;
-        --picom)
+        --pip)
             install_pip
             ;;
         --plymouth)
