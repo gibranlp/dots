@@ -67,7 +67,7 @@ function install_aur_packages() {
 # Function to install Pip packages
 
 function install_pip(){
-    pip install -r pip-dependencies.txt --break-system-packages
+    pip install -r pip_dependencies.txt --break-system-packages
 }
 
 ## Actualizar Grub
