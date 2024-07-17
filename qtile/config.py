@@ -90,6 +90,11 @@ keys = [
         mode=True),
 
     # Layout Swap
+    Key([alt], "w",lazy.layout.swap("up")),
+    Key([alt], "a",lazy.layout.swap("left")),
+    Key([alt], "s",lazy.layout.swap("down")),
+    Key([alt], "d",lazy.layout.swap("right")),
+    
     KeyChord([mod, "shift"], "s", [
         Key([], "w",lazy.layout.swap("up")),
         Key([], "a",lazy.layout.swap("left")),

@@ -202,7 +202,7 @@ function install_wallpapers(){
 # Install Plymouth
 function install_plymouth(){
   paru -S plymouth-git --no-confirm
-  sudo cp -rv ~/dotfiles/plymouth/themes/spectrumos /usr/share/plymouth/themes/
+  sudo cp -rv ~/dots/plymouth/themes/spectrumos /usr/share/plymouth/themes/
   sudo plymouth-set-default-theme -R spectrumos
   sudo mkinitcpio -P
 }
@@ -242,20 +242,21 @@ function install_rofi(){
 function install_cava(){
     mdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/cava
-    cp -v ~/dotfiles/.config/cava/config ~/.config/wal/templates
+    cp -v ~/dots/.config/cava/config ~/.config/wal/templates
 }
 
 # Copy Flameshot Files
 function install_flameshot(){
     mdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/flameshot
-    cp -v ~/dotfiles/.config/flameshot/flameshot.ini ~/.config/wal/templates
+    cp -v ~/dots/.config/flameshot/flameshot.ini ~/.config/wal/templates
 
 }
 
 # Copy Thunar Config Files
 function install_thunar(){
-    cp -v ~/dots/gtk-3.0/* .config/gtk-3.0/
+    mkdir -pv ~/.config/gtk-3.0
+    cp -v ~/dots/gtk-3.0/* ~/.config/gtk-3.0/
 }
 
 # Copy Neofetch Files
@@ -280,7 +281,7 @@ function usage() {
 # Copy Xsettingsd Files
 function install_xsettings(){
     mkdir -pv ~/.config/xsettingsd
-    cp -v ~/dotfiles/.config/xsettingsd/xsettingsd.conf ~/.config/xsettingsd/
+    cp -v ~/dots/.config/xsettingsd/xsettingsd.conf ~/.config/xsettingsd/
 }
 
 # Copy Pulseaudio Files
@@ -295,6 +296,7 @@ function post_operations(){
   sudo timedatectl set-ntp true
   xdg-settings set default-web-browser brave.desktop
   fc-cache -f -v
+  setxkbmap -layout us -variant intl
   #timedatectl set-timezone America/Mexico_City
   
   sudo systemctl enable bluetooth.service
