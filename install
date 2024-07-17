@@ -242,14 +242,14 @@ function install_rofi(){
 function install_cava(){
     mdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/cava
-    cp -v ~/dots/.config/cava/config ~/.config/wal/templates
+    cp -v ~/dots/cava/config ~/.config/wal/templates
 }
 
 # Copy Flameshot Files
 function install_flameshot(){
     mdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/flameshot
-    cp -v ~/dots/.config/flameshot/flameshot.ini ~/.config/wal/templates
+    cp -v ~/dots/flameshot/flameshot.ini ~/.config/wal/templates
 
 }
 
@@ -281,7 +281,7 @@ function usage() {
 # Copy Xsettingsd Files
 function install_xsettings(){
     mkdir -pv ~/.config/xsettingsd
-    cp -v ~/dots/.config/xsettingsd/xsettingsd.conf ~/.config/xsettingsd/
+    cp -v ~/dots/xsettingsd/xsettingsd.conf ~/.config/xsettingsd/
 }
 
 # Copy Pulseaudio Files
