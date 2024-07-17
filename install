@@ -126,6 +126,7 @@ fi
 
 # Install bin scripts Files
 function install_bin(){
+    mkdir -pv ~/.local/bin
     cd ~/.local/bin
     rm -rfv *
     mkdir -p ~/.local/bin
