@@ -201,7 +201,7 @@ function install_wallpapers(){
 
 # Install Plymouth
 function install_plymouth(){
-  paru -S plymouth-git --no-confirm
+  paru -S plymouth-git --noconfirm
   sudo cp -rv ~/dots/plymouth/themes/spectrumos /usr/share/plymouth/themes/
   sudo plymouth-set-default-theme -R spectrumos
   sudo mkinitcpio -P
@@ -211,12 +211,12 @@ function install_plymouth(){
 function install_dunst(){
     mkdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/dunst
-    cp -v ~/dots/dunst/dunstrc ~/.config/wal/templates
+    cp -v ~/dots/dunst/dunstrc ~/.config/wal/templates/
 }
 
 # Function to install Lightdm
 function install_lightdm(){
-    sudo pacman -S lightdm lightdm-webkit2-greeter --no-confirm
+    sudo pacman -S lightdm lightdm-webkit2-greeter --noconfirm
     sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
@@ -234,7 +234,7 @@ function install_rofi(){
     mkdir -pv ~/.config/rofi
     cd ~/.config/rofi
     rm -rfv *
-    cp -v ~/dots/rofi/SOS_Colors.rasi ~/.config/wal/templates
+    cp -v ~/dots/rofi/SOS_Colors.rasi ~/.config/wal/templates/
     cp -v ~/dots/rofi/*.rasi ~/.config/rofi/
 }
 
@@ -242,14 +242,14 @@ function install_rofi(){
 function install_cava(){
     mdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/cava
-    cp -v ~/dots/cava/config ~/.config/wal/templates
+    cp -v ~/dots/cava/config ~/.config/wal/templates/
 }
 
 # Copy Flameshot Files
 function install_flameshot(){
-    mdir -pv ~/.config/wal/templates
+    mkdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/flameshot
-    cp -v ~/dots/flameshot/flameshot.ini ~/.config/wal/templates
+    cp -v ~/dots/flameshot/flameshot.ini ~/.config/wal/templates/
 
 }
 
