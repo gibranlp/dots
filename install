@@ -463,6 +463,7 @@ for arg in "$@"; do
             ;;
         --update)
             install_qtile
+            install_bin
             install_picom
             install_neofetch
         ;;

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/zsh
 # _____             _                 _____ _____ 
 #|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
 #|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
@@ -8,40 +8,32 @@
 # By: gibranlp <thisdoesnotwork@gibranlp.dev>
 # MIT licence 
 # 
-#
+# Delete existing files
+rm -rf ~/.config/google-chrome/Default/Pywal &
+rm -rf ~/.config/wpg/schemes/* &
 
-function delete_files(){
-    rm -rf ~/.config/google-chrome/Default/Pywal
-    rm -rf ~/.config/wpg/schemes/*
-}
+# Copy new configuration files
+sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/ &
+cp ~/.cache/wal/dunstrc ~/.config/dunst/ &
+cp ~/.cache/wal/config ~/.config/cava/ & 
+cp ~/.cache/wal/flameshot.ini ~/.config/flameshot/ &
+sudo cp ~/.cache/wal/SOS_Colors.rasi /root/.cache/wal/ &
+cp ~/.config/BetterDiscord/themes/pywal-discord-default.theme.css ~/.config/vesktop/themes &
 
-function copy_files(){
-    sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
-    cp ~/.cache/wal/dunstrc ~/.config/dunst/
-    cp ~/.cache/wal/config ~/.config/cava/
-    cp ~/.cache/wal/flameshot.ini ~/.config/flameshot/
-    sudo cp ~/.cache/wal/SOS_Colors.rasi /root/.cache/wal/
+# Kill relevant processes
+pkill dunst &
+pkill -USR1 cava &
 
-}
+# Start necessary services and applications
+setxkbmap -layout us -variant intl &
+unclutter -idle 1 & 
+dunst &
+walogram &
+pywal-discord &
+pywalfox update &
+picom -b &
+xsettingsd &
 
-function kill(){
-    pkill dunst
-    pkill -USR1 cava
-}
+# Refresh current session with new colors
+wal -R &
 
-function run(){
-    setxkbmap -layout us -variant intl &
-    unclutter -idle 1 & 
-    dunst &
-    walogram &
-    pywal-discord &
-    pywalfox update &
-    picom -b &
-    xsettingsd &
-}
-
-delete_files 
-copy_files
-kill 
-run 
-wal -R
