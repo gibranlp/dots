@@ -183,6 +183,18 @@ def init_widgets_list():
               length=bar.STRETCH,
               background=transparent,
             ),
+            ## Weather
+            widget.Wttr(
+              decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+              foreground=secondary_color[1],
+              location={'Morelia': ''},
+              update_interval=300,
+              format='%c %t %m'
+            ),
+            widget.Spacer(
+              length=5,
+              background=transparent,
+            ),
             ## Network
             widget.TextBox(
               decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],

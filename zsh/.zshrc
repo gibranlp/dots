@@ -10,13 +10,13 @@
 # 
 #
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="passion"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
-ZSH_THEME_RANDOM_CANDIDATES=(avit passion)
+ZSH_THEME_RANDOM_CANDIDATES=(agnoster avit passion)
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -91,3 +91,4 @@ setxkbmap -layout us -variant intl
 wal -R -q && clear 
 #echo " "$(( (`date +%s` - `date +%s -d '2003/08/1'`) / 86400)) " "$(( (`date +%s` - `date +%s -d '2022/02/19'`) / 86400)) " "$(( (`date +%s` - `date +%s -d '2022/08/15'`) / 86400 )) " "$(( (`date +%s` - `date +%s -d '2023/08/14'`) / 86400 )) 
 #neofetch
+echo

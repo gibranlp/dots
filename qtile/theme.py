@@ -134,6 +134,15 @@ def init_widgets_list():
       widget.Spacer(
         length=bar.STRETCH,
       ),
+      widget.Chord(
+            foreground=color[1],
+        ),
+      widget.Wttr(
+          foreground=secondary_color[1],
+          location={'Morelia': ''},
+          update_interval=300,
+          format='%c %t %m'
+      ),
       widget.TextBox(
         text=wifi_icon,
         foreground=secondary_color[3],

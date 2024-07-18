@@ -36,8 +36,9 @@ keys = [
        Key([],"5",lazy.function(bar_pos)), # Set Position of Bar Top / Bottom
        Key([],"6",lazy.function(show_groups)), # Toggle show all groups
        Key([],"7",lazy.function(group_icon)), # Change Groups Icons
-       Key([],"8",lazy.function(toggle_bar_blur)), # Toggle Blur on Bar
-    ]),
+       Key([],"8",lazy.function(toggle_bar_blur))], # Toggle Blur on Bar
+       name="Widgets",
+    ),
 
     Key([mod], "Return", lazy.function(control_panel)), # Search for files and folders
     Key([mod, "shift"],"Return",lazy.function(shortcuts)), # Shortcuts widget 
@@ -85,9 +86,12 @@ keys = [
         Key([], "Up",lazy.layout.resize("up", 30)),
         Key([], "Left",lazy.layout.resize("left", 30)),
         Key([], "Down",lazy.layout.resize("down", 30)),
-        Key([], "Right",lazy.layout.resize("right", 30))
+        Key([], "Right",lazy.layout.resize("right", 30)),
+        Key([], "Escape", lazy.function(hide_chords)),
         ],
+        name="Resize",
         mode=True),
+    #Key([mod, "shift"], "w", lazy.function(show_chords)),
 
     # Layout Swap
     Key([alt], "w",lazy.layout.swap("up")),
@@ -105,6 +109,7 @@ keys = [
         Key([], "Down",lazy.layout.swap("down")),
         Key([], "Right",lazy.layout.swap("right"))
         ],
+        name="Swap",
         mode=True),
     
     # Layout Push In
@@ -118,6 +123,7 @@ keys = [
         Key([], "Down",lazy.layout.push_in("down")),
         Key([], "Right",lazy.layout.push_in("right")),
         ],
+        name="Push in",
         mode=True),
     
     # Layout Pull Out
@@ -126,7 +132,9 @@ keys = [
        Key([], "Left",lazy.layout.pull_out(position="previous")),
        Key([], "d",lazy.layout.pull_out(position="next")),
        Key([], "Right",lazy.layout.pull_out(position="next")),
-    ]),
+       ],
+       name="Pull Out",
+       mode=True),
     
     # Layout merge tabs
     Key([mod], "Tab",lazy.layout.next_tab()),

@@ -527,6 +527,39 @@ def screenshot(qtile):
     else:
       subprocess.run("flameshot full --path ~/Pictures/Screenshot.png --delay 5000",shell=True)
 
+# Popup Widgets
+def show_chords(qtile):
+    controls = [
+        PopupWidget(
+            widget=widget.Chord(
+              background=color[0],
+              foreground=color[1],
+            ),
+            width=1,
+            height=1,
+        )
+    ]
+
+    layout = PopupRelativeLayout(
+        qtile,
+        pos_x=0.8,
+        pos_y=0.8,
+        width=100,
+        height=50,
+        controls=controls,
+        background=color[0],
+        initial_focus=None,
+        close_on_click=False,
+        hide_on_mouse_leave=True,
+        keyboard_navigation=True,
+    )
+    layout.show(centered=True)
+
+def hide_chords(qtile):
+    if hasattr(qtile, 'current_popup'):
+        qtile.current_popup.hide()
+        del qtile.current_popup
+
 ## Support SpectrumOS
 def support_spectrumos(qtile):
   options = [' Become a Patreon', ' Buy me a Coffee']
