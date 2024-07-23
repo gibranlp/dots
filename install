@@ -49,7 +49,7 @@ function install_aur_packages() {
     packets=(
         'qtile-git' 'farge' 'qtile-extras-git' 'caffeine' 'discord' 'pywal-discord-git'
         'visual-studio-code-bin' 'pulseaudio-bluetooth' 'telegram-desktop'
-        'google-chrome' 'wpgtk-git' 'insect' 'cava-git' 'thunar-extended'
+        'google-chrome' 'pywal-git' 'wpgtk-git' 'insect' 'cava-git' 'thunar-extended'
         'thunar-volman' 'hugo' 'gromit-mpx-git' 'nbfc' 'ntfs-3g'
         'i3lock-color' 'i3lock-fancy-git' 'picom-ftlabs-git' 'lazy-docker'
         'rofi-emoji' 'zathura-pdf-mupdf' 'zathura-pywal-git' 'zathura-ps'
