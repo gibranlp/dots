@@ -158,6 +158,10 @@ def init_widgets_list():
               length=5,
               background=transparent,
             ),
+            widget.Chord(
+              decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+              foreground=color[1],
+            ),
             widget.Spacer(
               length=bar.STRETCH,
               background=transparent,
