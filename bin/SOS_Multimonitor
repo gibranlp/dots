@@ -31,8 +31,13 @@ function main() {
     if (( iteration++ )); then
       select_output ' Next Screen' 'unconfigured' | read output
       select_position "${output}" | read position
-      [[ "${position}" != '--off' ]] && select_mode "${output}" | read mode
-      select_rotation "${output}" | read rotation
+      if [[ "${position}" != '--off' ]]; then
+        select_mode "${output}" | read mode
+        select_rotation "${output}" | read rotation
+      else
+        mode=""
+        rotation=""
+      fi
       OUTPUT_CONFIGURED[${output}]='true'
     else
       select_output '  Main Screen' 'all' | read output
@@ -167,7 +172,7 @@ function environment_check() {
   elif ! command -v xrandr &>/dev/null; then
     echo "Try xrandr-dmenu without xrandr." >&2
     exit 255
-elif ! command -v rofi &>/dev/null; then
+  elif ! command -v rofi &>/dev/null; then
     echo "Try xrandr-dmenu without dmenu." >&2
     exit 255
   elif ! xset q &>/dev/null; then
