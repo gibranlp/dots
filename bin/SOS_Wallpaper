@@ -1,24 +1,39 @@
-#!/usr/bin/env bash
-# _____             _                 _____ _____ 
-#|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
-#|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
-#|_____|  _|___|___|_| |_| |___|_|_|_|_____|_____|
-#      |_|   
-# SpectrumOS - Embrace the Chromatic Symphony!
-# By: gibranlp <thisdoesnotwork@gibranlp.dev>
-# MIT licence 
-# 
-#
+#!/bin/bash
 
+# Read variables from the config file
 variables=()
 while IFS= read -r line; do
    variables+=("$line")
 done < ~/.config/qtile/variables
 
+# Directory containing wallpapers
 dir="$HOME/Pictures/Wallpapers/"
-file=`/bin/ls -1 "$dir" | sort --random-sort | head -1` # Select random file on directory
-path=`readlink --canonicalize "$dir/$file"` # Converts to full path
-#### Set Wallpaper Selected / Random
+# File to keep track of the last used wallpaper
+last_wallpaper_file="$HOME/.config/qtile/last_wallpaper"
+
+# Ensure the last wallpaper file exists
+touch "$last_wallpaper_file"
+last_wallpaper=$(cat "$last_wallpaper_file")
+
+# Function to get a new random wallpaper that is different from the last used one
+get_new_wallpaper() {
+    local file
+    while true; do
+        file=$(ls -1 "$dir" | sort --random-sort | head -1)
+        # Check if the file is the same as the last used wallpaper
+        if [ "$file" != "$last_wallpaper" ]; then
+            echo "$file" > "$last_wallpaper_file"
+            break
+        fi
+    done
+    echo "$file"
+}
+
+# Select a new random wallpaper
+file=$(get_new_wallpaper)
+path=$(readlink --canonicalize "$dir/$file") # Convert to full path
+
+# Parse options
 while getopts "w:t:l" opt; do
   case "$opt" in
     w) wall=$OPTARG ;;
@@ -27,17 +42,18 @@ while getopts "w:t:l" opt; do
   esac
 done
 
-set_wall(){
-  if [ -z "$wall" ]
-    then
-      wpg ${variables[4]} -s ${path} --backend ${variables[2]} # Wal sets wallpaper and genates new color scheme
-      cp ${path}  "/usr/local/backgrounds/background.png"
-    else
-      wpg ${variables[4]} -s ${dir}${wall} ${variables[2]} # Wal sets wallpaper and genates new color scheme
-      cp ${dir}${wall}  "/usr/local/backgrounds/background.png"
-      
+# Function to set the wallpaper
+set_wall() {
+  if [ -z "$wall" ]; then
+      wpg "${variables[4]}" -s "${path}" --backend "${variables[2]}" # Wal sets wallpaper and generates new color scheme
+      cp "${path}" "/usr/local/backgrounds/background.png"
+  else
+      wpg "${variables[4]}" -s "${dir}${wall}" --backend "${variables[2]}" # Wal sets wallpaper and generates new color scheme
+      cp "${dir}${wall}" "/usr/local/backgrounds/background.png"
   fi
 }
+
+# Set the wallpaper and restart Qtile
 set_wall
 qtile cmd-obj -o cmd -f restart
 #pkill -SIGUSR1 qtile # Reload Qtile
