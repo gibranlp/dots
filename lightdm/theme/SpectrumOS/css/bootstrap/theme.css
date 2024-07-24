@@ -9,7 +9,6 @@ License: 	GPL
 
 /* Global Styles */
 
-
 @font-face{
 font-family: Lato;
 src: url('../../font-awesome/fonts/Lato-Regular.ttf');
@@ -21,7 +20,7 @@ src: url('../../font-awesome/fonts/Lato-Light.ttf');
 }
 
 @font-face{
-    font-family: LatoLight;
+    font-family: LaMachineCompany;
     src: url('/usr/local/share/fonts/LaMachine.ttf');
     }
 

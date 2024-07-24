@@ -178,7 +178,9 @@ function install_picom(){
 function install_fonts(){
     # Copy Fonts
     mkdir -pv  ~/.fonts
+    mkdir -pv ~/.local/share/fonts
     cp -v ~/dots/fonts/* ~/.fonts
+    cp -v ~/dots/fonts/* ~/.local/share/fonts
     sudo cp -v ~/dots/fonts/* /usr/local/share/fonts
     fc-cache -f -v
 }
@@ -241,6 +243,10 @@ function install_lightdm(){
     sudo chown -R $USER:$USER /usr/local/themes/FlatColor
     sudo ln -s /usr/local/themes/FlatColor /usr/share/themes/FlatColor
     sudo cp ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
+    sudo mkdir -pv /usr/share/fonts/la-machine-company
+    sudo cp -v ~/dots/fonts/LaMachine.ttf /usr/share/fonts/la-machine-company/
+    fc-cache -f -v
+    
 }
 
 # Function to install Rofi files
