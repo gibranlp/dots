@@ -161,6 +161,17 @@ keys = [
     Key([], "XF86AudioNext", lazy.spawn("playerctl --player=%any next")), # Next song
     Key([], "XF86AudioPrev", lazy.spawn("playerctl --player=%any previous")), # Previous Song
 
+    # Music Chord
+    KeyChord([mod, "shift"], "x", [
+        Key([], "s", lazy.spawn("amixer -q set Master 2%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Lower Volume
+        Key([], "w", lazy.spawn("amixer -q set Master 2%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Raise Volume
+        Key([], "space", lazy.spawn("playerctl --player=%any play-pause")), # Play Pause
+        Key([], "d", lazy.spawn("playerctl --player=%any next")), # Next song
+        Key([], "a", lazy.spawn("playerctl --player=%any previous")), # Previous Song
+        ],
+        name="Media Control",
+        mode=True),
+
     # Window hotkeys
     Key([alt], "f", lazy.window.toggle_fullscreen()), # Toggle Current window ;n
     Key([alt, "shift"], "f", lazy.window.toggle_floating()), # Toggle current window floating

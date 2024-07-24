@@ -174,6 +174,15 @@ function install_picom(){
     cp -v ~/dots/picom/picom.conf ~/.config/picom
 }
 
+# Copy Fonts
+function install_fonts(){
+    # Copy Fonts
+    mkdir -pv  ~/.fonts
+    cp -v ~/dots/fonts/* ~/.fonts
+    sudo cp -v ~/dots/fonts/* /usr/local/share/fonts
+    fc-cache -f -v
+}
+
 # Copy Depenendencies
 function install_dependencies(){
     cp -rv ~/dots/cache/* ~/.cache/
@@ -185,10 +194,6 @@ function install_dependencies(){
 
     # Enable Touchpad in Laptops
     sudo cp -v ~/dots/touchpad/30-touchpad.conf /etc/X11/xorg.conf.d/
-
-    # Copy Fonts
-    mkdir -pv  ~/.fonts
-    cp -v ~/dots/fonts/* ~/.fonts
 
     # Copy Gromit config file
     cp -v ~/dots/gromit-mpx/* ~/.config/
@@ -304,7 +309,7 @@ function post_operations(){
   sudo usermod -aG network $USER
   sudo timedatectl set-ntp true
   xdg-settings set default-web-browser brave.desktop
-  fc-cache -f -v
+  
   setxkbmap -layout us -variant intl
   #timedatectl set-timezone America/Mexico_City
   
@@ -372,7 +377,7 @@ function run_all() {
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
     exit 1
 }
 
@@ -412,6 +417,9 @@ for arg in "$@"; do
             ;;
         --flameshot)
             install_flameshot
+            ;;
+        --fonts)
+            install_fonts
             ;;
         --grub)
             grub_update
