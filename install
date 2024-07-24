@@ -233,6 +233,7 @@ function install_lightdm(){
     sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
+    sudo rm -rf /usr/share/lightdm-webkit/themes/SpectrumOS
     sudo cp -rv ~/dots/lightdm/theme/SpectrumOS /usr/share/lightdm-webkit/themes/
     sudo cp -v ~/.cache/wal/colors.css /usr/share/lightdm-webkit/themes/SpectrumOS/css/
     sudo mkdir -pv /usr/local/themes
