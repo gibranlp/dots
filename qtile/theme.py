@@ -8,6 +8,7 @@
 # MIT licence 
 #
 from functions import *
+from custom_widgets import InternetIcon
 
 widget_defaults = dict(
   font=main_font,
@@ -22,90 +23,29 @@ widget_defaults = dict(
 def init_widgets_list():
   widgets_list = [
     widget.TextBox(
-      foreground=secondary_color[6],
-      text="",
-    ),
-    widget.ThermalSensor(
-      background=color[6],
-      foreground=secondary_color[0],
-      format='{temp:.1f}{unit}',
-    ),
-    widget.TextBox( 
-      foreground=secondary_color[5],
-      text="",
-    ),
-    widget.CPU(
-      background=color[5],
-      foreground=secondary_color[0],
-      format='{load_percent}%'
-    ),
-    widget.TextBox(
-    foreground=secondary_color[1],
-    text="",
-    ),
-    widget.Memory(
-      background=color[1],
-      foreground=secondary_color[0],
-      format='{MemUsed:.0f}{mm}',
-      measure_mem='M',
-    ),
-    widget.TextBox(
-      foreground=secondary_color[2],
-      text="",
+       decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+       text="",
+       foreground=secondary_color[2],
+       mouse_callbacks={'Button1':lambda: qtile.function(control_panel)},
+       
     ),
     widget.WindowName(
-      background=color[2],
-      foreground=secondary_color[0],
-      width=widget_width,
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      foreground=secondary_color[1],
+      width=widget_width+100,
       format='{name}',
       scroll=True,
       scroll_delay=2,
       scroll_repeat=True,
       scroll_step=1,
+      empty_group_string=" Empty"
     ),
-    widget.TextBox(
-      text="",
-      foreground=secondary_color[6],
-    ),
-    widget.Mpris2(
-      background=color[6],
-      mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
-      objname=None,
-      foreground=secondary_color[0],
-      width=widget_width,
-      format='{xesam:artist} - {xesam:title}',
-      stopped_text="Stop",
-      paused_text='',
-      scroll=True,
-      scroll_repeat=True,
-      scroll_delay=0.1,
-    ),
-    widget.WidgetBox(
-      text_closed='',
-      text_open='',
-      foreground=secondary_color[6],
-      widgets=[
-        widget.Visualiser(
-          background=secondary_color[6],
-          bar_colour=secondary_color[0],
-          width=150,
-          bars=20,
-          channels='stereo',
-          framerate=30,
-          hide=True,
-          mouse_callbacks={'Button1': lambda: qtile.spawn(terminal  + " -e cava")},
-        ),
-        ]
-    ),
-    widget.WidgetBox(
-      background=color[5],
-      text_closed='',
-      text_open='',
-      foreground=secondary_color[0],
-      widgets=[
-          widget.Systray(),]
+    widget.Chord(
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      foreground=color[3],
     ),
     widget.Prompt(
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
       prompt=prompt,
       foreground=secondary_color[4],
       cursor_color=secondary_color[4],
@@ -116,6 +56,7 @@ def init_widgets_list():
       length=bar.STRETCH,
     ),
     widget.GroupBox(
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
       fontsize=groups_font,
       font=awesome_font,
       disable_drag=True,
@@ -134,90 +75,31 @@ def init_widgets_list():
     widget.Spacer(
       length=bar.STRETCH,
     ),
-    widget.Chord(
-      foreground=color[1],
-    ),
-    widget.Wttr(
-      foreground=secondary_color[1],
-      #location={' ': ''},
-      update_interval=300,
-      format='%c %t %m'
-    ),
-    widget.TextBox(
-      text=wifi_icon,
-      foreground=secondary_color[3],
-    ),
-    widget.Wlan(
-      background=secondary_color[3],
-      interface=wifi,
-      format='{essid}',
-      disconnected_message='',
-      foreground=secondary_color[0],
-      width=widget_width -20,
-      scroll=True,
-      scroll_repeat=True,
-      scroll_interval=0.1,
-      scroll_step=1,
-      update_interval=1,
-      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
-    ),
-    widget.Wlan(
-      background=secondary_color[3],
-      interface=wifi,
-      format='{percent:2.0%}',
-      disconnected_message='',
-      foreground=secondary_color[0],
-      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
+    InternetIcon(
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=[5,0,0,5], filled=True,padding_y=2)],
+      update_interval=5,
+      foreground=secondary_color[5],
     ),
     widget.Net(
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=[0,5,5,0], filled=True,padding_y=2)],
       prefix='M',
       interface=wifi,
-      format='{down:1.1f}M',
-      foreground=secondary_color[0],
+      format='',
+      foreground=secondary_color[5],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      background=secondary_color[3],
-    ),
-    
-    widget.TextBox(
-      text="",
-      foreground=secondary_color[4],
-      mouse_callbacks={'Button1': lambda: qtile.spawn('pavucontrol'),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
-    ),
-    widget.ALSAWidget(
-      device='Master',
-      bar_colour_high=secondary_color[4],
-      bar_colour_normal=secondary_color[4],
-      bar_colour_mute=secondary_color[1],
-      hide_interval=5,
-      update_interval=0.1,
-      bar_width=50,
-      mode='bar',
-      text_format=' ',
     ),
     widget.Clock(
-      foreground=secondary_color[0],
-      format="%a",
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      foreground=secondary_color[2],
+      format="%a %d %H:%M",
       update_interval=1,
-      background=secondary_color[1],
-      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},
-    ),
-    widget.Clock(
-      foreground=secondary_color[1],
-      format="%d",
-      update_interval=1,
-      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},
-    ),
-    widget.Clock(
-      foreground=secondary_color[0],
-      format="%H:%M",
-      update_interval=1,
-      background=secondary_color[1],
       mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
     ),
     widget.UPowerWidget(
-      border_charge_colour=secondary_color[3],
-      border_colour=secondary_color[0],
+      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding_y=2)],
+      border_charge_colour=secondary_color[7],
+      border_colour=secondary_color[3],
       border_critical_colour='#cc0000',
       fill_critical='#cc0000',
       fill_low='#FF5511',
@@ -227,7 +109,7 @@ def init_widgets_list():
       percentage_low=0.4,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
       text_discharging=' ({percentage:.0f}%) {tte} Left',
-    )
+    ),
     ]
   return widgets_list
 
@@ -237,10 +119,10 @@ def screen1_widgets():
 
 
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=secondary_color[0],margin=bar_margin))]
+    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"77",margin=[bar_margin[0], 200,bar_margin[2],200]))]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=secondary_color[0],margin=bar_margin))]
+    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"77",margin=[bar_margin[0], 200,bar_margin[2],200]))]
 
 if bar_position == "top":
     screens=init_screens_top()

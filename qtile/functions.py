@@ -244,12 +244,6 @@ def get_net_dev():
 
 wifi = get_net_dev()
 
-# Set Ethernet or Wifi icon according
-if wifi.startswith('e'):
-  wifi_icon=''
-else:
-  wifi_icon=''
-
 ## Get local IP Address
 def get_private_ip():
     try:
@@ -666,3 +660,49 @@ def control_panel(qtile):
       qtile.function(session_widget)
     elif index == 30:
       qtile.function(support_spectrumos)
+
+# Own Widgets
+
+class WifiText(widget.GenPollText):
+    defaults = [
+        ('update_interval', 5, 'Update interval in seconds'),
+    ]
+
+    def __init__(self, **config):
+        widget.GenPollText.__init__(self, func=self.poll, **config)
+        self.add_defaults(WifiText.defaults)
+
+    def poll(self):
+        signal_strength = self.get_wifi_signal_strength()
+        return self.select_text(signal_strength)
+
+    def get_wifi_signal_strength(self):
+        try:
+            # Get the Wi-Fi signal strength using nmcli
+            result = subprocess.run(
+                ["nmcli", "-t", "-f", "ACTIVE,SIGNAL", "dev", "wifi"],
+                stdout=subprocess.PIPE,
+                text=True
+            ).stdout
+
+            # Find the line with ACTIVE:yes, which means the connected network
+            active_wifi = [line for line in result.split('\n') if 'yes' in line]
+            if active_wifi:
+                signal_strength = int(active_wifi[0].split(':')[-1])
+                return signal_strength
+        except Exception as e:
+            return 0
+        
+    def select_text(self, signal_strength):
+        if signal_strength >= 75:
+            text = ''
+        elif signal_strength >= 50:
+            text = ''
+        elif signal_strength >= 25:
+            text = ''
+        elif signal_strength > 0:
+            text = ''
+        else:
+            text = ''
+        
+        return text
