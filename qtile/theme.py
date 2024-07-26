@@ -79,18 +79,17 @@ def init_widgets_list():
     InternetIcon(
       font=awesome_font,
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=[5,0,0,5], filled=True,padding_y=2)],
-      update_interval=2,
+      update_interval=5,
       foreground=secondary_color[5],
     ),
     widget.Net(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=[0,5,5,0], filled=True,padding_y=2)],
       prefix='M',
       interface=wifi,
-      format='planet-moon',
+      format='',
       foreground=secondary_color[5],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      font=awesome_font,
     ),
     widget.Clock(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
