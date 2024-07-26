@@ -8,6 +8,7 @@
 # MIT licence 
 #
 from functions import *
+from custom_widgets import InternetIcon
 
 widget_defaults = dict(
     font=main_font,
