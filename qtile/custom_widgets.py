@@ -24,7 +24,7 @@ class InternetIcon(widget.GenPollText):
 
     def poll(self):
         if self.is_ethernet_connected():
-            return ''  # Ethernet icon
+            return 'network-wired'  # Ethernet icon
         signal_strength = self.get_wifi_signal_strength()
         return self.select_text(signal_strength)
 
@@ -64,10 +64,10 @@ class InternetIcon(widget.GenPollText):
 
     def select_text(self, signal_strength):
         if signal_strength >= 66:
-            text = ''
+            text = 'wifi'
         elif signal_strength >= 33:
-            text = ''
+            text = 'wifi-fair'
         else:
-            text = ''
+            text = 'wifi-weak'
         
         return text
