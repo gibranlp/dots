@@ -10,6 +10,7 @@
 # 
 
 ## Internet Icon Widget
+from qtile_extras.widget.decorations import (BorderDecoration,PowerLineDecoration,RectDecoration)
 from libqtile import widget
 import subprocess
 
@@ -71,3 +72,6 @@ class InternetIcon(widget.GenPollText):
             text = 'wifi-weak'
         
         return text
+
+
+### Tests

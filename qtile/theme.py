@@ -19,7 +19,6 @@ widget_defaults = dict(
 # Theme
 
 ## Screens
-
 def init_widgets_list():
   widgets_list = [
     widget.TextBox(
@@ -28,8 +27,8 @@ def init_widgets_list():
        text="",
        foreground=secondary_color[2],
        mouse_callbacks={'Button1':lambda: qtile.function(control_panel)},
-       
     ),
+
     widget.WindowName(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       foreground=secondary_color[1],
@@ -41,10 +40,12 @@ def init_widgets_list():
       scroll_step=1,
       empty_group_string=" Empty"
     ),
+    
     widget.Chord(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       foreground=color[3],
     ),
+    
     widget.Prompt(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       prompt=prompt,
@@ -53,9 +54,11 @@ def init_widgets_list():
       visual_bell_color=[4],
       visual_bell_time=0.2,
     ),
+    
     widget.Spacer(
       length=bar.STRETCH,
     ),
+    
     widget.GroupBox(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       fontsize=groups_font,
@@ -73,33 +76,36 @@ def init_widgets_list():
       block_highlight_text_color=secondary_color[2],    
       urgent_border="fc0000"
     ),
+    
     widget.Spacer(
       length=bar.STRETCH,
     ),
+    
+    widget.Wttr(
+        decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
+        foreground=secondary_color[1],
+        location={'Morelia': ''},
+        update_interval=300,
+        format='%c'
+      ),
+    
     InternetIcon(
       font=awesome_font,
-      decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=[5,0,0,5], filled=True,padding_y=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       update_interval=5,
       foreground=secondary_color[5],
     ),
-    widget.Net(
-      decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=[0,5,5,0], filled=True,padding_y=2)],
-      prefix='M',
-      interface=wifi,
-      format='',
-      foreground=secondary_color[5],
-      use_bits=True,
-      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-    ),
+    
     widget.Clock(
       decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       foreground=secondary_color[2],
-      format="%a %d %H:%M",
+      format="%H:%M",
       update_interval=1,
       mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
     ),
+    
     widget.UPowerWidget(
-      decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding_y=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"DD", radius=5, filled=True,padding=2)],
       border_charge_colour=secondary_color[7],
       border_colour=secondary_color[3],
       border_critical_colour='#cc0000',

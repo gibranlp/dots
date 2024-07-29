@@ -194,7 +194,7 @@ def init_widgets_list():
         foreground=secondary_color[1],
         location={'Morelia': ''},
         update_interval=300,
-        format='%c %t %m'
+        format='%c %t'
       ),
       widget.Spacer(
         length=5,
@@ -202,9 +202,10 @@ def init_widgets_list():
       ),
       ## Network
       InternetIcon(
-        decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=[7,0,0,7], filled=True,padding_y=2)],
+        decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True,padding_y=2)],
         update_interval=5,
         foreground=secondary_color[3],
+        font=awesome_font,
       ),
       widget.Wlan(
         decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],

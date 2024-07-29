@@ -147,7 +147,7 @@ with open(home + '/.config/alacritty/alacritty.toml', 'w') as file:
     file.writelines(term_size)
 
 # Make font smaller for cetain groups icons
-if int(variables[10]) in [7,8,9,10,11,12,13]:
+if int(variables[10]) in [5,7,8,9,10,11,12,13]:
    groups_font = font_size - 8
 else:
    groups_font = font_size 
@@ -156,11 +156,7 @@ else:
 SOS_Backend= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Backend.rasi'])
 SOS_Themes= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Themes.rasi'])
 SOS_Panel= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Panel.rasi'])
-
-rofi_right = Rofi(rofi_args=['-theme', '~/.config/rofi/right.rasi'])
 SOS_Network= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Network.rasi'])
-rofi_left= Rofi(rofi_args=['-theme', '~/.config/rofi/left.rasi'])
-
 
 # Weather
 w_appkey = str(variables[3].strip()) # Get a key here https://home.openweathermap.org/users/sign_up 
