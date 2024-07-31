@@ -218,8 +218,6 @@ labels = {
 
 selected_label = int(variables[10])
 group_labels = labels.get(selected_label, [])
-
-
 group_layouts=["bonsai", "bonsai", "bonsai", "bonsai", "bonsai", "bonsai", "bonsai", "bonsai", "bonsai", "bonsai"]
 for i in range(len(group_names)):
   groups.append(
@@ -233,22 +231,20 @@ for i in groups:
     keys.append(Key([mod, 'shift'], i.name, lazy.window.togroup(i.name)))
 
 # Scratchpads
-
 groups.append(ScratchPad("scratchpad", [
-   DropDown("lyrics", "alacritty -e bash -c '. ~/.zshrc; lyrics'",
+   DropDown("lyrics", "alacritty -e bash -c 'source ~/.zshrc; lyrics'",
       x=0.75, y=0.05, width=0.20, height=0.9, opacity=0.9,
       on_focus_lost_hide=False),
 
-   DropDown("music", "alacritty -e bash -c '. ~/.zshrc; cmus'",
+   DropDown("music", "alacritty -e bash -c 'source ~/.zshrc; cmus'",
       x=0.05, y=0.0, width=0.9, height=0.7, opacity=0.9,
       on_focus_lost_hide=False),
                
-   DropDown("htop", "alacritty -e bash -c '. ~/.zshrc; htop'",
+   DropDown("htop", "alacritty -e bash -c 'source ~/.zshrc; htop'",
       x=0.05, y=0.0, width=0.9, height=0.7, opacity=0.9,
       on_focus_lost_hide=False),            
                
-                      ]),
-          )
+    ]))
 
 ## Layouts
 def init_layout_theme():
@@ -332,5 +328,4 @@ auto_minimize = True
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
-
 wmname = "LG3D"

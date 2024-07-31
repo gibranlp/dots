@@ -123,7 +123,7 @@ if xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
     bar_margin=[5,10,0,10]
 elif xres == "3840" and yres == "1080" or xres == "3834" and yres == "1080" or xres == "1920" and yres == "2160" or xres == "1920" and yres == "1080": #FullHD
   bar_size=25
-  widget_width=150
+  widget_width=100
   font_size=17
   terminal_font_size=9
   if bar_position == "bottom":
@@ -265,7 +265,7 @@ def get_private_ip_alternative():
 private_ip = get_private_ip()
 
 ## Get Public IP Address
-def get_public_ip(timeout=1):
+def get_public_ip(timeout=2):
     try:
         raw = requests.get('https://api.duckduckgo.com/?q=ip&format=json', timeout=timeout)
         raw.raise_for_status() 

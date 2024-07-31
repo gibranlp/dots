@@ -73,5 +73,46 @@ class InternetIcon(widget.GenPollText):
         
         return text
 
+## Thermal Icon
+
+class TemperatureIcon(widget.GenPollText):
+    defaults = [
+        ('update_interval', 300, 'Update interval in seconds'),
+        ('sensor', 'Core 0', 'Temperature sensor to read from'),
+    ]
+
+    def __init__(self, **config):
+        widget.GenPollText.__init__(self, func=self.poll, **config)
+        self.add_defaults(TemperatureIcon.defaults)
+
+    def poll(self):
+        temperature = self.get_temperature()
+        return self.select_icon(temperature)
+
+    def get_temperature(self):
+        try:
+            # Read the temperature from the specified sensor
+            result = subprocess.run(
+                ["cat", f"/sys/class/thermal/{self.sensor}/temp"],
+                stdout=subprocess.PIPE,
+                text=True
+            ).stdout.strip()
+            temperature = int(result) / 1000.0  # Convert from millidegrees to degrees
+            return temperature
+        except Exception as e:
+            return None
+
+    def select_icon(self, temperature):
+        if temperature is None:
+            return ''  # Default to very cold icon if reading fails
+        if temperature < 40:
+            return ''
+        elif temperature < 65:
+            return ''
+        elif temperature < 71:
+            return ''
+        else:
+            return '<span color="#FF0000"></span>'  # Hot
+
 
 ### Tests

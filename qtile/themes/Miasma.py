@@ -215,10 +215,12 @@ def init_widgets_list():
               text="░▒▓",
             ),
             ## Network
-            widget.TextBox(
+            InternetIcon(
+              font=awesome_font,
               background=secondary_color[3],
-              text=wifi_icon,
+              update_interval=5,
               foreground=color[0],
+              mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
               decorations=[BorderDecoration(colour=color[0], border_width=[2,0,2,2])],
               padding=5,
             ),

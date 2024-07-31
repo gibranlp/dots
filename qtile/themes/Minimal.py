@@ -8,7 +8,7 @@
 # MIT licence 
 #
 from functions import *
-from custom_widgets import InternetIcon
+from custom_widgets import InternetIcon, TemperatureIcon
 
 widget_defaults = dict(
   font=main_font,
@@ -19,44 +19,57 @@ widget_defaults = dict(
 # Theme
 
 ## Screens
-
 def init_widgets_list():
   widgets_list = [
     widget.TextBox(
-       decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+       font=awesome_font,
+       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
        text="",
        foreground=secondary_color[2],
        mouse_callbacks={'Button1':lambda: qtile.function(control_panel)},
-       
     ),
+
+    TemperatureIcon(
+       font=awesome_font,
+       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+       foreground=secondary_color[5],
+       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'sensors'")}
+       update_interval=5, 
+       sensor='thermal_zone4'
+    ),
+
     widget.WindowName(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       foreground=secondary_color[1],
       width=widget_width+100,
-      format='{name}',
+      format=' {name}',
       scroll=True,
       scroll_delay=2,
       scroll_repeat=True,
       scroll_step=1,
-      empty_group_string=" Empty"
+      empty_group_string=" Empty"
     ),
+    
     widget.Chord(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       foreground=color[3],
     ),
+    
     widget.Prompt(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       prompt=prompt,
       foreground=secondary_color[4],
       cursor_color=secondary_color[4],
       visual_bell_color=[4],
       visual_bell_time=0.2,
     ),
+    
     widget.Spacer(
       length=bar.STRETCH,
     ),
+    
     widget.GroupBox(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       fontsize=groups_font,
       font=awesome_font,
       disable_drag=True,
@@ -72,32 +85,38 @@ def init_widgets_list():
       block_highlight_text_color=secondary_color[2],    
       urgent_border="fc0000"
     ),
+    
     widget.Spacer(
       length=bar.STRETCH,
     ),
+    
+    widget.Wttr(
+        decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+        foreground=secondary_color[1],
+        location={'':''},
+        update_interval=300,
+        format='%c',
+        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'curl wttr.in; exec bash'")},
+      ),
+    
     InternetIcon(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=[5,0,0,5], filled=True,padding_y=2)],
+      font=awesome_font,
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       update_interval=5,
       foreground=secondary_color[5],
+      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
-    widget.Net(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=[0,5,5,0], filled=True,padding_y=2)],
-      prefix='M',
-      interface=wifi,
-      format='',
-      foreground=secondary_color[5],
-      use_bits=True,
-      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-    ),
+    
     widget.Clock(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       foreground=secondary_color[2],
-      format="%a %d %H:%M",
+      format="%H:%M",
       update_interval=1,
       mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
     ),
+    
     widget.UPowerWidget(
-      decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=5, filled=True,padding_y=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       border_charge_colour=secondary_color[7],
       border_colour=secondary_color[3],
       border_critical_colour='#cc0000',
@@ -109,7 +128,7 @@ def init_widgets_list():
       percentage_low=0.4,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
       text_discharging=' ({percentage:.0f}%) {tte} Left',
-    ),
+    )
     ]
   return widgets_list
 
