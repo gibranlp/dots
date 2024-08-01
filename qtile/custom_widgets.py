@@ -8,10 +8,11 @@
 # MIT licence 
 #
 # 
-
 ## Internet Icon Widget
 from qtile_extras.widget.decorations import (BorderDecoration,PowerLineDecoration,RectDecoration)
 from libqtile import widget
+import psutil
+from libqtile.widget import base, GenPollText
 import subprocess
 
 class InternetIcon(widget.GenPollText):
@@ -75,32 +76,85 @@ class InternetIcon(widget.GenPollText):
 
 ## Thermal Icon
 
-class TemperatureIcon(widget.GenPollText):
+class ThermalSensor(base.InLoopPollText):
+    """Widget to display temperature sensor information"""
+
+    defaults = [
+        ("format", "{temp:.1f}{unit}", "Display string format. Three options available: ``{temp}`` - temperature, ``{tag}`` - tag of the temperature sensor, and ``{unit}`` - °C or °F"),
+        ("metric", True, "True to use metric/C, False to use imperial/F"),
+        ("update_interval", 2, "Update interval in seconds"),
+        ("tag_sensor", None, 'Tag of the temperature sensor. For example: "temp1" or "Core 0"'),
+        ("threshold", 70, "If the current temperature value is above, then change to foreground_alert colour"),
+        ("foreground_alert", "ff0000", "Foreground colour alert"),
+    ]
+
+    def __init__(self, **config):
+        base.InLoopPollText.__init__(self, **config)
+        self.add_defaults(ThermalSensor.defaults)
+        temp_values = self.get_temp_sensors()
+
+        if temp_values is None:
+            self.data = "sensors command not found"
+        elif len(temp_values) == 0:
+            self.data = "Temperature sensors not found"
+        elif self.tag_sensor is None:
+            for k in temp_values:
+                self.tag_sensor = k
+                break
+
+    def _configure(self, qtile, bar):
+        self.unit = "°C" if self.metric else "°F"
+        base.InLoopPollText._configure(self, qtile, bar)
+        self.foreground_normal = self.foreground
+
+    def get_temp_sensors(self):
+        temperature_list = {}
+        temps = psutil.sensors_temperatures(fahrenheit=not self.metric)
+        empty_index = 0
+        for kernel_module in temps:
+            for sensor in temps[kernel_module]:
+                label = sensor.label
+                if not label:
+                    label = "{}-{}".format(kernel_module if kernel_module else "UNKNOWN", str(empty_index))
+                    empty_index += 1
+                temperature_list[label] = sensor.current
+
+        return temperature_list
+
+    def poll(self):
+        temp_values = self.get_temp_sensors()
+        if (temp_values is None) or (self.tag_sensor not in temp_values):
+            return "N/A"
+
+        temp_value = temp_values.get(self.tag_sensor)
+        if temp_value > self.threshold:
+            self.layout.colour = self.foreground_alert
+        else:
+            self.layout.colour = self.foreground_normal
+
+        val = dict(temp=temp_value, tag=self.tag_sensor, unit=self.unit)
+        return self.format.format(**val)
+
+class TemperatureIcon(GenPollText):
     defaults = [
         ('update_interval', 300, 'Update interval in seconds'),
         ('sensor', 'Core 0', 'Temperature sensor to read from'),
     ]
 
     def __init__(self, **config):
-        widget.GenPollText.__init__(self, func=self.poll, **config)
+        GenPollText.__init__(self, func=self.poll, **config)
         self.add_defaults(TemperatureIcon.defaults)
+        self.thermal_sensor = ThermalSensor(tag_sensor=self.sensor, metric=True)
 
     def poll(self):
         temperature = self.get_temperature()
         return self.select_icon(temperature)
 
     def get_temperature(self):
-        try:
-            # Read the temperature from the specified sensor
-            result = subprocess.run(
-                ["cat", f"/sys/class/thermal/{self.sensor}/temp"],
-                stdout=subprocess.PIPE,
-                text=True
-            ).stdout.strip()
-            temperature = int(result) / 1000.0  # Convert from millidegrees to degrees
-            return temperature
-        except Exception as e:
-            return None
+        temp_values = self.thermal_sensor.get_temp_sensors()
+        if temp_values and self.sensor in temp_values:
+            return temp_values[self.sensor]
+        return None
 
     def select_icon(self, temperature):
         if temperature is None:
@@ -113,6 +167,3 @@ class TemperatureIcon(widget.GenPollText):
             return ''
         else:
             return '<span color="#FF0000"></span>'  # Hot
-
-
-### Tests

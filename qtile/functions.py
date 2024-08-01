@@ -410,7 +410,7 @@ def show_groups(qtile):
 def group_icon(qtile):
   options = [
     '         ', 
-    '零 一 二 三 四 五 六 七 八 九', 
+    '零 一 二 三 四 五 六 七 八 九',
     '         ',
     '         ',
     '         ',
@@ -424,7 +424,7 @@ def group_icon(qtile):
     '         ',
     'TERM DEV WWW SYS DOC VIRT MSG MUS VID GFX'
     ]
-  index, key = SOS_Backend.select(' Group Icons ', options)
+  index, key = SOS_Panel.select(' Group Icons ', options)
   if key == -1:
     rofi_left.close()
   else:

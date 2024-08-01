@@ -55,7 +55,7 @@ function install_aur_packages() {
         'rofi-emoji' 'zathura-pdf-mupdf' 'zathura-pywal-git' 'zathura-ps'
         'python-rofi-git' 'lyrics-in-terminal' 'picom-ftlabs-git'
         'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
-        'discord' 'whatsdesk-bin' 'lyrics-in-terminal'
+        'discord' 'whatsdesk-bin' 'lyrics-in-terminal' 'ponymix'
     )
 
     for packet in "${packets[@]}"; do

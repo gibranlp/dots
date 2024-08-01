@@ -21,7 +21,7 @@ widget_defaults = dict(
 def init_widgets_list():
   widgets_list = [
     widget.LaunchBar(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=5, filled=True)],
+      decorations=[RectDecoration(colour=third_color[0], radius=5, filled=True)],
       progs=[
         ('<span color="#ff0000"></span>', 'firefox https://www.youtube.com', 'Youtube'),
         ('<span color="#ffffff"></span>', 'firefox https://www.github.com', 'Github'),
@@ -29,25 +29,25 @@ def init_widgets_list():
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
     
     widget.GroupBox(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=5, filled=True)],
+      decorations=[RectDecoration(colour=color[1], radius=5, filled=True)],
       fontsize=groups_font,
       font=awesome_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[1], #Program opened in that group
-      inactive=secondary_color[5], # Empty Group
+      active=third_color[1], #Program opened in that group
+      inactive=secondary_color[0], # Empty Group
       rounded=False,
       highlight_method="text",
-      this_current_screen_border=secondary_color[2],
+      this_current_screen_border=secondary_color[0],
       center_aligned = True,
-      other_curren_screen_border=secondary_color[2],
-      block_highlight_text_color=secondary_color[2],    
+      other_curren_screen_border=secondary_color[0],
+      block_highlight_text_color=secondary_color[0],    
       urgent_border="fc0000"
     ),
     
@@ -66,62 +66,62 @@ def init_widgets_list():
     ),
     
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     TemperatureIcon(
        font=awesome_font,
-       decorations=[RectDecoration(colour=secondary_color[0], radius=[5,0,0,5], filled=True)],
-       foreground=secondary_color[5],
+       decorations=[RectDecoration(colour=color[5], radius=[5,0,0,5], filled=True)],
+       foreground=color[0],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec bash'")},
        update_interval=5, 
-       sensor='thermal_zone4',
+       tag_sensor='Core 0',
     ),
     
     widget.ThermalSensor(
-      decorations=[RectDecoration(colour=secondary_color[5], radius=[0,5,5,0], filled=True)],
+      decorations=[RectDecoration(colour=color[5], radius=[0,5,5,0], filled=True)],
       format='{temp:.1f}{unit}',
       foreground=color[0],
-      tag_sensor='Core 4',
+      tag_sensor='Core 0',
       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec bash'")},
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.TextBox(
        font=awesome_font,
-       decorations=[RectDecoration(colour=secondary_color[0], radius=[5,0,0,5], filled=True)],
+       decorations=[RectDecoration(colour=color[2], radius=[5,0,0,5], filled=True)],
        text="",
-       foreground=secondary_color[1],
+       foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
     ),
     
     widget.CPU(
-      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,5,5,0], filled=True)],
+      decorations=[RectDecoration(colour=color[2], radius=[0,5,5,0], filled=True)],
       format='{load_percent}%',
       foreground=color[0],
       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.TextBox(
        font=awesome_font,
-       decorations=[RectDecoration(colour=secondary_color[0], radius=[5,0,0,5], filled=True)],
+       decorations=[RectDecoration(colour=color[3], radius=[5,0,0,5], filled=True)],
        text="",
-       foreground=secondary_color[2],
+       foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
     ),
     
     widget.Memory(
-      decorations=[RectDecoration(colour=secondary_color[2], radius=[0,5,5,0], filled=True)],
+      decorations=[RectDecoration(colour=color[3], radius=[0,5,5,0], filled=True)],
       measure_mem='M',
       format='{MemUsed: .0f}{mm}',
       foreground=color[0],
@@ -129,21 +129,21 @@ def init_widgets_list():
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.TextBox(
        font=awesome_font,
-       decorations=[RectDecoration(colour=secondary_color[0], radius=[5,0,0,5], filled=True)],
+       decorations=[RectDecoration(colour=color[4], radius=[5,0,0,5], filled=True)],
        text="",
-       foreground=secondary_color[3],
+       foreground=color[0],
       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && df -hi; exec bash'")},
        
     ),
     
     widget.DF(
-      decorations=[RectDecoration(colour=secondary_color[3], radius=[0,5,5,0], filled=True)],
+      decorations=[RectDecoration(colour=color[4], radius=[0,5,5,0], filled=True)],
       format='{p} ({uf}{m})',
       partition='/',
       foreground=color[0],
@@ -156,49 +156,67 @@ def init_widgets_list():
       length=bar.STRETCH,
     ),
 
+    widget.Clipboard(
+      decorations=[RectDecoration(colour=color[6], radius=5, filled=True)],
+      selection='CLIPBOARD',
+      foreground=secondary_color[0],
+      width=widget_width -20,
+      scroll=True,
+      scroll_repeat=True,
+      scroll_interval=0.1,
+      scroll_step=1,
+      update_interval=1,
+      timeout=5,
+    ),
+
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
+
     widget.CheckUpdates(
-       decorations=[RectDecoration(colour=secondary_color[2], radius=7, filled=True)],
+       decorations=[RectDecoration(colour=color[5], radius=7, filled=True)],
        distro='Arch_paru',
        colour_have_updates=color[0],
        colour_no_updates=color[0],
-       display_format='{updates}',
+       display_format='',
        no_update_string='',
-       update_interval=60
+       update_interval=60,
+       execute='paru -Syu',
     ),
-    
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.Wttr(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
-      foreground=secondary_color[1],
-      location={'Morelia': ''},
+      decorations=[RectDecoration(colour=color[0], radius=7, filled=True)],
+      foreground=color[1],
+      location={'': ''},
       update_interval=300,
       format='%c %t',
       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'curl wttr.in; exec bash'")},
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
     
     InternetIcon(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[4], radius=[7,0,0,7], filled=True)],
       update_interval=5,
-      foreground=secondary_color[3],
+      foreground=color[0],
       font=awesome_font,
     ),
     
     widget.Wlan(
-      decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[4], radius=0, filled=True)],
       interface=wifi,
       format='{essid}',
       disconnected_message='',
-      foreground=secondary_color[0],
+      foreground=color[0],
       width=widget_width -20,
       scroll=True,
       scroll_repeat=True,
@@ -212,27 +230,27 @@ def init_widgets_list():
       prefix='M',
       interface=wifi,
       format='{down:1.1f}M',
-      foreground=secondary_color[0],
+      foreground=color[0],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      decorations=[RectDecoration(colour=secondary_color[3], radius=[0,7,7,0], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[4], radius=[0,7,7,0], filled=True)],
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.TextBox(
        font=awesome_font,
-       decorations=[RectDecoration(colour=secondary_color[0], radius=[5,0,0,5], filled=True)],
+       decorations=[RectDecoration(colour=secondary_color[2], radius=[5,0,0,5], filled=True)],
        text="",
-       foreground=secondary_color[4],
+       foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.spawn(home + '/.local/bin/SOS_Bluetooth')},
     ),
 
     widget.Bluetooth(
-      decorations=[RectDecoration(colour=secondary_color[4], radius=[0,5,5,0], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[2], radius=[0,5,5,0], filled=True)],
       foreground=color[0],
       format='Adapter: {name} [{powered}{discovery}]',
       default_text='{connected_devices}',
@@ -250,23 +268,22 @@ def init_widgets_list():
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.TextBox(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[6], radius=[7,0,0,7], filled=True)],
       text="",
-      foreground=secondary_color[4],
+      foreground=color[0],
       mouse_callbacks={'Button1': lambda: qtile.spawn('pavucontrol'),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
     ),
     
     widget.ALSAWidget(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=0, filled=True)],
       device='Master',
-      bar_colour_high=secondary_color[4],
-      bar_colour_normal=secondary_color[4],
-      bar_colour_mute=secondary_color[1],
+      bar_colour_high=secondary_color[6],
+      bar_colour_normal=secondary_color[6],
+      bar_colour_mute=secondary_color[6],
       hide_interval=5,
       update_interval=0.1,
       bar_width=50,
@@ -274,36 +291,28 @@ def init_widgets_list():
       text_format=' ',
     ),
 
-    
-    widget.TextBox(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=[0,7,7,0], filled=True)],
-      text=" ",
-      foreground=secondary_color[2],
-      mouse_callbacks={'Button1': lambda: qtile.spawn('pavucontrol'),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
-    ),
-
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.Clock(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=5, filled=True)],
-      foreground=secondary_color[2],
+      decorations=[RectDecoration(colour=secondary_color[3], radius=5, filled=True)],
+      foreground=color[0],
       format="%a %d %H:%M",
       update_interval=1,
       mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
     ),
 
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
     widget.Systray(),
     
     widget.Spacer(
-      length=2,
+      length=4,
       background=transparent,
     ),
 
