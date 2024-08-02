@@ -157,6 +157,7 @@ SOS_Backend= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Backend.rasi'])
 SOS_Themes= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Themes.rasi'])
 SOS_Panel= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Panel.rasi'])
 SOS_Network= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Network.rasi'])
+SOS_Audio= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Faudio.rasi'])
 
 # Weather
 w_appkey = str(variables[3].strip()) # Get a key here https://home.openweathermap.org/users/sign_up 
@@ -380,6 +381,18 @@ def session_widget(qtile):
       os.system('systemctl reboot')
     else:
       os.system('systemctl poweroff')
+
+# Audio widget
+def audio_widget(qtile):
+  options = [' Input',' Output']
+  index, key = SOS_Audio.select('  Audio Selection:', options)
+  if key == -1:
+    SOS_Backend.close()
+  else:
+    if index == 0:
+      qtile.spawn(home + '/.local/bin/SOS_Audio source')
+    else:
+      qtile.spawn(home + '/.local/bin/SOS_Audio sink')
 
 # Network Widget
 def network_widget(qtile):

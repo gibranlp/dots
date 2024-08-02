@@ -69,7 +69,8 @@ def init_widgets_list():
     ),
     
     widget.Spacer(
-      length=bar.STRETCH,
+      length=4,
+      background=transparent,
     ),
 
     TemperatureIcon(
@@ -157,6 +158,10 @@ def init_widgets_list():
     widget.Spacer(
       length=4,
       background=transparent,
+    ),
+
+    widget.Spacer(
+      length=bar.STRETCH,
     ),
 
     widget.Clipboard(

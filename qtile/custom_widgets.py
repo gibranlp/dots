@@ -15,6 +15,7 @@ import psutil
 from libqtile.widget import base, GenPollText
 import subprocess
 
+
 class InternetIcon(widget.GenPollText):
     defaults = [
         ('update_interval', 5, 'Update interval in seconds'),
@@ -167,3 +168,58 @@ class TemperatureIcon(GenPollText):
             return ''
         else:
             return '<span color="#FF0000"></span>'  # Hot
+
+# Audio Icon
+
+class VolumeIcon(GenPollText):
+    defaults = [
+        ('font', 'FontAwesome', 'Font to use'),
+        ('fontsize', None, 'Font pixel size. Calculated if None.'),
+        ('padding', None, 'Padding between icon and text. Calculated if None.'),
+        ('foreground', 'ffffff', 'Foreground color'),
+    ]
+
+    icons = {
+        'low': '',     # FontAwesome icon for low volume
+        'medium': '',  # FontAwesome icon for medium volume
+        'high': '',    # FontAwesome icon for high volume
+    }
+
+    update_interval = 1
+    low_threshold = 30
+    medium_threshold = 60
+
+    def __init__(self, **config):
+        GenPollText.__init__(self, **config)
+        self.add_defaults(VolumeIcon.defaults)
+
+    def poll(self):
+        volume = self.get_volume()
+        if volume is None:
+            return ''
+        return self.select_icon(volume)
+
+    def get_volume(self):
+        try:
+            result = subprocess.run(
+                ["pactl", "get-sink-volume", "@DEFAULT_SINK@"],
+                stdout=subprocess.PIPE,
+                text=True
+            ).stdout
+
+            if not result:
+                return None
+
+            # Extract the volume percentage from the pactl output
+            volume = int(result.split('/')[1].strip().replace('%', ''))
+            return volume
+        except Exception as e:
+            return None
+
+    def select_icon(self, volume):
+        if volume < self.low_threshold:
+            return self.icons['low']
+        elif volume < self.medium_threshold:
+            return self.icons['medium']
+        else:
+            return self.icons['high']

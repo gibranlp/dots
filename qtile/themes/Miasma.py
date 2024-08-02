@@ -8,7 +8,7 @@
 # MIT licence 
 #
 from functions import *
-from custom_widgets import InternetIcon
+from custom_widgets import InternetIcon, VolumeIcon
 
 widget_defaults = dict(
     font=main_font,
@@ -258,11 +258,10 @@ def init_widgets_list():
               fontsize=font_size+5,
               text="░",
             ),
-            widget.TextBox(
+            VolumeIcon(
               background=color[5],
-              text="",
               foreground=color[0],
-              mouse_callbacks={'Button1': lambda: qtile.spawn('pavucontrol'),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
+              mouse_callbacks={'Button1': lambda: qtile.function(audio_widget),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
               decorations=[BorderDecoration(colour=color[0], border_width=2)],
             ),
             widget.ALSAWidget(
