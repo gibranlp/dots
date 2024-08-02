@@ -22,12 +22,13 @@ def init_widgets_list():
   widgets_list = [
     widget.LaunchBar(
       decorations=[RectDecoration(colour=third_color[0], radius=5, filled=True)],
+      fontsize=font_size+3,
       progs=[
-        ('<span color="#ffffff"></span>', 'firefox https://www.github.com', 'Github'),
-        ('<span color="#054469"></span>', 'firefox https://wallhaven.cc/', 'Wallhaven'),
-        ('<span color="#ff0000"></span>', 'firefox https://www.youtube.com', 'Youtube'),
-        ('<span color="#ffe600"></span>', 'firefox https://mercadolibre.com.mx/', 'MercadoLibre'),
-        ('<span color="#ff4500"></span>', 'firefox https://reddit.com/', 'Reddit'),
+        ('<span color="#ffffff"></span>', 'firefox https://www.github.com', 'Github'),
+        ('<span color="#054469">󰸉</span>', 'firefox https://wallhaven.cc/', 'Wallhaven'),
+        ('<span color="#ff0000"></span>', 'firefox https://www.youtube.com', 'Youtube'),
+        ('<span color="#ffe600"></span>', 'firefox https://mercadolibre.com.mx/', 'MercadoLibre'),
+        ('<span color="#ff4500">󰑍</span>', 'firefox https://reddit.com/', 'Reddit'),
         ]
     ),
 
@@ -39,7 +40,6 @@ def init_widgets_list():
     widget.GroupBox(
       decorations=[RectDecoration(colour=color[1], radius=5, filled=True)],
       fontsize=groups_font,
-      font=awesome_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
@@ -73,11 +73,11 @@ def init_widgets_list():
     ),
 
     TemperatureIcon(
-       font=awesome_font,
+       fontsize=font_size+3,
        decorations=[RectDecoration(colour=color[5], radius=[5,0,0,5], filled=True)],
        foreground=color[0],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec bash'")},
-       update_interval=5, 
+       update_interval=1, 
        tag_sensor='Core 0',
     ),
     
@@ -87,6 +87,7 @@ def init_widgets_list():
       foreground=color[0],
       tag_sensor='Core 0',
       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec bash'")},
+      update_interval=1,
     ),
 
     widget.Spacer(
@@ -95,11 +96,11 @@ def init_widgets_list():
     ),
 
     widget.TextBox(
-       font=awesome_font,
        decorations=[RectDecoration(colour=color[2], radius=[5,0,0,5], filled=True)],
        text="",
        foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
+       fontsize=font_size+3,
     ),
     
     widget.CPU(
@@ -115,11 +116,11 @@ def init_widgets_list():
     ),
 
     widget.TextBox(
-       font=awesome_font,
        decorations=[RectDecoration(colour=color[3], radius=[5,0,0,5], filled=True)],
-       text="",
+       text="",
        foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
+       fontsize=font_size+3,
     ),
     
     widget.Memory(
@@ -136,12 +137,11 @@ def init_widgets_list():
     ),
 
     widget.TextBox(
-       font=awesome_font,
        decorations=[RectDecoration(colour=color[4], radius=[5,0,0,5], filled=True)],
-       text="",
+       text="󰟜",
        foreground=color[0],
       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && df -hi; exec bash'")},
-       
+      fontsize=font_size+3,
     ),
     
     widget.DF(
@@ -182,10 +182,12 @@ def init_widgets_list():
        distro='Arch_paru',
        colour_have_updates=color[0],
        colour_no_updates=color[0],
-       display_format='',
-       no_update_string='',
+       display_format='󰁠',
+       no_update_string='󱧧',
        update_interval=60,
        execute='paru -Syu',
+       fontsize=font_size+3,
+       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && paru -Syu --noconfirm; exec bash'")},
     ),
 
     widget.Spacer(
@@ -211,7 +213,8 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[4], radius=[7,0,0,7], filled=True)],
       update_interval=5,
       foreground=color[0],
-      font=awesome_font,
+      fontsize=font_size+3,
+      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
     
     widget.Wlan(
@@ -232,7 +235,7 @@ def init_widgets_list():
     widget.Net(
       prefix='M',
       interface=wifi,
-      format='{down:1.1f}M',
+      format='{down:1.1f}',
       foreground=color[0],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
@@ -245,9 +248,9 @@ def init_widgets_list():
     ),
 
     widget.TextBox(
-       font=awesome_font,
+       fontsize=font_size+3,
        decorations=[RectDecoration(colour=secondary_color[2], radius=[5,0,0,5], filled=True)],
-       text="",
+       text="󰂯",
        foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.spawn(home + '/.local/bin/SOS_Bluetooth')},
     ),
@@ -277,7 +280,7 @@ def init_widgets_list():
 
     VolumeIcon(
        decorations=[RectDecoration(colour=secondary_color[5], radius=5, filled=True)],
-       font=awesome_font,
+       
        foreground=color[0],
        mouse_callbacks={'Button1': lambda: qtile.function(audio_widget),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
     ),

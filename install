@@ -16,7 +16,7 @@ function install_base() {
         'base-devel' 'alsa-utils' 'pulseaudio-alsa' 'pavucontrol' 'openssh'
         'alacritty' 'xcolor' 'playerctl' 'scrot' 'flameshot' 'rofi' 'surfraw'
         'python-pip' 'ranger' 'lxappearance' 'bmon' 'acpilight' 'lm_sensors'
-        'nm-connection-editor' 'arandr' 'python-psutil' 'python-xdg'
+        'nm-connection-editor' 'arandr' 'ttf-nerd-fonts-symbols' 'python-psutil' 'python-xdg'
         'python-iwlib' 'python-dateutil' 'ueberzug' 'xsettingsd' 'zsh' 'dunst'
         'tk' 'transmission-cli' 'vlc' 'kdeconnect' 'reflector' 'rsync' 'curl'
         'cmus' 'bc' 'neofetch' 'firefox' 'xorg-xkill' 'xdg-user-dirs' 'bluez'

@@ -15,7 +15,7 @@ import psutil
 from libqtile.widget import base, GenPollText
 import subprocess
 
-
+# Wifi Icon
 class InternetIcon(widget.GenPollText):
     defaults = [
         ('update_interval', 5, 'Update interval in seconds'),
@@ -66,12 +66,16 @@ class InternetIcon(widget.GenPollText):
             return 0
 
     def select_text(self, signal_strength):
-        if signal_strength >= 66:
-            text = 'wifi'
-        elif signal_strength >= 33:
-            text = 'wifi-fair'
+        if signal_strength >= 90:
+            text = '󰤨'
+        elif signal_strength >= 75:
+            text = '󰤥'
+        elif signal_strength >= 50:
+            text = '󰤢'
+        elif signal_strength >= 25:
+            text = '󰤟'
         else:
-            text = 'wifi-weak'
+            text = '󰤯'
         
         return text
 

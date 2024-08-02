@@ -148,9 +148,9 @@ with open(home + '/.config/alacritty/alacritty.toml', 'w') as file:
 
 # Make font smaller for cetain groups icons
 if int(variables[10]) in [5,7,8,9,10,11,12,13]:
-   groups_font = font_size - 8
+   groups_font = font_size - 2
 else:
-   groups_font = font_size 
+   groups_font = font_size + 3
 
 # Rofi Configuration Files
 SOS_Backend= Rofi(rofi_args=['-theme', '~/.config/rofi/SOS_Backend.rasi'])
