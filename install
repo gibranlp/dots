@@ -261,7 +261,7 @@ function install_rofi(){
 
 # Copy Cava Files
 function install_cava(){
-    mdir -pv ~/.config/wal/templates
+    mkdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/cava
     cp -v ~/dots/cava/config ~/.config/wal/templates/
 }

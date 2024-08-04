@@ -86,6 +86,10 @@ eval $(thefuck --alias)
 alias lzd="lazydocker"
 alias tsm="transmission-remote"
 alias sshelgen="ssh -i ~/.ssh/rsa_deploy itadmin@199.85.208.94"
+alias podacidez="poddl https://feeds.megaphone.fm/BDA7904828235 /media/Music/Podcasts/Creepy"
+alias podcreepy="poddl https://feeds.megaphone.fm/BDA7904828235 /media/Music/Podcasts/Creepy"
+alias podwhy="poddl https://anchor.fm/s/89358408/podcast/rss /media/Music/Podcasts/WhyFiles"
+alias podcensura="poddl http://www.poderato.com/mesembriarecords/_feed/1 /media/Music/Podcasts/Radiocensura"
 export PATH=~/.local/bin:$PATH
 setxkbmap -layout us -variant intl
 wal -R -q && clear 

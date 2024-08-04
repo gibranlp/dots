@@ -25,6 +25,7 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
       foreground=secondary_color[5],
       text="",
+      font=symbols_font,
     ),
     
     widget.CPU(
@@ -41,7 +42,8 @@ def init_widgets_list():
     widget.TextBox(
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
       foreground=secondary_color[1],
-      text="",
+      text="",
+      font=symbols_font,
     ),
     
     widget.Memory(
@@ -60,6 +62,7 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
       foreground=secondary_color[2],
       text="",
+      font=symbols_font,
     ),
     
     widget.WindowName(
@@ -78,28 +81,15 @@ def init_widgets_list():
       background=transparent,
     ),
     
-    widget.WidgetBox(
+    widget.TextBox(
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
-      text_closed='  ',
-      text_open='  ',
+      text="󰽰",
       foreground=secondary_color[6],
-    
-      widgets=[
-        widget.Visualiser(
-          background=secondary_color[6],
-          bar_colour=secondary_color[0],
-          width=150,
-          bars=16,
-          channels='stereo',
-          framerate=60,
-          hide=True,
-          mouse_callbacks={'Button1': lambda: qtile.spawn(terminal  + " -e cava")},
-        ),
-        ]
+      font=symbols_font,
     ),
     
     widget.Mpris2(
-      decorations=[RectDecoration(colour=secondary_color[6], radius=[0,0,0,0], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[6], radius=[0,7,7,0], filled=True)],
       mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
       objname=None,
       foreground=secondary_color[0],
@@ -112,11 +102,7 @@ def init_widgets_list():
       scroll_delay=0.1,
     ),
     
-    widget.TextBox(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=[0,7,7,0], filled=True)],
-      text=" ",
-      foreground=secondary_color[6],
-    ),
+    
     
     widget.Spacer(
       length=5,
@@ -133,12 +119,13 @@ def init_widgets_list():
       length_pomodori=45,
       length_short_break=15,
       notification_on=True,
+      font=symbols_font,
       num_pomodori=3,
-      prefix_active=' ',
-      prefix_inactive='',
-      prefix_break=' ',
-      prefix_long_break=' ',
-      prefix_paused=' ',
+      prefix_active='',
+      prefix_inactive='',
+      prefix_break='',
+      prefix_long_break='󱐟',
+      prefix_paused='󱖒',
     ),
     
     widget.Spacer(
@@ -191,19 +178,18 @@ def init_widgets_list():
     widget.GroupBox(
       decorations=[RectDecoration(colour=secondary_color[0], radius=8, filled=True)],
       fontsize=groups_font,
-      font=awesome_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[1], #Program opened in that group
-      inactive=secondary_color[5], # Empty Group
+      active=secondary_color[6], #Program opened in that group
+      inactive=secondary_color[1], # Empty Group
       rounded=False,
       highlight_method="text",
-      this_current_screen_border=secondary_color[2],
+      this_current_screen_border=third_color[0],
       center_aligned = True,
-      other_curren_screen_border=secondary_color[2],
-      block_highlight_text_color=secondary_color[2],    
-      urgent_border="fc0000"
+      other_curren_screen_border=third_color[0],   
+      urgent_border="fc0000",
+      block_highlight_text_color=color[1],
     ),
     
     widget.Spacer(
@@ -229,14 +215,14 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True,padding_y=2)],
       update_interval=5,
       foreground=secondary_color[3],
-      font=awesome_font,
+      font=symbols_font,
     ),
     
     widget.Wlan(
       decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],
       interface=wifi,
       format='{essid}',
-      disconnected_message='',
+      disconnected_message='󰱟',
       foreground=secondary_color[0],
       width=widget_width -20,
       scroll=True,
@@ -250,7 +236,7 @@ def init_widgets_list():
     widget.Net(
       prefix='M',
       interface=wifi,
-      format='{down:1.1f}M',
+      format='{down:1.1f}M',
       foreground=secondary_color[0],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},

@@ -61,7 +61,7 @@ terminal = "alacritty"
 
 # Fonts
 main_font = str(variables[11].strip())
-awesome_font = "Font Awesome 6 Pro Solid"
+symbols_font = "Symbols Nerd Font"
 font_size=int(variables[12].strip())
 
 # Bar size

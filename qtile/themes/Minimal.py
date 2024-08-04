@@ -22,7 +22,7 @@ widget_defaults = dict(
 def init_widgets_list():
   widgets_list = [
     widget.TextBox(
-       font=awesome_font,
+       font=symbols_font,
        decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
        text="",
        foreground=secondary_color[2],
@@ -30,7 +30,7 @@ def init_widgets_list():
     ),
 
     TemperatureIcon(
-       font=awesome_font,
+       font=symbols_font,
        decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
        foreground=secondary_color[5],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'sensors'")},
@@ -71,19 +71,18 @@ def init_widgets_list():
     widget.GroupBox(
       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       fontsize=groups_font,
-      font=awesome_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[1], #Program opened in that group
-      inactive=secondary_color[5], # Empty Group
+      active=third_color[1], #Program opened in that group
+      inactive=secondary_color[0], # Empty Group
       rounded=False,
-      highlight_method="text",
-      this_current_screen_border=secondary_color[2],
+      highlight_method="block",
+      this_current_screen_border=secondary_color[0],
       center_aligned = True,
-      other_curren_screen_border=secondary_color[2],
-      block_highlight_text_color=secondary_color[2],    
-      urgent_border="fc0000"
+      other_curren_screen_border=secondary_color[0],   
+      urgent_border="fc0000",
+      block_highlight_text_color=color[1],
     ),
     
     widget.Spacer(
@@ -100,7 +99,7 @@ def init_widgets_list():
       ),
     
     InternetIcon(
-      font=awesome_font,
+      font=symbols_font,
       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       update_interval=5,
       foreground=secondary_color[5],
