@@ -126,7 +126,7 @@
 
     ### Text ###
 
-    font = Courier Prime Medium 9
+    font = Courier Prime Medium 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -466,7 +466,7 @@
     
 [Calendar]
     appname = Calendar
-    format = "<b> Calendar</b>\n%s\n%b"
+    format = "<b> Calendar</b>\n%s\n%b"
     timeout = 10
 
 [Farge]
@@ -481,7 +481,7 @@
 
 [Calculator]
     appname = Calculator
-    format = "<b> Calculator</b>\n%s %b"
+    format = "<b>󰪚 Calculator</b>\n%s %b"
     timeout = 10
 
 [Thunar]

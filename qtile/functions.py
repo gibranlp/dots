@@ -384,8 +384,8 @@ def session_widget(qtile):
 
 # Audio widget
 def audio_widget(qtile):
-  options = [' Input',' Output']
-  index, key = SOS_Audio.select('  Audio Selection:', options)
+  options = [' Input','󰓃 Output']
+  index, key = SOS_Audio.select(' 󱡫 Audio Selection:', options)
   if key == -1:
     SOS_Backend.close()
   else:

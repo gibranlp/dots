@@ -54,9 +54,9 @@ function select_target {
     local icon
 
     if [ "$type" == "source" ]; then
-        icon=""
+        icon=""
     else
-        icon=""
+        icon="󰓃"
     fi
 
     list=$(ponymix -t "$type" list | formatlist)
@@ -66,7 +66,7 @@ function select_target {
     default_row=$(echo "$list" | grep -nr "$default" - | cut -f1 -d: | awk '{print $0-1}')
 
     echo "$list" \
-        | rofi -theme ~/.config/rofi/SOS_Audio.rasi -dmenu -p "  $icon" -selected-row "$default_row" \
+        | rofi -theme ~/.config/rofi/SOS_Audio.rasi -dmenu -p " 󱞫 $icon" -selected-row "$default_row" \
         | grep -Po '[0-9]+(?=:)'
 }
 

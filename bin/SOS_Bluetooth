@@ -9,7 +9,7 @@
 # MIT licence 
 # 
 #
-divider=""
+divider=""
 goback="Back"
 
 # Checks if bluetooth controller is powered on
