@@ -242,7 +242,7 @@ def init_widgets_list():
     widget.Net(
       prefix='M',
       interface=wifi,
-      format='󰱦{down:1.1f}',
+      format='{down:1.1f}',
       foreground=color[0],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},

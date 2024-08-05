@@ -122,11 +122,11 @@ def init_widgets_list():
       length_short_break=15,
       notification_on=True,
       num_pomodori=3,
-      prefix_active=' ',
-      prefix_inactive='',
-      prefix_break=' ',
-      prefix_long_break=' ',
-      prefix_paused=' ',
+      prefix_active='󰦖 ',
+      prefix_inactive='󰦖',
+      prefix_break='',
+      prefix_long_break='󱐟',
+      prefix_paused='󱖒',
       decorations=[BorderDecoration(colour=color[0], border_width=2)],
       padding=5,
     ),
@@ -183,16 +183,16 @@ def init_widgets_list():
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[0], #Program opened in that group
-      inactive=color[6], # Empty Group
+      active=color[6], #Program opened in that group
+      inactive=secondary_color[0], # Empty Group
       rounded=False,
       highlight_method="block",
       this_current_screen_border=color[1],
       center_aligned = True,
-      other_curren_screen_border=color[1],
-      block_highlight_text_color=color[1],    
+      other_curren_screen_border=color[1],   
       urgent_border="fc0000",
       decorations=[BorderDecoration(colour=color[1], border_width=2)],
+      block_highlight_text_color=color[0],
       #visible_groups=['Escape','1','2','3','4'],
     ),
     widget.TextBox(
@@ -242,7 +242,7 @@ def init_widgets_list():
     widget.Net(
       prefix='M',
       interface=wifi,
-      format='{down:1.1f}M',
+      format='{down:1.1f}M',
       foreground=color[0],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},

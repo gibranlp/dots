@@ -83,7 +83,7 @@ def init_widgets_list():
     
     widget.TextBox(
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
-      text="󰽰",
+      text="󰝚",
       foreground=secondary_color[6],
       font=symbols_font,
     ),
@@ -121,8 +121,8 @@ def init_widgets_list():
       notification_on=True,
       font=symbols_font,
       num_pomodori=3,
-      prefix_active='',
-      prefix_inactive='',
+      prefix_active='󰦖 ',
+      prefix_inactive='󰦖',
       prefix_break='',
       prefix_long_break='󱐟',
       prefix_paused='󱖒',
