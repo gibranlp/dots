@@ -77,94 +77,6 @@ def init_widgets_list():
       length=bar.STRETCH,
     ),
 
-    TemperatureIcon(
-       fontsize=font_size+3,
-       decorations=[RectDecoration(colour=color[5], radius=[5,0,0,5], filled=True)],
-       foreground=color[0],
-       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec bash'")},
-       update_interval=1, 
-       tag_sensor='Sensor 1',
-    ),
-    
-    widget.ThermalSensor(
-      decorations=[RectDecoration(colour=color[5], radius=[0,5,5,0], filled=True)],
-      format='{temp:.1f}{unit}',
-      foreground=color[0],
-      tag_sensor='Sensor 1',
-      mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec bash'")},
-      update_interval=1,
-    ),
-
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
-
-    widget.TextBox(
-       decorations=[RectDecoration(colour=color[2], radius=[5,0,0,5], filled=True)],
-       text="",
-       foreground=color[0],
-       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
-       fontsize=font_size+3,
-    ),
-    
-    widget.CPU(
-      decorations=[RectDecoration(colour=color[2], radius=[0,5,5,0], filled=True)],
-      format='{load_percent}%',
-      foreground=color[0],
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
-    ),
-
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
-
-    widget.TextBox(
-       decorations=[RectDecoration(colour=color[3], radius=[5,0,0,5], filled=True)],
-       font=symbols_font,
-       text="",
-       foreground=color[0],
-       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
-       fontsize=font_size,
-    ),
-    
-    widget.Memory(
-      decorations=[RectDecoration(colour=color[3], radius=[0,5,5,0], filled=True)],
-      measure_mem='M',
-      format='{MemUsed: .0f}{mm}',
-      foreground=color[0],
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && htop'")},
-    ),
-
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
-
-    widget.TextBox(
-       decorations=[RectDecoration(colour=color[4], radius=[5,0,0,5], filled=True)],
-       text="󰟜",
-       foreground=color[0],
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && df -hi; exec bash'")},
-      fontsize=font_size+3,
-    ),
-    
-    widget.DF(
-      decorations=[RectDecoration(colour=color[4], radius=[0,5,5,0], filled=True)],
-      format='{p} ({uf}{m})',
-      partition='/',
-      foreground=color[0],
-      measure='G',
-      visible_on_warn=False,
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && df -hi; exec bash'")},
-    ),
-    
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
-
     widget.Clipboard(
       decorations=[RectDecoration(colour=color[6], radius=5, filled=True)],
       selection='CLIPBOARD',
@@ -193,7 +105,95 @@ def init_widgets_list():
        update_interval=60,
        execute='paru -Syu',
        fontsize=font_size+3,
-       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'source ~/.zshrc && paru -Syu --noconfirm; exec bash'")},
+       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && paru -Syu --noconfirm; exec zsh'")},
+    ),
+
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
+
+    TemperatureIcon(
+       fontsize=font_size+3,
+       decorations=[RectDecoration(colour=color[5], radius=[5,0,0,5], filled=True)],
+       foreground=color[0],
+       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
+       update_interval=1, 
+       tag_sensor='Core 0',
+    ),
+    
+    widget.ThermalSensor(
+      decorations=[RectDecoration(colour=color[5], radius=[0,5,5,0], filled=True)],
+      format='{temp:.1f}{unit}',
+      foreground=color[0],
+      tag_sensor='Core 0',
+      mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
+      update_interval=1,
+    ),
+
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
+
+    widget.TextBox(
+       decorations=[RectDecoration(colour=color[2], radius=[5,0,0,5], filled=True)],
+       text="",
+       foreground=color[0],
+       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && htop'")},
+       fontsize=font_size+3,
+    ),
+    
+    widget.CPU(
+      decorations=[RectDecoration(colour=color[2], radius=[0,5,5,0], filled=True)],
+      format='{load_percent}%',
+      foreground=color[0],
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && htop'")},
+    ),
+
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
+
+    widget.TextBox(
+       decorations=[RectDecoration(colour=color[3], radius=[5,0,0,5], filled=True)],
+       font=symbols_font,
+       text="",
+       foreground=color[0],
+       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && htop'")},
+       fontsize=font_size,
+    ),
+    
+    widget.Memory(
+      decorations=[RectDecoration(colour=color[3], radius=[0,5,5,0], filled=True)],
+      measure_mem='M',
+      format='{MemUsed: .0f}{mm}',
+      foreground=color[0],
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && htop'")},
+    ),
+
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
+
+    widget.TextBox(
+       decorations=[RectDecoration(colour=color[4], radius=[5,0,0,5], filled=True)],
+       text="󰟜",
+       foreground=color[0],
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && df -hi; exec zsh'")},
+      fontsize=font_size+3,
+    ),
+    
+    widget.DF(
+      decorations=[RectDecoration(colour=color[4], radius=[0,5,5,0], filled=True)],
+      format='{p} ({uf}{m})',
+      partition='/',
+      foreground=color[0],
+      measure='G',
+      visible_on_warn=False,
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && df -hi; exec zsh'")},
     ),
 
     widget.Spacer(
@@ -207,7 +207,7 @@ def init_widgets_list():
       location={'': ''},
       update_interval=300,
       format='%c %t',
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'curl wttr.in; exec bash'")},
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
     ),
 
     widget.Spacer(

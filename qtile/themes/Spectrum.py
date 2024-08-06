@@ -203,7 +203,7 @@ def init_widgets_list():
       location={'Morelia': ''},
       update_interval=300,
       format='%c %t',
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e bash -c 'curl wttr.in; exec bash'")},
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
     ),
     
     widget.Spacer(
