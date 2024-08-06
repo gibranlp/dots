@@ -70,7 +70,7 @@ entry {
     background-color:            @color1;
     text-color:                  @background;
     horizontal-align:            0;
-    placeholder:                 "  Search";
+    placeholder:                 "󰱼 Search";
     placeholder-color:           @background;
     cursor-color:                @background;
     vertical-align:              0.5;

@@ -50,7 +50,7 @@ WALLPAPER=$(get_wall)
 # Check if a wallpaper was selected
 if [ -z "$WALLPAPER" ]; then
       # Notify the user if no wallpaper was selected
-      notify-send -a ' SpectrumOS' " No Wallpaper Selected!" 
+      notify-send -a ' SpectrumOS' " No Wallpaper Selected!" 
 else
       # Set the wallpaper if one was selected
       set_wall
