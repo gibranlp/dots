@@ -47,7 +47,6 @@ keys = [
     Key([mod],"m",lazy.spawn(home + '/.local/bin/SOS_Multimonitor')),# Monitor modes Widget
 
     Key([mod],"n",lazy.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi')),# Todo Manager
-    Key([mod, "shift"], "n", lazy.spawn(home + '/.local/bin/SOS_Notes')), # Notes Widget
     Key([mod],"b",lazy.function(network_widget)), # Network Settings
     Key([mod, "shift"], "b", lazy.spawn(home + '/.local/bin/SOS_Bluetooth')), # Bluetooth widget
     Key([mod],"v", lazy.function(emojis)), # Open Rofi Emojis

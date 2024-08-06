@@ -595,7 +595,6 @@ def control_panel(qtile):
     ' Tools',#12
     '     Find / Open Files (❖ + F)',
     '     Todo List (⎇ + L)',
-    '     Notes (❖ + N)',
     '     Apps as Sudo (⎇ +  + )',
     '     Calculator (❖ + C)',
     '     Network Manager (❖ + B)',
@@ -640,34 +639,32 @@ def control_panel(qtile):
     elif index == 14:
       qtile.spawn('rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi')
     elif index == 15:
-      subprocess.Popen(home + '/.local/bin/notesfi', shell=True)
-    elif index == 16:
       qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')
-    elif index == 17:
+    elif index == 16:
       subprocess.run(home + '/.local/bin/SOS_Calculator')
-    elif index == 18:
+    elif index == 17:
       qtile.function(network_widget)
-    elif index == 19:
+    elif index == 18:
       qtile.function(screenshot)
-    elif index == 20:
+    elif index == 19:
       qtile.function(nightLight_widget)
-    elif index == 21:
+    elif index == 20:
       subprocess.run(home + '/.local/bin/SOS_Multimonitor')
-    elif index == 22:
+    elif index == 21:
       subprocess.run(home + '/.local/bin/SOS_Bluetooth')
-    elif index == 24:
+    elif index == 23:
       qtile.function(draw_widget)
-    elif index == 25:
+    elif index == 24:
       qtile.function(fargewidget)
-    elif index == 26:
+    elif index == 25:
       qtile.function(shortcuts)
-    elif index == 27:
+    elif index == 26:
       qtile.function(emojis)
-    elif index == 28:
+    elif index == 27:
       qtile.spawn(home + '/.local/bin/SOS_Clean_System')
-    elif index == 29:
+    elif index == 28:
       qtile.function(session_widget)
-    elif index == 30:
+    elif index == 29:
       qtile.function(support_spectrumos)
 
 # Own Widgets

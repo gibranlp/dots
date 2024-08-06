@@ -13,7 +13,7 @@
 # Replace HOME path with '~' for cleaner display.
 selection=$(fd . --hidden --type file $HOME 2>/dev/null | \
     sed "s;$HOME;~;" | \
-    rofi -sort -sorting-method fzf -disable-history -dmenu -i -theme SOS_Search.rasi -no-custom -p "" | \
+    rofi -sort -sorting-method fzf -disable-history -dmenu -i -theme SOS_Search.rasi -no-custom -p "" | \
     sed "s;\~;$HOME;"
 )
 
