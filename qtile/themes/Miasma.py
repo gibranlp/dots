@@ -217,7 +217,7 @@ def init_widgets_list():
     InternetIcon(
       font=symbols_font,
       background=secondary_color[3],
-      update_interval=5,
+      update_interval=1,
       foreground=color[0],
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
       decorations=[BorderDecoration(colour=color[0], border_width=[2,0,2,2])],
@@ -270,7 +270,7 @@ def init_widgets_list():
       bar_colour_high=color[0],
       bar_colour_normal=color[0],
       bar_colour_mute=color[1],
-      hide_interval=5,
+      hide_interval=2,
       update_interval=0.1,
       bar_width=50,
       mode='bar',

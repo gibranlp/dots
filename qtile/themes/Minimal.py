@@ -8,7 +8,7 @@
 # MIT licence 
 #
 from functions import *
-from custom_widgets import InternetIcon, TemperatureIcon
+from custom_widgets import InternetIcon, TemperatureIcon, VolumeIcon
 
 widget_defaults = dict(
   font=main_font,
@@ -34,7 +34,7 @@ def init_widgets_list():
        decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
        foreground=secondary_color[5],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'sensors'")},
-       update_interval=5, 
+       update_interval=1, 
        sensor='thermal_zone4'
     ),
 
@@ -101,7 +101,7 @@ def init_widgets_list():
     InternetIcon(
       font=symbols_font,
       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
-      update_interval=5,
+      update_interval=1,
       foreground=secondary_color[5],
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),

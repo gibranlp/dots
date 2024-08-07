@@ -181,13 +181,13 @@ def init_widgets_list():
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[6], #Program opened in that group
+      active=secondary_color[3], #Program opened in that group
       inactive=secondary_color[1], # Empty Group
       rounded=False,
       highlight_method="text",
-      this_current_screen_border=third_color[0],
+      this_current_screen_border=third_color[6],
       center_aligned = True,
-      other_curren_screen_border=third_color[0],   
+      other_curren_screen_border=third_color[6],   
       urgent_border="fc0000",
       block_highlight_text_color=color[1],
     ),
@@ -198,11 +198,20 @@ def init_widgets_list():
     ),
     
     widget.Wttr(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
       foreground=secondary_color[1],
-      location={'Morelia': ''},
+      location={'': ''},
       update_interval=300,
-      format='%c %t',
+      format='%c',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    ),
+
+    widget.Wttr(
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      foreground=secondary_color[0],
+      location={'': ''},
+      update_interval=300,
+      format='%t',
       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
     ),
     
@@ -213,7 +222,7 @@ def init_widgets_list():
 
     InternetIcon(
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True,padding_y=2)],
-      update_interval=5,
+      update_interval=1,
       foreground=secondary_color[3],
       font=symbols_font,
     ),
@@ -260,7 +269,7 @@ def init_widgets_list():
       bar_colour_high=secondary_color[4],
       bar_colour_normal=secondary_color[4],
       bar_colour_mute=secondary_color[1],
-      hide_interval=5,
+      hide_interval=2,
       update_interval=0.1,
       bar_width=50,
       mode='bar',
