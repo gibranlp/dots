@@ -162,8 +162,8 @@ keys = [
 
     # Music Chord
     KeyChord([mod, "shift"], "x", [
-        Key([], "s", lazy.spawn("amixer -q set Master 2%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Lower Volume
-        Key([], "w", lazy.spawn("amixer -q set Master 2%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Raise Volume
+        Key([], "s", lazy.spawn("amixer -q set Master 2%- && dunstify -a Volume 󰝞' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Lower Volume
+        Key([], "w", lazy.spawn("amixer -q set Master 2%+ && dunstify -a Volume 󰝝' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Raise Volume
         Key([], "space", lazy.spawn("playerctl --player=%any play-pause")), # Play Pause
         Key([], "d", lazy.spawn("playerctl --player=%any next")), # Next song
         Key([], "a", lazy.spawn("playerctl --player=%any previous")), # Previous Song

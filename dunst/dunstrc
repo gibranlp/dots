@@ -126,7 +126,7 @@
 
     ### Text ###
 
-    font = Courier Prime Medium 10
+    font = Courier Prime Medium 12
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -320,7 +320,7 @@
     foreground = "{color0}"
     frame_color = "{color0}"
     timeout = 10
-    format = "<b>%a\n%s</b>\n%b\n%p\n%n"
+    format = "󰂞 <b>%a\n%s</b>\n%b\n%p\n%n"
     highlight = "{color0}"
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -330,7 +330,7 @@
     foreground = "{color0}"
     frame_color = "{color0}"
     timeout = 20
-    format = " <b>%s</b>\n%b\n%p\n%n"
+    format = "󰵙 <b>%s</b>\n%b\n%p\n%n"
     
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon
@@ -412,12 +412,12 @@
 
 [Slack]
     appname = Slack
-    format = "<b>  Slack</b>\n%s\n%b"
+    format = "<b> Slack</b>\n%s\n%b"
     new_icon = Slack
 
 [Discord]
     appname = Discord Canary
-    format = "Discord\n%s\n%b"
+    format = "<b> Discord</b>\n%s\n%b"
     new_icon = Discord
 
 [ImageMagick]
@@ -427,41 +427,41 @@
 
 [Mozilla Firefox]
     appname = Firefox
-    format = " Firefox\n%s\n%b"
+    format = "󰈹 Firefox\n%s\n%b"
     new_icon = Mozilla Firefox
     timeout = 10
 
 [ncspot]
     appname = ncspot
-    format = "<b> Now Playing</b>\n%s\n%b"
+    format = "<b> Now Playing</b>\n%s\n%b"
     timeout = 10
     
 [Spotify]
     appname = Spotify
-    format = "<b> Now Playing</b>\n%s\n%b"
+    format = "<b> Now Playing</b>\n%s\n%b"
     timeout = 10
 
 [Transmission]
     appname = Transmission
-    format = "Transmission\n%s\n%b"
+    format = "<b> Transmission\n%s\n%b"
     new_icon = Transmission
     timeout = 10
 
 [Telegram]
     appname = TelegramDesktop
-    format = " New Message\n%s\n%b"
+    format = "<b> New Message\n%s\n%b"
     new_icon = Transmission
     timeout = 10
 
 [Pamixer]
     appname = Volume
-    format = "<b> Volume</b>\n%s\n%b"
+    format = "<b> Volume</b>\n%s\n%b"
     timeout = 5
     set_stack_tag = "volume"
 
 [Blueman]
     appname = blueman
-    format = "<b> Bluetooth</b>\n%s\n%b"
+    format = "<b>󰂱 Bluetooth</b>\n%s\n%b"
     timeout = 10
     
 [Calendar]
@@ -471,12 +471,12 @@
 
 [Farge]
     appname = Farge
-    format = "<b> Color</b>\n%s\n%b"
+    format = "<b>󰴱 Color</b>\n%s\n%b"
     timeout = 10
 
 [Flameshot]
     appname = flameshot
-    format = "<b> Screenshot</b>\n%s\n%b"
+    format = "<b> Screenshot</b>\n%s\n%b"
     timeout = 10
 
 [Calculator]
@@ -486,7 +486,7 @@
 
 [Thunar]
     appname = thunar
-    format = "<b> Thunar</b>\n%s %b"
+    format = "<b> Thunar</b>\n%s %b"
     timeout = 10
 
 [Chrome]
@@ -496,7 +496,7 @@
     
 [Pomodoro]
     appname = pomodoro
-    format = "<b> Pomodoro</b>\n%s %b"
+    format = "<b> Pomodoro</b>\n%s %b"
     timeout = 10
 
 [Whatsdesk]
@@ -506,7 +506,7 @@
 
 [evolution-mail-notification]
     appname = evolution-mail-notification
-    format = "<b>  Evolution</b>\n%s %b"
+    format = "<b>󰺻 Evolution</b>\n%s %b"
     timeout = 10
 
     

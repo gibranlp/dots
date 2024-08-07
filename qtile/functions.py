@@ -366,7 +366,7 @@ def draw_widget(qtile):
 
 # Logout widget
 def session_widget(qtile):
-  options = ['','','', '','']
+  options = ['','󰒲','󰈆', '󰜉','⏻']
   index, key = SOS_Backend.select('  Session', options)
   if key == -1:
     SOS_Backend.close()
@@ -397,7 +397,7 @@ def audio_widget(qtile):
 # Network Widget
 def network_widget(qtile):
     options = [' Wlan Manager', '  Bandwidth Monitor (CLI)', ' Network Manager (CLI)']
-    index, key = SOS_Network.select(f" {private_ip} -  {public_ip}", options)
+    index, key = SOS_Network.select(f"󱫋 {private_ip} -  {public_ip}", options)
     if key != -1:
         commands = [
             (0, home + '/.local/bin/SOS_Wifi_Menu'),

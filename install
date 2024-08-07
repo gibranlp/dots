@@ -251,7 +251,7 @@ function install_lightdm(){
 
 # Function to install Rofi files
 function install_rofi(){
-    mdir -pv ~/.config/wal/templates
+    mkdir -pv ~/.config/wal/templates
     mkdir -pv ~/.config/rofi
     cd ~/.config/rofi
     rm -rfv *
