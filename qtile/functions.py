@@ -227,7 +227,7 @@ def toggle_bar_blur(qtile):
   with open(home + '/.config/picom/picom.conf', 'w') as file:
     file.writelines(bar_blur)
   
-  qtile.reload_config()
+  qtile.restart()
 
 # Transparent for bars and widgets
 transparent="00000000"
@@ -311,7 +311,7 @@ def set_default_backend(qtile):
     variables[2]=backend[index] + "\n"
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
-    qtile.reload_config()
+    qtile.restart()
     subprocess.run(["notify-send","-a", " SpectrumOS", "Color Theme: ", " %s" %backend[index]])
 
 # Display Shortcuts widget
@@ -417,7 +417,7 @@ def show_groups(qtile):
       
   with open(home + '/.config/qtile/variables', 'w') as file:
     file.writelines(variables)
-  qtile.reload_config()
+  qtile.restart()
    
 ## groups_icon_select
 def group_icon(qtile):
@@ -444,7 +444,7 @@ def group_icon(qtile):
     variables[10]=str(index) + "\n"
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
-    qtile.reload_config()
+    qtile.restart()
 
 ## Select Dark or Light Theming
 def dark_white(qtile):
@@ -471,7 +471,7 @@ def dark_white(qtile):
     subprocess.run(["cp", "-r", home + "/.local/share/themes/FlatColor",  "/usr/local/themes/"])
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
-    qtile.reload_config()
+    qtile.restart()
     subprocess.run(["notify-send","-a", " SpectrumOS", "Theme changed to: ", "%s" %options[index]])
 
 
@@ -487,13 +487,13 @@ def bar_pos(qtile):
       subprocess.run(["cp", "-r", home + "/.local/share/themes/FlatColor",  "/usr/local/themes/"])
       with open(home + '/.config/qtile/variables', 'w') as file:
         file.writelines(variables)
-      qtile.reload_config()
+      qtile.restart()
     elif index == 1:
       variables[6]="bottom" + "\n"
       subprocess.run(["cp", "-r", home + "/.local/share/themes/FlatColor",  "/usr/local/themes/"])
       with open(home + '/.config/qtile/variables', 'w') as file:
         file.writelines(variables)
-      qtile.reload_config()
+      qtile.restart()
     else:
       qtile.hide_show_bar()
 
@@ -511,7 +511,7 @@ def change_theme(qtile):
     subprocess.run(['cp', themes_dir + "/" + new_theme, home + '/.config/qtile/theme.py'])
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
-    qtile.reload_config()
+    qtile.restart()
     subprocess.run(["notify-send","-a", " SpectrumOS", " Theme: ", "%s" %theme[index]])
 
 # Screenshot widget
