@@ -6,9 +6,9 @@
 configuration {
 	modi:                       "drun";
     show-icons:                 true;
-    display-drun:               "";
+    display-drun:               "";
     display-run:                "";
-    display-filebrowser:        "";
+    display-filebrowser:        "";
 	drun-display-format:        "{name}";
 	window-format:              "{w} · {c} · {t}";
 }
@@ -82,7 +82,7 @@ entry {
     border-radius:               5px;
     background-color:            @background;
     text-color:                  @color5;
-    placeholder:                 "  Search";
+    placeholder:                 " 󰹓 Search";
     placeholder-color:           @color1;
     cursor-color:                @background;
 }
