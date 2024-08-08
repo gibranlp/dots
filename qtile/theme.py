@@ -11,333 +11,354 @@ from functions import *
 from custom_widgets import InternetIcon, VolumeIcon
 
 widget_defaults = dict(
-    font=main_font,
-    fontsize=font_size,
-    padding=4,
+  font=main_font,
+  fontsize=font_size,
+  padding=4,
 )
 
 # Theme
 ## Screens
-
 def init_widgets_list():
   widgets_list = [
+    
     widget.TextBox(
-      foreground=color[1],
-      background=transparent,
-      padding=-1,
-      fontsize=font_size+5,
-      text="░▒▓",
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      foreground=secondary_color[5],
+      text="",
+      font=symbols_font,
     ),
-    widget.CurrentLayout(
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
-      background=color[1],
-      foreground=color[0],
-      scale=0.8,
-    ),
-    widget.TextBox(
-      foreground=color[2],
-      background=color[1],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
-    ),
+    
     widget.CPU(
-      foreground=color[0],
-      background=color[2],
-      format='{load_percent}%',
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
+      decorations=[RectDecoration(colour=secondary_color[5], radius=[0,7,7,0], filled=True)],
+      foreground=secondary_color[0],
+      format='{load_percent}%'
     ),
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+    
     widget.TextBox(
-      foreground=color[3],
-      background=color[2],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      foreground=secondary_color[1],
+      text="",
+      font=symbols_font,
     ),
+    
     widget.Memory(
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      background=color[3],
-      foreground=color[0],
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      foreground=secondary_color[0],
       format='{MemUsed:.0f}{mm}',
       measure_mem='M',
     ),
-    widget.TextBox(
-      foreground=color[4],
-      background=color[3],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
     ),
+    
+    widget.TextBox(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      foreground=secondary_color[2],
+      text="",
+      font=symbols_font,
+    ),
+    
     widget.WindowName(
-      background=color[4],
-      foreground=color[0],
+      decorations=[RectDecoration(colour=secondary_color[2], radius=[0,7,7,0], filled=True)],
+      foreground=secondary_color[0],
       width=widget_width,
-      format='{state} {name}',
+      format='{name}',
       scroll=True,
       scroll_delay=2,
       scroll_repeat=True,
       scroll_step=1,
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
     ),
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+    
     widget.TextBox(
-      foreground=color[5],
-      background=color[4],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      text="󰝚",
+      foreground=secondary_color[6],
+      font=symbols_font,
     ),
+    
     widget.Mpris2(
-      background=color[5],
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal  + " -e cava")},
+      decorations=[RectDecoration(colour=secondary_color[6], radius=[0,7,7,0], filled=True)],
+      mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
       objname=None,
-      foreground=color[0],
+      foreground=secondary_color[0],
       width=widget_width,
-      format='{xesam:artist}  {xesam:title}',
+      format='{xesam:artist} - {xesam:title}',
       stopped_text="Stop",
       paused_text='  ',
       scroll=True,
       scroll_repeat=True,
       scroll_delay=0.1,
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
     ),
-    widget.TextBox(
-      foreground=color[6],
-      background=color[5],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
+    
+    
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
     ),
+    
     widget.Pomodoro(
-      background=color[6],
-      foreground=color[0],
-      color_active=color[0],
-      color_break=color[0],
-      color_inactive=color[0],
+      decorations=[RectDecoration(colour=secondary_color[1], radius=7, filled=True)],
+      foreground=secondary_color[0],
+      color_active=secondary_color[0],
+      color_break=secondary_color[0],
+      color_inactive=secondary_color[0],
       length_long_break=30,
       length_pomodori=45,
       length_short_break=15,
       notification_on=True,
+      font=symbols_font,
       num_pomodori=3,
       prefix_active='󰦖 ',
       prefix_inactive='󰦖',
       prefix_break='',
       prefix_long_break='󱐟',
       prefix_paused='󱖒',
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
     ),
-    widget.TextBox(
-      foreground=secondary_color[1],
-      background=color[6],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
-    ),
-    widget.Prompt(
-      background=secondary_color[1],
-      prompt=prompt,
-      foreground=color[0],
-      cursor_color=color[0],
-      visual_bell_color=[0],
-      visual_bell_time=0.2,
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
-    ),
-    widget.TextBox(
-      foreground=secondary_color[1],
+    
+    widget.Spacer(
+      length=5,
       background=transparent,
-      padding=-1,
-      fontsize=font_size+5,
-      text="▓▒░",
     ),
     widget.WidgetBox(
-      decorations=[RectDecoration(colour=color[0], radius=8, filled=True, padding_x=4, padding_y=8)],
+      decorations=[RectDecoration(colour=secondary_color[5], radius=4, filled=True)],
       text_closed='',
       text_open='',
-      foreground=color[2],
+      foreground=secondary_color[0],
       widgets=[
           widget.Spacer(
           length=5,
           background=transparent,
     ),
-          widget.Systray(),]
+    
+    widget.Systray(),]
     ),
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+    
+    widget.Prompt(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+      prompt=prompt,
+      foreground=secondary_color[4],
+      cursor_color=secondary_color[4],
+      visual_bell_color=[4],
+      visual_bell_time=0.2,
+    ),
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+    
+    widget.Chord(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+      foreground=color[1],
+    ),
+    
     widget.Spacer(
       length=bar.STRETCH,
       background=transparent,
     ),
-    widget.TextBox(
-      foreground=third_color[0],
-      background=transparent,
-      padding=-1,
-      fontsize=font_size+5,
-      text="░▒▓",
-    ),
+    
     widget.GroupBox(
-      background=third_color[0],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=8, filled=True)],
       fontsize=groups_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[6], #Program opened in that group
-      inactive=secondary_color[1], # Empty Group
+      active=color[1], #Program opened in that group
+      inactive=third_color[4], # Empty Group
       rounded=False,
-      highlight_method="block",
-      this_current_screen_border=color[1],
+      highlight_method="text",
+      this_current_screen_border=secondary_color[3],
       center_aligned = True,
-      other_curren_screen_border=color[1],   
+      other_curren_screen_border=secondary_color[3],   
       urgent_border="fc0000",
-      decorations=[BorderDecoration(colour=color[1], border_width=2)],
-      block_highlight_text_color=color[0],
-      #visible_groups=['Escape','1','2','3','4'],
     ),
-    widget.TextBox(
-      foreground=third_color[0],
-      background=transparent,
-      padding=-1,
-      fontsize=font_size+5,
-      text="▓▒░",
-    ),
+    
     widget.Spacer(
       length=bar.STRETCH,
       background=transparent,
     ),
-    widget.TextBox(
-      foreground=secondary_color[3],
+    
+    widget.Wttr(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      foreground=secondary_color[1],
+      location={'': ''},
+      update_interval=300,
+      format='%c',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    ),
+
+    widget.Wttr(
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      foreground=secondary_color[0],
+      location={'':''},
+      update_interval=300,
+      format='%t',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    ),
+    
+    widget.Spacer(
+      length=5,
       background=transparent,
-      padding=-1,
-      fontsize=font_size+5,
-      text="░▒▓",
     ),
-    ## Network
+
     InternetIcon(
-      font=symbols_font,
-      background=secondary_color[3],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True,padding_y=2)],
       update_interval=1,
-      foreground=color[0],
-      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      decorations=[BorderDecoration(colour=color[0], border_width=[2,0,2,2])],
-      padding=5,
+      foreground=secondary_color[3],
+      font=symbols_font,
     ),
+    
     widget.Wlan(
-      background=secondary_color[3],
+      decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],
       interface=wifi,
-      format='{essid} {percent:2.0%}',
+      format='{essid}',
       disconnected_message='󰱟',
-      foreground=color[0],
-      width=widget_width -50,
+      foreground=secondary_color[0],
+      width=widget_width -20,
       scroll=True,
       scroll_repeat=True,
       scroll_interval=0.1,
       scroll_step=1,
       update_interval=1,
-      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      decorations=[BorderDecoration(colour=color[0], border_width=[2,0,2,0])],
-      padding=5,
+      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
+    
     widget.Net(
       prefix='M',
       interface=wifi,
       format='{down:1.1f}M',
-      foreground=color[0],
+      foreground=secondary_color[0],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      background=secondary_color[3],
-      decorations=[BorderDecoration(colour=color[0], border_width=[2,2,2,0])],
-      padding=5,
+      decorations=[RectDecoration(colour=secondary_color[3], radius=[0,7,7,0], filled=True)],
     ),
-    widget.TextBox(
-      foreground=color[5],
-      background=secondary_color[3],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
     ),
+    
     VolumeIcon(
-      background=color[5],
-      foreground=color[0],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      foreground=secondary_color[4],
       mouse_callbacks={'Button1': lambda: qtile.function(audio_widget),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
     ),
+    
     widget.ALSAWidget(
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      background=color[5],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=0, filled=True)],
       device='Master',
-      bar_colour_high=color[0],
-      bar_colour_normal=color[0],
-      bar_colour_mute=color[1],
+      bar_colour_high=secondary_color[4],
+      bar_colour_normal=secondary_color[4],
+      bar_colour_mute=secondary_color[1],
       hide_interval=2,
       update_interval=0.1,
       bar_width=50,
       mode='bar',
       text_format=' ',
     ),
+    
     widget.TextBox(
-      foreground=color[3],
-      background=secondary_color[2],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
-    ),
-    widget.Clock(
-      foreground=color[0],
-      format="%a %d %H:%M",
-      update_interval=1,
-      background=color[3],
-      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
-    ),
-    widget.TextBox(
-      background=color[3],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[0,7,7,0], filled=True)],
+      text=" ",
       foreground=secondary_color[2],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
+      mouse_callbacks={'Button1': lambda: qtile.spawn('pavucontrol'),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
     ),
-    widget.UPowerWidget(
-        border_charge_colour=secondary_color[0],
-        border_colour=color[0],
-        border_critical_colour='#cc0000',
-        fill_critical='#cc0000',
-        fill_low='#FF5511',
-        decorations=[BorderDecoration(colour=color[0], border_width=2)],
-        fill_normal=color[0],
-        foreground=color[0],
-        background=secondary_color[2],
-        percentage_critical=0.2,
-        percentage_low=0.4,
-        text_charging=' ({percentage:.0f}%) {ttf} to ',
-        text_discharging=' ({percentage:.0f}%) {tte} Left',
-        margin=5,
-    ),
-    widget.TextBox(
-      foreground=secondary_color[2],
+    
+    widget.Spacer(
+      length=5,
       background=transparent,
-      padding=-1,
-      text="▓▒░",
-      fontsize=font_size+5,
     ),
-    ]
+    
+    widget.Clock(
+      foreground=secondary_color[0],
+      format="%a",
+      update_interval=1,
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[7,0,0,7], filled=True)],
+      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},
+    ),
+    
+    widget.Clock(
+      foreground=secondary_color[1],
+      format="%d",
+      update_interval=1,
+      decorations=[RectDecoration(colour=secondary_color[0], radius=0,filled=True)],
+      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},
+    ),
+    
+    widget.Clock(
+      foreground=secondary_color[0],
+      format="%H:%M",
+      update_interval=1,
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
+    ),
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+    
+    widget.UPowerWidget(
+      border_charge_colour=secondary_color[3],
+      border_colour=secondary_color[0],
+      border_critical_colour='#cc0000',
+      fill_critical='#cc0000',
+      fill_low='#FF5511',
+      fill_normal=secondary_color[3],
+      foreground=secondary_color[3],
+      decorations=[RectDecoration(colour=secondary_color[0],radius=7,filled=True)],
+      percentage_critical=0.2,
+      percentage_low=0.4,
+      text_charging=' ({percentage:.0f}%) {ttf} to ',
+      text_discharging=' ({percentage:.0f}%) {tte} Left',
+    ),
+    
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+    ## Lock, Logout, Poweroff
+    
+    widget.TextBox(
+      decorations=[RectDecoration(colour=secondary_color[6], radius=7, filled=True)],
+      foreground=secondary_color[0],
+      text="",
+      mouse_callbacks={'Button1': lambda: qtile.function(session_widget)},
+    )]
+    
   return widgets_list
 
 def screen1_widgets():
-    widgets_screen1=init_widgets_list()
-    return widgets_screen1
+  widgets_screen1=init_widgets_list()
+  return widgets_screen1
 
 
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=bar_margin))]
+  return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=bar_margin))]
+  return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
 
 if bar_position == "top":
-    screens=init_screens_top()
+  screens=init_screens_top()
 else:
   screens=init_screens_bottom()
 

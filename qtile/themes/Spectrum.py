@@ -181,15 +181,14 @@ def init_widgets_list():
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=secondary_color[3], #Program opened in that group
-      inactive=secondary_color[1], # Empty Group
+      active=color[1], #Program opened in that group
+      inactive=third_color[4], # Empty Group
       rounded=False,
       highlight_method="text",
-      this_current_screen_border=third_color[6],
+      this_current_screen_border=secondary_color[3],
       center_aligned = True,
-      other_curren_screen_border=third_color[6],   
+      other_curren_screen_border=secondary_color[3],   
       urgent_border="fc0000",
-      block_highlight_text_color=color[1],
     ),
     
     widget.Spacer(

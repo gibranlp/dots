@@ -1,0 +1,183 @@
+#!/bin/bash
+# _____             _                 _____ _____ 
+#|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
+#|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
+#|_____|  _|___|___|_| |_| |___|_|_|_|_____|_____|
+#      |_|   
+# SpectrumOS - Embrace the Chromatic Symphony!
+# By: gibranlp <thisdoesnotwork@gibranlp.dev>
+# MIT licence 
+#
+#
+
+# Ensure the script is not run as root
+if [ "$(id -u)" = 0 ]; then
+    echo "##################################################################"
+    echo "This script MUST NOT be run as root user since it makes changes"
+    echo "to the \$HOME directory of the \$USER executing this script."
+    echo "The \$HOME directory of the root user is, of course, '/root'."
+    echo "We don't want to mess around in there. So run this script as a"
+    echo "normal user. You will be asked for a sudo password when necessary."
+    echo "##################################################################"
+    exit 1
+fi
+
+bold=$(tput setaf 2 bold)      # makes text bold and sets color to 2
+bolderror=$(tput setaf 3 bold) # makes text bold and sets color to 3
+normal=$(tput sgr0)            # resets text settings back to normal
+
+error() { 
+    printf "%s\n" "${bolderror}ERROR:${normal}\\n%s\\n" "$1" >&2; exit 1;
+}
+
+# Install necessary packages
+printf "%s\n" "## Syncing the repos and installing ${bold}whiptail ${normal}if not installed."
+sudo pacman --noconfirm --needed -Syu libnewt || error "Error syncing the repos."
+
+# Display a welcome message
+welcome() { 
+    whiptail --title "Installer Script" --msgbox "This script will install the desired software and configurations. Please follow the prompts." 16 60
+}
+welcome || error "User chose to exit."
+
+# Display a speed warning if ParallelDownloads is not enabled
+speedwarning() { 
+    whiptail --title "Installer Script" --yesno "WARNING! The ParallelDownloads option is not enabled in /etc/pacman.conf. This may result in slower installation speeds. Are you sure you want to continue?" 16 60 || error "User chose to exit."
+}
+grep -qs "#ParallelDownloads" /etc/pacman.conf && speedwarning
+
+# Display a warning about potential conflicts on non-Arch distros
+distrowarning() { 
+    whiptail --title "Installer Script" --msgbox "WARNING! This script is designed for Arch-based distros. Errors may occur on other distros." 16 60 || error "User chose to exit."
+}
+grep -qs "ID=arch" /etc/os-release || distrowarning
+
+# Display a last chance warning
+lastchance() { 
+    whiptail --title "Installer Script" --msgbox "WARNING! This script is in beta. Errors may occur. It's recommended to try this in a virtual or test environment." 16 60
+    whiptail --title "Are You Sure You Want To Proceed?" --yesno "Shall we begin the installation?" 8 60 || { clear; exit 1; }
+}
+lastchance || error "User chose to exit."
+
+# Generate locale
+grep "LC_CTYPE" /etc/locale.conf && echo "LC_CTYPE already set in /etc/locale.conf." || \
+    grep "LANG=" /etc/locale.conf | sed 's/LANG=/LC_CTYPE=/g' | sudo tee -a /etc/locale.conf
+sudo locale-gen
+
+# Install Chaotic AUR
+chaoticaur() {
+    printf "%s\n" "## Installing Chaotic AUR ##"
+    sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com && \
+        echo "Receiving key for ${bold}chaotic-aur${normal}."
+    sudo pacman-key --lsign-key 3056513887B78AEB && \
+       echo "Signing key for ${bold}[chaotic-aur]${normal}."
+    yes | sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' && \
+       echo "Installing keyring for ${bold}[chaotic-aur]${normal}."
+    yes | sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' && \
+       echo "Installing mirrorlist for ${bold}chaotic-aur${normal}."
+}
+chaoticaur || error "Error installing Chaotic AUR."
+
+# Add repositories to /etc/pacman.conf
+addrepo() { 
+    printf "%s\n" "## Adding repositories to /etc/pacman.conf."
+    grep -qxF "[chaotic-aur]" /etc/pacman.conf || \
+        (echo " "; echo "[chaotic-aur]"; echo "Include = /etc/pacman.d/chaotic-mirrorlist") | sudo tee -a /etc/pacman.conf
+    grep -qxF "[custom-repo]" /etc/pacman.conf || \
+        (echo " "; echo "[custom-repo]"; echo "SigLevel = Optional DatabaseOptional"; echo "Server = https://example.com/\$repo/\$arch") | sudo tee -a /etc/pacman.conf
+}
+addrepo || error "Error adding repositories to /etc/pacman.conf."
+
+# Choose window managers to install
+choosewm() { 
+    whiptail --title "Choose Your Window Manager(s)" --msgbox "Choose at least one window manager to install. Options: Qtile, Awesome, Bspwm, Xmonad." 16 60
+}
+choosewm || error "User chose to exit"
+
+# Install selected window managers
+installwm() {
+    local wm=$1
+    local packages=$2
+    whiptail --title "Window Manager - $wm" --yesno "Would you like to install $wm?" 8 60 && sudo pacman --needed --ask 4 -Sy $packages || echo "User chose not to install $wm."
+}
+
+installwm "Qtile" "qtile qtile-extras"
+installwm "Awesome" "awesome"
+installwm "Bspwm" "bspwm sxhkd"
+installwm "Xmonad" "xmonad xmonad-contrib xmobar"
+
+# Function to handle program choices and installation
+programchoices() {
+    choices=()
+    for key in "${!checkboxes[@]}"; do
+        if ! command -v "${checkboxes[$key]}" > /dev/null; then
+            choices+=("${key}" " " "OFF")
+        else
+            choices+=("${key}" " " "ON")
+        fi
+    done
+}
+
+selectedprograms() {
+    result=$(
+        whiptail --title "$title" --checklist "$text" 22 60 12 "${choices[@]}" 3>&2 2>&1 1>&3
+    )
+}
+
+exitorinstall() {
+    exitstatus=$?
+    if [ $exitstatus = 0 ]; then
+        programs=$(echo "$result" | sed 's/" /\n/g' | sed 's/"//g')
+        echo "$programs"
+        sudo pacman --needed --ask 4 -Sy $programs || echo "Failed to install selected packages."
+    else
+        echo "User selected Cancel."
+    fi
+}
+
+# Example function for selecting browsers to install
+browsers() {
+    title="Web Browsers"
+    text="Select one or more web browsers to install. Programs marked with '*' are already installed."
+    declare -A checkboxes
+    checkboxes["brave-bin"]="brave"
+    checkboxes["firefox"]="firefox"
+    checkboxes["chromium"]="chromium"
+    programchoices && selectedprograms && exitorinstall
+}
+
+# Call the function to choose and install browsers
+browsers
+
+# Install packages from pkglist.txt
+sudo pacman --needed --ask 4 -Sy - < pkglist.txt || error "Failed to install packages from pkglist.txt."
+
+# Copy configuration files
+printf "%s\n" "## Copying configuration files to \$HOME"
+[ ! -d ~/.config ] && mkdir ~/.config
+[ -d ~/.config ] && mv ~/.config ~/.config.bak."$(date +%Y%m%d_%H%M%S)"
+cp -Rf /etc/dtos/. ~/
+
+# Set default user shell
+PS3='Set default user shell (enter number): '
+select shell in "fish" "bash" "zsh" "quit"; do
+    case $shell in
+        fish | bash | zsh)
+            sudo chsh "$USER" -s "/bin/$shell" && \
+            echo "$shell has been set as your default user shell. Log out to apply changes."
+            break
+            ;;
+        quit)
+            echo "User chose to quit."
+            break
+            ;;
+        *)
+            echo "Invalid option $REPLY"
+            ;;
+    esac
+done
+
+# Enable SDDM as login manager
+sudo systemctl disable "$(grep '/usr/s\?bin' /etc/systemd/system/display-manager.service | awk -F / '{print $NF}')" || echo "Cannot disable current display manager."
+sudo systemctl enable sddm
+printf "%s\n" "Enabled ${bold}SDDM${normal} as the login manager."

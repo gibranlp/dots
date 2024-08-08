@@ -45,7 +45,7 @@ def rgb_to_hex(rgb_color):
     hex_color = "#{:02X}{:02X}{:02X}".format(*rgb_color)
     return hex_color
 
-def darken_color(hex_color, factor=0.3):
+def darken_color(hex_color, factor=0.5):
     # Convert hex color to RGB
     r, g, b = hex_to_rgb(hex_color)
     
@@ -64,7 +64,7 @@ def darken_color(hex_color, factor=0.3):
     
     return darkened_hex_color
 
-def lighten_color(hex_color, factor=1.2):
+def lighten_color(hex_color, factor=1.5):
     # Convert hex color to RGB
     r, g, b = hex_to_rgb(hex_color)
     
