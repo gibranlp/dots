@@ -209,7 +209,7 @@ def init_widgets_list():
     widget.Wttr(
       decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
       foreground=secondary_color[0],
-      location={'': ''},
+      location={'':''},
       update_interval=300,
       format='%t',
       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},

@@ -255,9 +255,9 @@ def init_layout_theme():
     "border_width":layout_border_width,
     "border_normal":color[0],
     "border_focus":color[2],
-    "single_margin":single_layout_margin,
-    "single_border_width":single_border_width,
-    "change_ratio":0.01,
+    "single_margin":0,
+    "single_border_width":0,
+    "change_ratio":0.05,
     "new_client_position":'bottom',
    }
 

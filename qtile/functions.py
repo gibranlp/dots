@@ -87,13 +87,6 @@ theme_file = themes_dir + "/" + current_theme
 def_backend=str(variables[2].strip())
 backend=['wal','colorz','colorthief','haishoku']
 
-## Margins
-layout_margin=10 # Layout margins
-single_layout_margin=10 # Single window margin 
-## Borders
-layout_border_width=3 # Layout border width
-single_border_width=3 # Single border width
-
 # Bar Position
 bar_position=str(variables[6].strip())
 
@@ -107,11 +100,12 @@ yres = resolution[22:26]
 
 # Set Bar and font sizes for different resolutions
 
-# Common Settings
-layout_margin=5
-single_layout_margin=5 
-layout_border_width=5
-single_border_width=5
+## Margins
+layout_margin=5 # Layout margins
+single_layout_margin=0 # Single window margin 
+## Borders
+layout_border_width=3 # Layout border width
+single_border_width=0 # Single border width
 
 if xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=30
@@ -131,8 +125,7 @@ elif xres == "3840" and yres == "1080" or xres == "3834" and yres == "1080" or x
   else:
     bar_margin=[5,10,0,10]
 else: # 1366 x 768 Macbook air 11"
-  layout_margin=2
-  single_layout_margin=2  
+  layout_margin=2  
   layout_border_width=2
   single_border_width=2
   font_size=14
