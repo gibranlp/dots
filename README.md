@@ -15,7 +15,11 @@ Welcome to SpectrumOS, a cutting-edge Custom Theme for the [Qtile](http://www.qt
 
 ## SpectrumOS Custom Adaptable LightDM Theme
 
+![lightdm1](https://github.com/user-attachments/assets/42facc26-3524-4f90-897a-6424f0943e91)
 
+![lightdm2](https://github.com/user-attachments/assets/f97db772-93e4-4b38-8f7d-416997b38a9c)
+![lightdm3](https://github.com/user-attachments/assets/1ca81a8b-4c6e-4b06-ad6b-27ee3f0d5000)
+![lightdm4](https://github.com/user-attachments/assets/3ba5e364-fcad-4f16-becb-4335b562f893)
 
 
 ## Control Panel
