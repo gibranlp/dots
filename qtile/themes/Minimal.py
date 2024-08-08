@@ -24,7 +24,7 @@ def init_widgets_list():
     widget.TextBox(
        font=symbols_font,
        decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
-       text="",
+       text="󱂪",
        foreground=secondary_color[2],
        mouse_callbacks={'Button1':lambda: qtile.function(control_panel)},
     ),
@@ -42,7 +42,7 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       foreground=secondary_color[1],
       width=widget_width+100,
-      format=' {name}',
+      format=' {name}',
       scroll=True,
       scroll_delay=2,
       scroll_repeat=True,
@@ -74,15 +74,15 @@ def init_widgets_list():
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=third_color[1], #Program opened in that group
-      inactive=secondary_color[0], # Empty Group
+      active=color[2], #Program opened in that group
+      inactive=color[6], # Empty Group
       rounded=False,
       highlight_method="block",
-      this_current_screen_border=secondary_color[0],
+      this_current_screen_border=secondary_color[1],
       center_aligned = True,
-      other_curren_screen_border=secondary_color[0],   
+      other_curren_screen_border=secondary_color[1],   
       urgent_border="fc0000",
-      block_highlight_text_color=color[1],
+      block_highlight_text_color=color[0],
     ),
     
     widget.Spacer(

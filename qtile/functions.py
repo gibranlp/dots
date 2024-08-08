@@ -42,11 +42,11 @@ current_blur = bar_blur[284].strip()
 if current_blur == '"QTILE_INTERNAL:32c = 0"':
   new_blur = '"QTILE_INTERNAL:32c = 1"' + "\n"
   bar_blur[284] = new_blur
-  blur_icon=''
+  blur_icon='󰂵'
 else:
   new_blur = '"QTILE_INTERNAL:32c = 0"' + "\n"
   bar_blur[284] = new_blur
-  blur_icon=''
+  blur_icon='󰂷'
 
 ## Get Terminal Fontsize
 file = open(home + '/.config/alacritty/alacritty.toml', 'r')
@@ -294,7 +294,7 @@ def calendar_notification_next(qtile):{
 ## Set default backend
 def set_default_backend(qtile):
   options = backend
-  index, key = SOS_Backend.select(' Backend -> ' + def_backend.capitalize() , options)
+  index, key = SOS_Backend.select('󰉦 Backend -> ' + def_backend.capitalize() , options)
   if key == -1 or index == 4:
     rofi_left.close()
   else:
@@ -305,7 +305,7 @@ def set_default_backend(qtile):
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
     qtile.restart()
-    subprocess.run(["notify-send","-a", " SpectrumOS", "Color Theme: ", " %s" %backend[index]])
+    subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "Color Theme: ", " %s" %backend[index]])
 
 # Display Shortcuts widget
 def shortcuts(qtile):
@@ -317,20 +317,20 @@ def emojis(qtile):
 
 # NightLight widget
 def nightLight_widget(qtile):
-  options = [' Night Time(3500k)', ' Neutral (6500k)', ' Cool (7500k)']
-  index, key = SOS_Backend.select('  Night Light', options)
+  options = [' Night Time(3500k)', ' Neutral (6500k)', ' Cool (7500k)']
+  index, key = SOS_Backend.select('󱩍 Night Light', options)
   if key == -1:
     rofi_left.close()
   else:
     if index == 0:
       os.system('redshift -O 3500k -r -P')
-      subprocess.run(["notify-send","-a", " SpectrumOS", "Temperature Set to Night Time"])
+      subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "Temperature Set to Night Time"])
     elif index == 1:
       os.system('redshift -x')
-      subprocess.run(["notify-send","-a", " SpectrumOS", "Temperature Set to Neutral"])
+      subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "Temperature Set to Neutral"])
     else:
       os.system('redshift -O 7500k -r -P')
-      subprocess.run(["notify-send","-a", " SpectrumOS", "Temperature Set to Cool"])
+      subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "Temperature Set to Cool"])
 
 # Farge Widget
 def fargewidget(qtile):
@@ -346,14 +346,14 @@ def fargewidget(qtile):
 
 # Draw Widget
 def draw_widget(qtile):
-  options = [' Draw', ' Exit']
-  index, key = SOS_Backend.select('  Screen Draw', options)
+  options = [' Draw', '󰛉 Exit']
+  index, key = SOS_Backend.select('󱦹 Screen Draw', options)
   if key == -1:
     rofi_left.close()
   else:
     if index ==0:
       subprocess.run("gromit-mpx -a &",shell=True)
-      subprocess.run(["notify-send", "-a", " SpectrumOS", "You can Draw Now"])
+      subprocess.run(["notify-send", "-a", "󰣇 SpectrumOS", "You can Draw Now"])
     else:
       subprocess.run("gromit-mpx -q",shell=True)
 
@@ -442,7 +442,7 @@ def group_icon(qtile):
 ## Select Dark or Light Theming
 def dark_white(qtile):
   options = [' Dark', ' Light']
-  index, key = SOS_Backend.select(' Theme -> ' + str(variables[7].strip()), options)
+  index, key = SOS_Backend.select('󰔎 Dark/White -> ' + str(variables[7].strip()), options)
   if key == -1 or index == 2:
     rofi_left.close()
   else:
@@ -465,13 +465,13 @@ def dark_white(qtile):
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
     qtile.restart()
-    subprocess.run(["notify-send","-a", " SpectrumOS", "Theme changed to: ", "%s" %options[index]])
+    subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "󰔎 Theme changed to: ", "%s" %options[index]])
 
 
 ## Select Bar Position Top or Bottom
 def bar_pos(qtile):
-  options = ['Top', 'Bottom', 'Toggle Bar']
-  index, key = SOS_Backend.select(' Bar -> ' + bar_position , options)
+  options = ['󰃑 Top', '󰃈 Bottom', '󰃊 Toggle Bar']
+  index, key = SOS_Backend.select(' Bar -> ' + bar_position , options)
   if key == -1:
     rofi_left.close()
   else:
@@ -493,10 +493,10 @@ def bar_pos(qtile):
 # Change Theme widget
 def change_theme(qtile):
   options = theme
-  index, key = SOS_Themes.select('  Theme -> ' + current_theme , options)
+  index, key = SOS_Themes.select('󰇜 Bar Theme -> ' + current_theme , options)
   if key == -1:
     rofi_left.close()
-    subprocess.run(["notify-send","-a", " SpectrumOS", "No Theme Selected!"])
+    subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "No Theme Selected!"])
   else:
     subprocess.run('rm -rf ~/.config/qtile/theme.py', shell=True)
     variables[1]=theme[index] + "\n"
@@ -505,7 +505,7 @@ def change_theme(qtile):
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
     qtile.restart()
-    subprocess.run(["notify-send","-a", " SpectrumOS", " Theme: ", "%s" %theme[index]])
+    subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "󰇜 Bar Theme: ", "%s" %theme[index]])
 
 # Screenshot widget
 def screenshot(qtile):
@@ -568,44 +568,44 @@ def support_spectrumos(qtile):
     else:
       subprocess.run(["xdg-open", "https://www.buymeacoffee.com/gibranlp"])
     
-    subprocess.run(["notify-send","-a", " SpectrumOS", "Thanks for supporting SpectrumOS"])
+    subprocess.run(["notify-send","-a", "󰣇 SpectrumOS", "Thanks for supporting SpectrumOS"])
 
 # Control Panel Widget
 def control_panel(qtile):
   options = [
-    ' Wallpaper Options',#0
+    '󰸉 Wallpaper Options',#0
     '     Set Random Wallpaper (⎇ + R)',
     '     Select Wallpaper (❖ +  + R)',
-    ' Theme Options',#3
-    '     Set Color Scheme (⎇ +  + i)',
-    '     Dark/Light Theme (❖ + D)',
-    ' Bar Options',#6
-    '     Bar Position (❖ +  + I)',
+    '󱍖 Theme Options',#3
+    '    󰸌 Set Color Scheme (⎇ +  + i)',
+    '    󰔎 Dark/Light Theme (❖ + D)',
+    ' Bar Options',#6
+    '     Bar Position (❖ +  + I)',
     '     Change Bar Theme (⎇ + i)',
     '    %s Toggle Bar Blur' %blur_icon,
     '    %s Toggle Groups' %str(variables[9].strip()),
-    '     Change Groups Icons',
-    ' Tools',#12
-    '     Find / Open Files (❖ + F)',
+    '     Change Groups Icons',
+    ' Tools',#12
+    '    󰈞 Find / Open Files (❖ + F)',
     '     Todo List (⎇ + L)',
-    '     Apps as Sudo (⎇ +  + )',
+    '     Apps as Sudo (⎇ +  + )',
     '     Calculator (❖ + C)',
     '     Network Manager (❖ + B)',
     '     Screenshot (prtnsc)',
-    '     Monitor Temperature (❖ +  + O)',
-    '     Monitor Layout (❖ +  + X)',
+    '     Monitor Temperature (❖ +  + O)',
+    '     Monitor Layout (❖ +  + X)',
     '     Bluetooth Manager (❖ + T)',
-    ' Miscelaneous',#23
-    '     Screen Draw (❖ +  + P)',
+    ' Miscelaneous',#23
+    '    󰽉 Screen Draw (❖ +  + P)',
     '     Pick Color (❖ + P)',
     '     View Shortcuts (❖ +  + z)',
     '     Emojis ( +  + )',
     '     System Cleaner',
     ' Session Menu (❖ + X)',
-    ' Support SpectrumOS',    
+    ' Support SpectrumOS',    
     ]
     
-  index, key = SOS_Panel.select('  Control Panel', options)
+  index, key = SOS_Panel.select(' 󱂪 Control Panel', options)
   if key == -1:
     SOS_Panel.close()
   else:
