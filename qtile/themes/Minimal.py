@@ -35,7 +35,7 @@ def init_widgets_list():
        foreground=secondary_color[5],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'sensors'")},
        update_interval=1, 
-       sensor='thermal_zone4'
+       sensor='Core 0'
     ),
 
     widget.WindowName(

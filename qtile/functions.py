@@ -220,7 +220,7 @@ def toggle_bar_blur(qtile):
   with open(home + '/.config/picom/picom.conf', 'w') as file:
     file.writelines(bar_blur)
   
-  qtile.restart()
+  qtile.reload_config()
 
 # Transparent for bars and widgets
 transparent="00000000"
@@ -410,7 +410,7 @@ def show_groups(qtile):
       
   with open(home + '/.config/qtile/variables', 'w') as file:
     file.writelines(variables)
-  qtile.restart()
+  qtile.reload_config()
    
 ## groups_icon_select
 def group_icon(qtile):
@@ -428,7 +428,6 @@ def group_icon(qtile):
     '󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈',
     '󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞',
     '󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀',
-    '         ',
     'TERM DEV WWW SYS DOC VIRT MSG MUS VID GFX'
     ]
   index, key = SOS_Panel.select(' Group Icons ', options)
@@ -438,7 +437,7 @@ def group_icon(qtile):
     variables[10]=str(index) + "\n"
     with open(home + '/.config/qtile/variables', 'w') as file:
       file.writelines(variables)
-    qtile.restart()
+    qtile.reload_config()
 
 ## Select Dark or Light Theming
 def dark_white(qtile):
@@ -522,7 +521,7 @@ def screenshot(qtile):
     elif index==2:
       subprocess.run("scrot -u 'window_screenshot.png' -e 'mv $f ~/Pictures/ #; feh -F ~/Pictures/$f' && notify-send -a 'flameshot' 'Window Picture Taken!'",shell=True)
     else:
-      subprocess.run("flameshot full --path ~/Pictures/Screenshot.png --delay 5000",shell=True)
+      subprocess.run("scrot -d 5 'Screenshot.png' -e 'mv $f ~/Pictures/ #; feh -F ~/Pictures/$f' && notify-send -a 'flameshot' 'Screenshot Taken!' &",shell=True)
 
 # Popup Widgets
 def show_chords(qtile):
@@ -575,34 +574,34 @@ def support_spectrumos(qtile):
 def control_panel(qtile):
   options = [
     '󰸉 Wallpaper Options',#0
-    '     Set Random Wallpaper (⎇ + R)',
-    '     Select Wallpaper (❖ +  + R)',
+    '     Set Random Wallpaper (❖ + Z)',
+    '     Select Wallpaper (❖ + E) + 1',
     '󱍖 Theme Options',#3
-    '    󰸌 Set Color Scheme (⎇ +  + i)',
-    '    󰔎 Dark/Light Theme (❖ + D)',
+    '    󰸌 Set Color Scheme (❖ + E) + 3',
+    '    󰔎 Dark/Light Theme (❖ + E) + 4',
     ' Bar Options',#6
-    '     Bar Position (❖ +  + I)',
-    '     Change Bar Theme (⎇ + i)',
-    '    %s Toggle Bar Blur' %blur_icon,
-    '    %s Toggle Groups' %str(variables[9].strip()),
-    '     Change Groups Icons',
+    '     Bar Position (❖ + E) + 5',
+    '     Change Bar Theme (❖ + E) + 2',
+    '    %s Toggle Bar Blur (❖ + E) + 8' %blur_icon,
+    '    %s Toggle Groups (❖ + E) + 6' %str(variables[9].strip()), 
+    '     Group Icons (❖ + E) + 7',
     ' Tools',#12
     '    󰈞 Find / Open Files (❖ + F)',
-    '     Todo List (⎇ + L)',
-    '     Apps as Sudo (⎇ +  + )',
+    '     Todo List (❖ + N)',
+    '     Apps as Sudo (❖ + U) + X or Y',
     '     Calculator (❖ + C)',
     '     Network Manager (❖ + B)',
     '     Screenshot (prtnsc)',
-    '     Monitor Temperature (❖ +  + O)',
-    '     Monitor Layout (❖ +  + X)',
-    '     Bluetooth Manager (❖ + T)',
+    '     Monitor Temperature (❖ + 󰘶 + O)',
+    '     Monitor Layout (❖ + M)',
+    '     Bluetooth Manager (❖ + 󰘶 + B)',
     ' Miscelaneous',#23
-    '    󰽉 Screen Draw (❖ +  + P)',
+    '    󰽉 Screen Draw (❖ + 󰘶 + P)',
     '     Pick Color (❖ + P)',
-    '     View Shortcuts (❖ +  + z)',
-    '     Emojis ( +  + )',
+    '     View Shortcuts (❖ + 󰘶 + 󰌑)',
+    '     Emojis (❖ + V)',
     '     System Cleaner',
-    ' Session Menu (❖ + X)',
+    ' Session Menu (Ctrl + Q)',
     ' Support SpectrumOS',    
     ]
     
