@@ -152,8 +152,8 @@ keys = [
 
     # Volume
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")), # Mute
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 2%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Raise Volume
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q set Master 2%- && dunstify -a Volume 󰝞' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q set Master 2%+ && dunstify -a Volume 󰝝' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)), # Raise Volume
 
     # Media Control
     Key([], "XF86AudioPlay", lazy.spawn("playerctl --player=%any play-pause")), # Play Pause
@@ -201,9 +201,9 @@ keys = [
 labels = {
     0: ["󰬚","󰬗","󰬌","󰬊","󰬛","󰬙","󰬜","󰬔","󰰖","󰰢"], # SpectrumOS
     1: ["零","一","二","三","四","五","六","七","八","九"], # Kanji Numbers
-    2: ["","","","","","","","","",""], # Custom
-    3: ["","","","","","","","","",""], # Star Wars
-    4: ["","","","","","","","","",""], # Chess
+    2: ["󰣇","","","","","","","","",""], # Linux Distros
+    3: ["󰖙","󰖒","󰼸","󰖔","󰖖","󰖚","󰙾","󰼱","","󰖑"], # Weather
+    4: ["","","","","","","","","",""], # 
     5: ["0","1","2","3","4","5","6","7","8","9"], # Numbers
     6: [":","(",")","{",":","|",":","&","}",";"], # Fork Bomb
     7: ["","","","","","","","","",""], # Circles
