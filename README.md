@@ -16,17 +16,25 @@ Welcome to SpectrumOS, a cutting-edge Custom Theme for the [Qtile](http://www.qt
 ## SpectrumOS Custom Adaptable LightDM Theme
 
 ![lightdm1](https://github.com/user-attachments/assets/42facc26-3524-4f90-897a-6424f0943e91)
-
+***
 ![lightdm2](https://github.com/user-attachments/assets/f97db772-93e4-4b38-8f7d-416997b38a9c)
+***
 ![lightdm3](https://github.com/user-attachments/assets/1ca81a8b-4c6e-4b06-ad6b-27ee3f0d5000)
+***
 ![lightdm4](https://github.com/user-attachments/assets/3ba5e364-fcad-4f16-becb-4335b562f893)
 
 
 ## Control Panel
+Control Panel            |  Control Panel
+:-------------------------:|:-------------------------:
+![panel1](https://github.com/user-attachments/assets/037c2a70-7f67-45a8-98e5-fd4eb82f5364) |  ![panel2](https://github.com/user-attachments/assets/87de3fdb-26c2-4911-a7f0-85bb757d56ab)
+
+
+
 
 I just made a rofi widget with the most common options such as **Set Random Wallpaper**, **Select Wallpaper**, **change the default Backend for  Pywal**, **Move the Bar Top or Bottom**, among others, simply press **Alt + Return** and watch the widget popup.
 
-https://github.com/gibranlp/QARSlp/assets/2806964/3c393d53-eb32-43ae-96aa-b5ac8bbdcf55
+
 
 ## Set Random Wallpaper Theme
 
