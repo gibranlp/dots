@@ -106,6 +106,14 @@ def init_widgets_list():
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
 
+    widget.Visualiser(
+       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+       bar_colour=color[1],
+       bars=12,
+       framerate=60,
+       hide=True,
+    ),
+
     VolumeIcon(
       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
       foreground=secondary_color[4],

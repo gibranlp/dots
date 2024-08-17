@@ -81,6 +81,9 @@ class InternetIcon(widget.GenPollText):
 
 ## Thermal Icon
 
+import psutil
+from libqtile.widget import base, GenPollText
+
 class ThermalSensor(base.InLoopPollText):
     """Widget to display temperature sensor information"""
 
@@ -143,35 +146,35 @@ class ThermalSensor(base.InLoopPollText):
 class TemperatureIcon(GenPollText):
     defaults = [
         ('update_interval', 300, 'Update interval in seconds'),
-        ('sensor', 'Core 0', 'Temperature sensor to read from'),
+        ('metric', True, 'True to use metric/C, False to use imperial/F'),
+        ('thresholds', [(10, ''), (40, ''), (65, ''), (71, '')], 'List of thresholds and corresponding icons'),
+        ('alert_icon', '<span color="#FF0000"></span>', 'Icon to display when temperature exceeds the highest threshold'),
+        ('default_icon', '󰜺', 'Default icon to display when no temperature data is available'),
     ]
 
     def __init__(self, **config):
         GenPollText.__init__(self, func=self.poll, **config)
         self.add_defaults(TemperatureIcon.defaults)
-        self.thermal_sensor = ThermalSensor(tag_sensor=self.sensor, metric=True)
+        self.thermal_sensor = ThermalSensor(metric=self.metric)
 
     def poll(self):
-        temperature = self.get_temperature()
+        temperature = self.get_highest_temperature()
         return self.select_icon(temperature)
 
-    def get_temperature(self):
+    def get_highest_temperature(self):
         temp_values = self.thermal_sensor.get_temp_sensors()
-        if temp_values and self.sensor in temp_values:
-            return temp_values[self.sensor]
-        return None
+        if not temp_values:
+            return None
+        return max(temp_values.values())
 
     def select_icon(self, temperature):
         if temperature is None:
-            return ''  # Default to very cold icon if reading fails
-        if temperature < 40:
-            return ''
-        elif temperature < 65:
-            return ''
-        elif temperature < 71:
-            return ''
-        else:
-            return '<span color="#FF0000"></span>'  # Hot
+            return self.default_icon
+        for threshold, icon in self.thresholds:
+            if temperature < threshold:
+                return icon
+        return self.alert_icon  # If temperature exceeds the highest threshold
+
 
 # Audio Icon
 

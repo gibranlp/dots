@@ -95,6 +95,18 @@ def init_widgets_list():
       background=transparent,
     ),
 
+    widget.Visualiser(
+       bar_colour=color[1],
+       bars=12,
+       framerate=60,
+       hide=True,
+    ),
+
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
+
     widget.CheckUpdates(
        background=color[1],
        distro='Arch_paru',
@@ -119,14 +131,14 @@ def init_widgets_list():
        foreground=color[0],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
        update_interval=1, 
-       tag_sensor='Core 0',
+       tag_sensor='CPUTIN',
     ),
     
     widget.ThermalSensor(
       background=color[5],
       format='{temp:.1f}{unit}',
       foreground=color[0],
-      tag_sensor='Core 0',
+      tag_sensor='CPUTIN',
       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
       update_interval=1,
     ),

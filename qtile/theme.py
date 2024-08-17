@@ -89,7 +89,7 @@ def init_widgets_list():
     ),
     
     widget.Mpris2(
-      decorations=[RectDecoration(colour=secondary_color[6], radius=[0,7,7,0], filled=True)],
+      background=secondary_color[6],
       mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
       objname=None,
       foreground=secondary_color[0],
@@ -101,8 +101,14 @@ def init_widgets_list():
       scroll_repeat=True,
       scroll_delay=0.1,
     ),
-    
-    
+
+    widget.Visualiser(
+      decorations=[RectDecoration(colour=secondary_color[6], radius=[0,7,7,0], filled=True)],
+       bar_colour=secondary_color[0],
+       bars=12,
+       framerate=60,
+       hide=True,
+    ),
     
     widget.Spacer(
       length=5,
