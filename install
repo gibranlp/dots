@@ -26,7 +26,7 @@ function install_base() {
         'ttf-dejavu' 'ttf-liberation' 'ttf-opensans' 'libayatana-appindicator'
         'tumbler' 'redshift' 'libmicrodns' 'protobuf' 'neovim' 'xorg-xdpyinfo'
         'fd' 'fzf' 'cups' 'thefuck' 'pamixer' 'gvfs-mtp' 'gvfs-nfs' 'gvfs-smb'
-        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr'
+        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky'
     )
 
     for packet in "${packets[@]}"; do
@@ -293,6 +293,13 @@ function install_ranger(){
     cp -v ~/dots/ranger/rc.conf ~/.config/ranger/
 }
 
+# Install Conky
+function install_conky(){
+    mkdir -pv ~/.config/conky
+    cp -v ~/dots/conky/date ~/.config/wal/templates
+}
+
+
 # Function to display usage information
 function usage() {
     echo "Usage: $0 [--bin] [--qtile] [--alacritty] [--zsh] [--picom] [--dependencies] [--wallpapers] [--lightdm] [--rofi] [--dunst]"
@@ -412,6 +419,9 @@ for arg in "$@"; do
             ;;
         --cava)
             install_cava
+            ;;
+        --conky)
+            install_conky
             ;;
         --dependencies)
             install_dependencies

@@ -1,5 +1,5 @@
 /*****----- Global Properties -----*****/
-@import "~/.cache/wal/SOS_Colors.rasi" 
+@import "~/.cache/wal/SpectrumOS.rasi" 
 
 /*****----- Configuration -----*****/
 configuration {
@@ -10,14 +10,13 @@ configuration {
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    center;
+    location:                    west;
     anchor:                      center;
-    fullscreen:                  true;
-    width:                       0%;
-    height:                      0%;
-    x-offset:                    0px;
+    fullscreen:                  false;
+    width:                       400px;
+    height:                      100%;
+    x-offset:                    200px;
     y-offset:                    0px;
-    border-radius:               0px;
 
     /* properties for all widgets */
     enabled:                     true;
@@ -32,27 +31,27 @@ mainbox {
     spacing:                     0px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    ["listview" ];
+    children:                    [ "inputbar", "listbox" ];
 }
 
 listbox {
     spacing:                     0px;
     padding:                     0px;
     background-color:            transparent;
-    orientation:                 horizontal;
-    children:                    ["listview" ];
+    orientation:                 vertical;
+    children:                    [ "message", "listview" ];
 }
 
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    padding:                     20px 0px;
+    padding:                     50px 0px;
     background-color:            transparent;
     background-image:            url("/usr/local/backgrounds/background.png", width);
     text-color:                  @foreground;
     orientation:                 vertical;
-    children:                    ["textbox-prompt-colon"];
+    children:                    ["textbox-prompt-colon", "entry"];
     border-radius:               0px 10px 0px 0px;
     horizontal-align:            0.5;
 
@@ -61,7 +60,7 @@ inputbar {
 textbox-prompt-colon{
     enabled:                     true;
     expand:                      false;
-    str:                         " Select Wallpaper";
+    str:                         "󰸉 Select Wallpaper";
     padding:                     13px 15px;
     border-radius:               0px 5px 5px 0px;
     background-color:            @background;
@@ -80,8 +79,8 @@ entry {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     10;
-    lines:                       0;
+    columns:                     1;
+    lines:                       4;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -100,9 +99,8 @@ listview {
 element {
     enabled:                     true;
     spacing:                     0px;
-    padding:                     2px 0;
-    margin:                      0;
-    border-radius:               0px;
+    padding:                     0px;
+    border-radius:               5px;
     background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      pointer;
@@ -135,15 +133,15 @@ element selected.active {
 element-icon {
     background-color:            transparent;
     text-color:                  inherit;
-    size:                        200px;
+    size:                        250px;
     cursor:                      inherit;
 }
 element-text {
-    text-color: rgba(0, 0, 0, 0);  /* Transparent text */
-    font: "monospace 0";  /* Set font size to zero */
-    padding: 0;
-    margin: 0;
-    border: 0;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
 }
 
 /*****----- Message -----*****/
@@ -152,7 +150,7 @@ message {
 }
 textbox {
     padding:                     5px;
-    border-radius:               0px;
+    border-radius:               5px;
     background-color:            @background;
     text-color:                  @foreground;
     vertical-align:              0.5;

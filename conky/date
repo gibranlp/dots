@@ -1,0 +1,77 @@
+conky.config = {
+
+	-- Colors
+	color0 = '{color0}',
+	color1 = '{color1}',
+	color2 = '{color2}',
+
+	-- Various settings
+	background = true,
+	cpu_avg_samples = 2,
+	diskio_avg_samples = 10,
+	double_buffer = true,
+	net_avg_samples = 2,
+	no_buffers = true,
+	temperature_unit = 'celsius',
+	text_buffer_size = 2048,
+	update_interval = 1,
+	imlib_cache_size = 0,
+
+	-- Placement (For SINGLE monitor users!)
+	alignment = 'top_middle',
+	gap_x = 0,
+	gap_y = 0,
+
+	-- Size
+	minimum_height = 200,
+	minimum_width = 260,
+
+	-- Graphical
+	border_inner_margin = 10,
+	border_outer_margin = 10,
+	border_width = 10,
+	default_bar_width = 260,
+	default_bar_height = 10,
+	default_gauge_height = 25,
+	default_gauge_width = 100,
+	default_graph_height = 40,
+	default_graph_width = 153,
+	default_shade_color = '{color0}',
+	default_outline_color = '{color0}',
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_shades = false,
+	draw_outline = true,
+
+	-- Textual
+	format_human_readable = true,
+	font  = 'LEIXO:regular:size=100',
+	font2 = 'Fira Code:bold:size=35',
+	font3 = 'LEIXO:regular:size=20',
+	font4 = 'Raleway:bold:size=9',
+	max_user_text = 16384,
+	override_utf8_locale = true,
+	short_units = true,
+	top_name_width = 21,
+	top_name_verbose = false,
+	uppercase = true,
+	use_spacer = 'none',
+	use_xft = true,
+	xftalpha = 1,
+
+	-- Windows
+	own_window = true,
+	own_window_argb_value = 255,
+	own_window_argb_visual = true,
+	own_window_class = 'Conky',
+	own_window_colour = '{color0}',
+	own_window_transparent = true,
+	own_window_title = 'xmonad_conky',
+	own_window_type = 'override',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+};
+
+conky.text = [[
+${{alignc}}${{color1}}${{font}}${{time %A %d}}${{font}}${{color}}
+${{goto 0}}${{voffset -120}}${{color2}}${{font2}}${{alignc}}${{time -%H:%M-}}${{font}}
+]];

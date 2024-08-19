@@ -13,10 +13,11 @@ wal -R &
 setxkbmap -layout us -variant intl &
 NetworkManager &
 xsettingsd &
-caffeine start  &
+conky &
 transmission-daemon &
 kdeconnect-indicator &
 blueman-applet &
 barrier &
+
 
 

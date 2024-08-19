@@ -19,10 +19,12 @@ cp ~/.cache/wal/config ~/.config/cava/ &
 cp ~/.cache/wal/flameshot.ini ~/.config/flameshot/ &
 sudo cp ~/.cache/wal/SOS_Colors.rasi /root/.cache/wal/ &
 cp ~/.config/BetterDiscord/themes/pywal-discord-default.theme.css ~/.config/vesktop/themes &
+cp ~/.cache/wal/date ~/.conkyrc &
 
 # Kill relevant processes
 pkill dunst &
 pkill -USR1 cava &
+killall conky &
 
 # Start necessary services and applications
 setxkbmap -layout us -variant intl &
@@ -33,6 +35,7 @@ pywal-discord &
 pywalfox update &
 picom -b &
 xsettingsd &
+conky &
 
 # Refresh current session with new colors
 wal -R &
