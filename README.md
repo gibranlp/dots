@@ -25,24 +25,21 @@ Welcome to SpectrumOS, a cutting-edge Custom Theme for the [Qtile](http://www.qt
 
 
 ## Control Panel
+
+Rofi widget that shows all the options availabe in SpectrumOS:
+0
 Control Panel            |  Control Panel
 :-------------------------:|:-------------------------:
 ![panel1](https://github.com/user-attachments/assets/037c2a70-7f67-45a8-98e5-fd4eb82f5364) |  ![panel2](https://github.com/user-attachments/assets/87de3fdb-26c2-4911-a7f0-85bb757d56ab)
 
 
-
-
-I just made a rofi widget with the most common options such as **Set Random Wallpaper**, **Select Wallpaper**, **change the default Backend for  Pywal**, **Move the Bar Top or Bottom**, among others, simply press **Alt + Return** and watch the widget popup.
-
-
-
 ## Set Random Wallpaper Theme
 
-To set a random wallpaper simply type Alt + R and the entire system will change with the wallpaper.
+To set a random wallpaper simply type Mod + Z and the entire system will change with the wallpaper.
 
-https://github.com/gibranlp/QARSlp/assets/2806964/cddb940a-9ada-42a5-8cb7-a23e89cedfaf
 
-## Select Wallpaper 
+
+## Select Wallpaper
 
 If you want a specific wallpaper you can use the **Select Wallpaper** widget, or use **mod + shift + E**, and the widget will come up.
 

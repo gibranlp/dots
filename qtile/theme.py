@@ -108,6 +108,7 @@ def init_widgets_list():
        bars=12,
        framerate=60,
        hide=True,
+       autostart=True,
     ),
     
     widget.Spacer(
