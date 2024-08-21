@@ -35,7 +35,7 @@ pywal-discord &
 pywalfox update &
 picom -b &
 xsettingsd &
-conky &
+conky -d &
 
 # Refresh current session with new colors
 wal -R &
