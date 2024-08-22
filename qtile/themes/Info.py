@@ -20,22 +20,22 @@ widget_defaults = dict(
 ## Screens
 def init_widgets_list():
   widgets_list = [
-    widget.LaunchBar(
-      background=secondary_color[0],
-      fontsize=font_size+3,
-      progs=[
-        ('<span color="#ffffff"></span>', 'firefox https://www.github.com', 'Github'),
-        ('<span color="#0c5274">󰸉</span>', 'firefox https://wallhaven.cc/', 'Wallhaven'),
-        ('<span color="#ff0000"></span>', 'firefox https://www.youtube.com', 'Youtube'),
-        ('<span color="#ffe600"></span>', 'firefox https://mercadolibre.com.mx/', 'MercadoLibre'),
-        ('<span color="#ff4500">󰑍</span>', 'firefox https://reddit.com/', 'Reddit'),
-        ]
-    ),
+    # widget.LaunchBar(
+    #   background=secondary_color[0],
+    #   fontsize=font_size+3,
+    #   progs=[
+    #     ('<span color="#ffffff"></span>', 'firefox https://www.github.com', 'Github'),
+    #     ('<span color="#0c5274">󰸉</span>', 'firefox https://wallhaven.cc/', 'Wallhaven'),
+    #     ('<span color="#ff0000"></span>', 'firefox https://www.youtube.com', 'Youtube'),
+    #     ('<span color="#ffe600"></span>', 'firefox https://mercadolibre.com.mx/', 'MercadoLibre'),
+    #     ('<span color="#ff4500">󰑍</span>', 'firefox https://reddit.com/', 'Reddit'),
+    #     ]
+    # ),
 
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
+    # widget.Spacer(
+    #   length=4,
+    #   background=transparent,
+    # ),
     
     widget.GroupBox(
       background=color[1],
