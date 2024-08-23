@@ -73,9 +73,19 @@ def init_widgets_list():
       visual_bell_time=0.2,
     ),
     
+    widget.Visualiser(
+       bar_colour=color[1],
+       bars=30,
+       framerate=60,
+       hide=True,
+       spacing=0,
+       width=200,
+    ),
+
     widget.Spacer(
       length=bar.STRETCH,
     ),
+
 
     widget.Clipboard(
       background=color[6],
@@ -88,18 +98,6 @@ def init_widgets_list():
       scroll_step=1,
       update_interval=1,
       timeout=5,
-    ),
-
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
-
-    widget.Visualiser(
-       bar_colour=color[1],
-       bars=12,
-       framerate=60,
-       hide=True,
     ),
 
     widget.Spacer(

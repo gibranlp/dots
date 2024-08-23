@@ -117,7 +117,7 @@ if xres == "6400" and yres == "2160" or xres == "4920" and yres == "2560" or xre
     bar_margin=[5,10,0,10]
 elif xres == "3840" and yres == "1080" or xres == "3834" and yres == "1080" or xres == "1920" and yres == "2160" or xres == "1920" and yres == "1080": #FullHD
   bar_size=25
-  widget_width=100
+  widget_width=200
   font_size=17
   terminal_font_size=9
   if bar_position == "bottom":
