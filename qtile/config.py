@@ -267,6 +267,8 @@ def init_layouts():
   return [
    Bonsai(
       **{
+         "window.single.margin":0,
+         "window.single.border_size":0,
          "window.border_size": layout_border_width,
          "window.margin":layout_margin,
          "window.border_color": color[0],
@@ -276,7 +278,7 @@ def init_layouts():
          "tab_bar.height": 10,
          "tab_bar.bg_color": color[0],
          "tab_bar.tab.padding": 0,
-         "tab_bar.tab.bg_color": color[3],
+         "tab_bar.tab.bg_color": color[1],
          "tab_bar.tab.fg_color": color[3],
          "tab_bar.tab.font_family": main_font,
          "tab_bar.tab.font_size": font_size,
