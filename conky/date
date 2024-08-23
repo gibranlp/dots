@@ -33,20 +33,20 @@ conky.config = {{
 	if_up_strictness = 'address',				-- how strict if testing interface is up - up, link or address
 	net_avg_samples = 2,						-- The number of samples to average for net data
 	no_buffers = true,							-- Subtract (file system) buffers from used memory?
-	temperature_unit = 'celsius',			-- fahrenheit or celsius
+	temperature_unit = 'celsius',				-- fahrenheit or celsius
 	text_buffer_size = 2048,					-- size of buffer for display of content of large variables - default 256
 	update_interval = 1,						-- update interval
 	imlib_cache_size = 0,                       -- disable image cache to get a new spotify cover per song
 
 	-- Placement (Conky on MIDDLE of THREE monitors at 1920x1080)
-	--alignment = 'top_left',		                -- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
-	--gap_x = 3540,                               -- pixels between right or left border
-	--gap_y = 70,									-- pixels between bottom or left border
+	--alignment = 'top_left',		            -- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
+	--gap_x = 3540,                             -- pixels between right or left border
+	--gap_y = 70,								-- pixels between bottom or left border
 
     -- Placement (For SINGLE monitor users!)
 	alignment = 'top_middle',		            -- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
-	gap_x = 0,								-- pixels between right or left border
-	gap_y = 0,								-- pixels between bottom or left border
+	gap_x = 0,									-- pixels between right or left border
+	gap_y = 0,									-- pixels between bottom or left border
 
     -- Size
     minimum_height = 200,						-- minimum height of window
@@ -63,7 +63,7 @@ conky.config = {{
 	default_gauge_width =100,					-- default is 40
 	default_graph_height = 40,					-- default is 25
 	default_graph_width = 153,					-- default is 0 - full width
-	default_shade_color = '{color0}',			-- default shading colour
+	default_shade_color = '{color7}',			-- default shading colour
 	default_outline_color = '{color0}',			-- default outline colour
 	draw_borders = false,						-- draw borders around text
 	draw_graph_borders = true,					-- draw borders around graphs
@@ -74,7 +74,7 @@ conky.config = {{
 
 	--Textual
 	format_human_readable = true,				-- KiB, MiB rather then number of bytes
-	font  = 'LEIXO:regular:size=100',  	-- the default font used
+	font  = 'LEIXO:regular:size=80',  			-- the default font used
 	font2 = 'Fira Code:bold:size=35',         	-- font for the time
 	font3 = 'LEIXO:regular:size=20',             	-- font for the date
 	font4 = 'Raleway:bold:size=9',              -- font for the keybindings heading
@@ -87,7 +87,7 @@ conky.config = {{
 	uppercase = true,							-- uppercase or not
 	use_spacer = 'none',						-- adds spaces around certain objects to align - default none
 	use_xft = true,								-- xft font - anti-aliased font
-	xftalpha = 1,							-- alpha of the xft font - between 0-1
+	xftalpha = 1,								-- alpha of the xft font - between 0-1
 
 
 	--Windows
@@ -105,7 +105,5 @@ conky.config = {{
 }};
 
 conky.text = [[
-
-${{alignc}}${{color1}}${{font}}${{time %A %d}}${{font}}${{color}}
-
+${{alignc}}${{color1}}${{font}}${{time %A}}${{font}}${{color}}
 ]];
