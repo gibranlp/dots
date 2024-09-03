@@ -267,8 +267,8 @@ def init_layouts():
   return [
    Bonsai(
       **{
-         "window.single.margin":0,
-         "window.single.border_size":0,
+         "window.single.margin":layout_margin,
+         "window.single.border_size":layout_border_width,
          "window.border_size": layout_border_width,
          "window.margin":layout_margin,
          "window.border_color": color[0],
