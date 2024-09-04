@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 for image in *.jpg ; 
 do 
-    convert "$image" "${image%.*}.png" ;
+    magic "$image" "${image%.*}.png" ;
 done
+
+rm -rf *.jpg

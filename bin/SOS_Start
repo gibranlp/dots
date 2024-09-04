@@ -12,6 +12,7 @@
 wal -R &
 setxkbmap -layout us -variant intl &
 NetworkManager &
+caffeine-indicator &
 xsettingsd &
 conky &
 transmission-daemon &
