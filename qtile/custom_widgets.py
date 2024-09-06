@@ -8,9 +8,9 @@
 # MIT licence 
 #
 # 
-## Internet Icon Widget
+## Internet Icon Widget\
+from qtile_extras import widget
 from qtile_extras.widget.decorations import (BorderDecoration,PowerLineDecoration,RectDecoration)
-from libqtile import widget
 import psutil
 from libqtile.widget import base, GenPollText
 import subprocess
@@ -80,9 +80,6 @@ class InternetIcon(widget.GenPollText):
         return text
 
 ## Thermal Icon
-
-import psutil
-from libqtile.widget import base, GenPollText
 
 class ThermalSensor(base.InLoopPollText):
     """Widget to display temperature sensor information"""

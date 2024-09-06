@@ -57,9 +57,11 @@ set_wall() {
   if [ -z "$wall" ]; then
       wpg "${variables[4]}" -s "${path}" --backend "${variables[2]}" # Wal sets wallpaper and generates new color scheme
       cp "${path}" "/usr/local/backgrounds/background.png"
+      rm -r ~/.config/qtile/__pycache__
   else
       wpg "${variables[4]}" -s "${dir}${wall}" --backend "${variables[2]}" # Wal sets wallpaper and generates new color scheme
       cp "${dir}${wall}" "/usr/local/backgrounds/background.png"
+      rm -r ~/.config/qtile/__pycache__
   fi
 }
 

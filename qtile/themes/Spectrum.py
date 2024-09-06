@@ -9,6 +9,7 @@
 #
 from functions import *
 from custom_widgets import InternetIcon, VolumeIcon
+from qtile_extras import widget
 
 widget_defaults = dict(
   font=main_font,
@@ -220,10 +221,11 @@ def init_widgets_list():
     ),
 
     InternetIcon(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True,padding_y=2)],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
       update_interval=1,
       foreground=secondary_color[3],
       font=symbols_font,
+      mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
     
     widget.Wlan(
