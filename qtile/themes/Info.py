@@ -74,7 +74,7 @@ def init_widgets_list():
     ),
     
     widget.Visualiser(
-       bar_colour=color[1],
+       bar_colour=color[3],
        bars=30,
        framerate=60,
        hide=True,
