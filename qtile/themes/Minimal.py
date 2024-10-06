@@ -23,7 +23,7 @@ def init_widgets_list():
   widgets_list = [
     widget.TextBox(
        font=symbols_font,
-       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+       decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
        text="󱂪",
        foreground=secondary_color[2],
        mouse_callbacks={'Button1':lambda: qtile.function(control_panel)},
@@ -31,7 +31,7 @@ def init_widgets_list():
 
     TemperatureIcon(
        font=symbols_font,
-       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+       decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
        foreground=secondary_color[5],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'sensors'")},
        update_interval=1, 
@@ -39,7 +39,7 @@ def init_widgets_list():
     ),
 
     widget.WindowName(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       foreground=secondary_color[1],
       width=widget_width+100,
       format=' {name}',
@@ -47,16 +47,16 @@ def init_widgets_list():
       scroll_delay=2,
       scroll_repeat=True,
       scroll_step=1,
-      empty_group_string=" Empty"
+      empty_group_string=" "
     ),
     
     widget.Chord(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       foreground=color[3],
     ),
     
     widget.Prompt(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       prompt=prompt,
       foreground=secondary_color[4],
       cursor_color=secondary_color[4],
@@ -69,19 +69,20 @@ def init_widgets_list():
     ),
     
     widget.GroupBox(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       fontsize=groups_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,
       borderwidth=0,
-      active=color[2], #Program opened in that group
+      active=color[3], #Program opened in that group
       inactive=color[6], # Empty Group
       rounded=False,
-      highlight_method="block",
+      highlight_method="text",
       this_current_screen_border=secondary_color[1],
       center_aligned = True,
       other_curren_screen_border=secondary_color[1],   
       urgent_border="fc0000",
+      urgent_alert_method="block",
       block_highlight_text_color=color[0],
     ),
     
@@ -90,7 +91,7 @@ def init_widgets_list():
     ),
     
     widget.Wttr(
-        decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+        decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
         foreground=secondary_color[1],
         location={'':''},
         update_interval=300,
@@ -100,14 +101,14 @@ def init_widgets_list():
     
     InternetIcon(
       font=symbols_font,
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       update_interval=1,
       foreground=secondary_color[5],
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
 
     widget.Visualiser(
-       decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+       decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
        bar_colour=color[1],
        bars=12,
        framerate=60,
@@ -115,13 +116,13 @@ def init_widgets_list():
     ),
 
     VolumeIcon(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       foreground=secondary_color[4],
       mouse_callbacks={'Button1': lambda: qtile.function(audio_widget),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
     ),
     
     widget.Clock(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       foreground=secondary_color[2],
       format="%H:%M",
       update_interval=1,
@@ -129,7 +130,7 @@ def init_widgets_list():
     ),
     
     widget.UPowerWidget(
-      decorations=[RectDecoration(colour=secondary_color[0]+"BB", radius=5, filled=True,padding=2)],
+      decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
       border_charge_colour=secondary_color[7],
       border_colour=secondary_color[3],
       border_critical_colour='#cc0000',
@@ -150,10 +151,10 @@ def screen1_widgets():
     return widgets_screen1
 
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"77",margin=[bar_margin[0], 200,bar_margin[2],200]))]
+    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], 200,bar_margin[2],200]))]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"77",margin=[bar_margin[0], 200,bar_margin[2],200]))]
+    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], 200,bar_margin[2],200]))]
 
 if bar_position == "top":
     screens=init_screens_top()

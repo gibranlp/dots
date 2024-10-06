@@ -72,7 +72,7 @@ prompt = "$".format(os.environ["USER"], socket.gethostname())
 
 #Initialize Groups
 groups = []
-group_names = ["Escape","1","2","3","4","5","6","7","8","9"]
+group_names = ["1","2","3","4","5","6","7","8","9","0"]
 hide_unused_groups=bool(str(variables[8].strip()))
 
 # Themes
