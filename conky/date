@@ -58,10 +58,10 @@ conky.config = {{
 	border_outer_margin = 10, 					-- margin between border and edge of window
 	border_width = 10, 							-- border width in pixels
 	default_bar_width = 260,					-- default is 0 - full width
-	default_bar_height = 10,					-- default is 6
-	default_gauge_height = 25,					-- default is 25
+	default_bar_height = 6,					-- default is 6
+	default_gauge_height = 10,					-- default is 25
 	default_gauge_width =100,					-- default is 40
-	default_graph_height = 40,					-- default is 25
+	default_graph_height = 20,					-- default is 25
 	default_graph_width = 153,					-- default is 0 - full width
 	default_shade_color = '{color7}',			-- default shading colour
 	default_outline_color = '{color0}',			-- default outline colour
@@ -74,8 +74,8 @@ conky.config = {{
 
 	--Textual
 	format_human_readable = true,				-- KiB, MiB rather then number of bytes
-	font  = 'LEIXO:regular:size=80',  			-- the default font used
-	font2 = 'Fira Code:bold:size=35',         	-- font for the time
+	font  = 'LEIXO:regular:size=60',  			-- the default font used
+	font2 = 'Fira Code:bold:size=25',         	-- font for the time
 	font3 = 'LEIXO:regular:size=20',             	-- font for the date
 	font4 = 'Raleway:bold:size=9',              -- font for the keybindings heading
 	max_text_width = 0,							-- 0 will make sure line does not get broken if width too smal
@@ -103,7 +103,9 @@ conky.config = {{
 	
 	
 }};
-
 conky.text = [[
-${{alignc}}${{color1}}${{font}}${{time %A}}${{font}}${{color}}
-]];
+${{alignr}}${{color5}}${{font2}}${{time %d/%m/%y - %H:%M}}${{font2}}${{color}}
+${{alignc}}${{color1}}${{font}}${{voffset -20}}${{time %A}}${{font}}${{color}}
+
+]]
+
