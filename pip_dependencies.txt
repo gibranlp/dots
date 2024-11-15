@@ -12,5 +12,4 @@ dbus-next
 git+http://github.com/bcbnz/python-rofi.git
 requests
 types-psutil
-
-
+types-cffi

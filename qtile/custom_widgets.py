@@ -144,7 +144,7 @@ class TemperatureIcon(GenPollText):
     defaults = [
         ('update_interval', 300, 'Update interval in seconds'),
         ('metric', True, 'True to use metric/C, False to use imperial/F'),
-        ('thresholds', [(10, ''), (40, ''), (65, ''), (70, '')], 'List of thresholds and corresponding icons'),
+        ('thresholds', [(10, ''), (45, ''), (65, ''), (75, '')], 'List of thresholds and corresponding icons'),
         ('alert_icon', '<span color="#FF0000"></span>', 'Icon to display when temperature exceeds the highest threshold'),
         ('default_icon', '󰜺', 'Default icon to display when no temperature data is available'),
     ]

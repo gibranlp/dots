@@ -23,7 +23,9 @@ from qtile_extras.widget.decorations import (BorderDecoration,PowerLineDecoratio
 from rofi import Rofi
 from colors import *
 
+
 #### Variables ####
+home = os.path.expanduser('~') # Path for use in folders
 # Modifiers
 mod = "mod4"
 alt = "mod1"

@@ -10,12 +10,12 @@ configuration {
 window {
     /* properties for window widget */
     transparency:                "real";
-    location:                    west;
+    location:                    center;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       400px;
-    height:                      100%;
-    x-offset:                    200px;
+    width:                       99%;
+    height:                      99%;
+    x-offset:                    0px;
     y-offset:                    0px;
 
     /* properties for all widgets */
@@ -79,7 +79,7 @@ entry {
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
-    columns:                     1;
+    columns:                     6;
     lines:                       4;
     cycle:                       true;
     dynamic:                     true;

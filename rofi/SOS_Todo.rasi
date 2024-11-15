@@ -10,7 +10,7 @@ window {
     anchor:                      center;
     fullscreen:                  false;
     width:                       550px;
-    height:                      50%;
+    height:                      800px;
     x-offset:                    0px;
     y-offset:                    0px;
     border-radius:               0px;
