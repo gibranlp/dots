@@ -18,7 +18,6 @@ cp ~/.cache/wal/dunstrc ~/.config/dunst/ &
 cp ~/.cache/wal/config ~/.config/cava/ & 
 cp ~/.cache/wal/flameshot.ini ~/.config/flameshot/ &
 sudo cp ~/.cache/wal/SOS_Colors.rasi /root/.cache/wal/ &
-cp ~/.config/BetterDiscord/themes/pywal-discord-default.theme.css ~/.config/vesktop/themes &
 cp ~/.cache/wal/date ~/.conkyrc &
 
 # Kill relevant processes

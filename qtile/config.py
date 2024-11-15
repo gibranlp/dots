@@ -77,20 +77,14 @@ keys = [
     Key([mod], "Right",lazy.layout.right()),
 
     # Layout Resize
-    KeyChord([mod, "shift"], "w", [
-        Key([], "w",lazy.layout.resize("up", 30)),
-        Key([], "a",lazy.layout.resize("left", 30)),
-        Key([], "s",lazy.layout.resize("down", 30)),
-        Key([], "d",lazy.layout.resize("right", 30)),
-        Key([], "Up",lazy.layout.resize("up", 30)),
-        Key([], "Left",lazy.layout.resize("left", 30)),
-        Key([], "Down",lazy.layout.resize("down", 30)),
-        Key([], "Right",lazy.layout.resize("right", 30)),
-        Key([], "Escape", lazy.function(hide_chords)),
-        ],
-        name="Resize",
-        mode=True),
-    #Key([mod, "shift"], "w", lazy.function(show_chords)),
+    Key([mod, "shift"], "w",lazy.layout.resize("up", 30)),
+    Key([mod, "shift"], "a",lazy.layout.resize("left", 30)),
+    Key([mod, "shift"], "s",lazy.layout.resize("down", 30)),
+    Key([mod, "shift"], "d",lazy.layout.resize("right", 30)),
+    Key([mod, "shift"], "Up",lazy.layout.resize("up", 30)),
+    Key([mod, "shift"], "Left",lazy.layout.resize("left", 30)),
+    Key([mod, "shift"], "Down",lazy.layout.resize("down", 30)),
+    Key([mod, "shift"], "Right",lazy.layout.resize("right", 30)),
 
     # Layout Swap
     Key([alt], "w",lazy.layout.swap("up")),
@@ -98,42 +92,18 @@ keys = [
     Key([alt], "s",lazy.layout.swap("down")),
     Key([alt], "d",lazy.layout.swap("right")),
     
-    KeyChord([mod, "shift"], "s", [
-        Key([], "w",lazy.layout.swap("up")),
-        Key([], "a",lazy.layout.swap("left")),
-        Key([], "s",lazy.layout.swap("down")),
-        Key([], "d",lazy.layout.swap("right")),
-        Key([], "Up",lazy.layout.swap("up")),
-        Key([], "Left",lazy.layout.swap("left")),
-        Key([], "Down",lazy.layout.swap("down")),
-        Key([], "Right",lazy.layout.swap("right"))
-        ],
-        name="Swap",
-        mode=True),
-    
     # Layout Push In
-    KeyChord([mod, "shift"], "d", [
-        Key([], "w",lazy.layout.push_in("up")),
-        Key([], "a",lazy.layout.push_in("left")),
-        Key([], "s",lazy.layout.push_in("down")),
-        Key([], "d",lazy.layout.push_in("right")),
-        Key([], "Up",lazy.layout.push_in("up")),
-        Key([], "Left",lazy.layout.push_in("left")),
-        Key([], "Down",lazy.layout.push_in("down")),
-        Key([], "Right",lazy.layout.push_in("right")),
-        ],
-        name="Push in",
-        mode=True),
+    Key([alt, "shift"], "w",lazy.layout.push_in("up")),
+    Key([alt, "shift"], "a",lazy.layout.push_in("left")),
+    Key([alt, "shift"], "s",lazy.layout.push_in("down")),
+    Key([alt, "shift"], "d",lazy.layout.push_in("right")),
+
     
     # Layout Pull Out
-    KeyChord([mod, "shift"], "a",[
-       Key([], "a",lazy.layout.pull_out(position="previous")),
-       Key([], "Left",lazy.layout.pull_out(position="previous")),
-       Key([], "d",lazy.layout.pull_out(position="next")),
-       Key([], "Right",lazy.layout.pull_out(position="next")),
-       ],
-       name="Pull Out",
-       mode=True),
+    Key([alt, "control"], "a",lazy.layout.pull_out(position="previous")),
+    Key([alt, "control"], "Left",lazy.layout.pull_out(position="previous")),
+    Key([alt, "control"], "d",lazy.layout.pull_out(position="next")),
+    Key([alt, "control"], "Right",lazy.layout.pull_out(position="next")),
     
     # Layout merge tabs
     Key([mod], "Tab",lazy.layout.next_tab()),

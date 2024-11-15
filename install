@@ -49,13 +49,14 @@ function install_aur_packages() {
     packets=(
         'qtile-git' 'farge' 'qtile-extras-git' 'caffeine'
         'visual-studio-code-bin' 'pulseaudio-bluetooth' 'telegram-desktop'
-        'google-chrome' 'pywal-git' 'wpgtk-git' 'insect' 'cava-git' 'thunar-extended'
+        'google-chrome' 'wpgtk-git' 'insect' 'cava-git' 'thunar-extended'
         'thunar-volman' 'thunar-archive-plugins' 'hugo' 'gromit-mpx-git' 'nbfc' 'ntfs-3g'
         'i3lock-color' 'i3lock-fancy-git' 'lazy-docker'
         'rofi-emoji' 'zathura-pdf-mupdf' 'zathura-pywal-git' 'zathura-ps'
         'python-rofi-git' 'lyrics-in-terminal'
         'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
-        'whatsdesk-bin' 'lyrics-in-terminal' 'ponymix' 'zen-browser-bin' 'vesktop' 'minder-git'
+        'whatsdesk-bin' 'lyrics-in-terminal' 'ponymix' 'zen-browser-bin' 'minder-git'
+	
     )
 
     for packet in "${packets[@]}"; do
@@ -334,7 +335,7 @@ function post_operations(){
   sudo systemctl enable tlp.service
   journalctl --vacuum-size=100M
   journalctl --vacuum-time=2weeks
-  timedatectl set-local-rtc 1dasdasd
+  timedatectl set-local-rtc
   
 }
 
