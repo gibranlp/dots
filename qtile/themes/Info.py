@@ -77,14 +77,14 @@ def init_widgets_list():
       length=bar.STRETCH,
     ),
 
-    widget.Visualiser(
+    widget.Visualizer(
        decorations=[RectDecoration(colour=secondary_color[0]+"AA", radius=3, filled=True)],
        bar_colour=secondary_color[3],
        bars=30,
        framerate=60,
-       hide=True,
        spacing=0,
        width=200,
+       channels='stereo',
     ),
 
     widget.Clipboard(
@@ -129,14 +129,14 @@ def init_widgets_list():
        foreground=color[0],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
        update_interval=1, 
-       tag_sensor='Core 0',
+       tag_sensor='Composite',
     ),
     
     widget.ThermalSensor(
       decorations=[RectDecoration(colour=color[5], radius=[0,3,3,0], filled=True)],
       format='{temp:.1f}{unit}',
       foreground=color[0],
-      tag_sensor='Core 0',
+      tag_sensor='Composite',
       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
       update_interval=1,
     ),

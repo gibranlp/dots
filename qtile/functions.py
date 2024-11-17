@@ -39,15 +39,15 @@ variables=file.readlines()
 ## Read picom.conf for blur in the bar
 file = open(home + '/.config/picom/picom.conf', 'r')
 bar_blur=file.readlines()
-current_blur = bar_blur[284].strip()
+current_blur = bar_blur[305].strip()
 
 if current_blur == '"QTILE_INTERNAL:32c = 0"':
   new_blur = '"QTILE_INTERNAL:32c = 1"' + "\n"
-  bar_blur[284] = new_blur
+  bar_blur[305] = new_blur
   blur_icon='󰂵'
 else:
   new_blur = '"QTILE_INTERNAL:32c = 0"' + "\n"
-  bar_blur[284] = new_blur
+  bar_blur[305] = new_blur
   blur_icon='󰂷'
 
 ## Get Terminal Fontsize
@@ -110,7 +110,7 @@ layout_border_width=3 # Layout border width
 single_border_width=0 # Single border width
 
 if xres == "6400" and yres == "2160" or xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
-  bar_size=30
+  bar_size=35
   widget_width=450
   terminal_font_size=13
   if bar_position == "bottom":

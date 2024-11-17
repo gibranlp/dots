@@ -87,7 +87,7 @@ def init_widgets_list():
        border_color=transparent,
        type='line',
        graph_color=secondary_color[1],
-       line_width=1,
+       line_width=2,
     ),
 
     widget.Spacer(
