@@ -28,7 +28,7 @@ killall conky &
 
 # Start necessary services and applications
 setxkbmap -layout us -variant intl &
-unclutter -idle 1 & 
+unclutter -idle 5 & 
 dunst &
 walogram &
 pywal-discord &
