@@ -109,6 +109,9 @@ single_layout_margin=0 # Single window margin
 layout_border_width=3 # Layout border width
 single_border_width=0 # Single border width
 
+## Sensor for temperature
+temp_sensor=str(variables[13].strip())
+
 if xres == "6400" and yres == "2160" or xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=35
   widget_width=450

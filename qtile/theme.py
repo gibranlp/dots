@@ -101,7 +101,7 @@ def init_widgets_list():
        foreground=secondary_color[5],
        mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
        update_interval=1, 
-       tag_sensor='Composite',
+       tag_sensor=temp_sensor,
     ),
     
     widget.ThermalSensor(
@@ -109,7 +109,7 @@ def init_widgets_list():
       fontshadow=color[0],
       format='{temp:.1f}{unit}',
       foreground=secondary_color[5],
-      tag_sensor='Composite',
+      tag_sensor=temp_sensor,
       mouse_callbacks = {'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && sensors; exec zsh'")},
       update_interval=1,
     ),
