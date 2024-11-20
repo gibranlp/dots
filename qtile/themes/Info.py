@@ -86,6 +86,11 @@ def init_widgets_list():
        width=200,
        channels='stereo',
     ),
+    
+    widget.Spacer(
+      length=4,
+      background=transparent,
+    ),
 
     widget.Clipboard(
       decorations=[RectDecoration(colour=color[6], radius=3, filled=True)],

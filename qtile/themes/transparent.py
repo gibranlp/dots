@@ -41,7 +41,7 @@ def init_widgets_list():
       length=4,
     ),
 
-    widget.Visualizer(
+    widget.Visualiser(
       bar_colour=secondary_color[2],
       bars=30,
       framerate=60,

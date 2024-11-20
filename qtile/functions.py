@@ -115,7 +115,7 @@ temp_sensor=str(variables[13].strip())
 if xres == "6400" and yres == "2160" or xres == "4920" and yres == "2560" or xres == "3840" and yres == "2160": #4k
   bar_size=35
   widget_width=450
-  terminal_font_size=13
+  terminal_font_size=12
   if bar_position == "bottom":
     bar_margin=[0,10,5,10]
   else:
