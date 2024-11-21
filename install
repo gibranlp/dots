@@ -26,7 +26,7 @@ function install_base() {
         'ttf-dejavu' 'ttf-liberation' 'ttf-opensans' 'libayatana-appindicator'
         'tumbler' 'redshift' 'libmicrodns' 'protobuf' 'neovim' 'xorg-xdpyinfo'
         'fd' 'fzf' 'cups' 'thefuck' 'pamixer' 'gvfs-mtp' 'gvfs-nfs' 'gvfs-smb'
-        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky' 'peek' 'libreoffice-fresh' 'anytype-bin' 'picom'
+        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky' 'peek' 'libreoffice-fresh' 'anytype-bin' 'picom' 'luarocks' 'neovim'
     )
 
     for packet in "${packets[@]}"; do
@@ -44,6 +44,16 @@ function install_paru(){
   rm -rf paru
 } 
 
+# Install VIM - IDE
+function install_vim(){
+    mkdir -p ~/.config/nvim/autoload
+    git clone https://github.com/LazyVim/starter ~/.config/nvim
+    git clone https://github.com/LazyVim/starter ~/.config/nvim
+    mkdir -p ~/.config/nvim/lua/plugins/
+    cp ~/dots/nvim/plugins/colorscheme.lua ~/.config/nvim/lua/plugins
+    nvim
+}
+
 # Install AUR Packages
 function install_aur_packages() {
     packets=(
@@ -56,7 +66,6 @@ function install_aur_packages() {
         'python-rofi-git' 'lyrics-in-terminal'
         'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
         'whatsdesk-bin' 'lyrics-in-terminal' 'ponymix' 'zen-browser-bin' 'minder-git'
-	
     )
 
     for packet in "${packets[@]}"; do
