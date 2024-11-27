@@ -40,20 +40,6 @@ def init_widgets_list():
     widget.Spacer(
       length=4,
     ),
-
-    widget.Visualiser(
-      bar_colour=secondary_color[2],
-      bars=30,
-      framerate=60,
-      spacing=0,
-      width=200,
-      channels='stereo',
-    ),
-
-    widget.Spacer(
-      length=4,
-    ),
-
     widget.Chord(
       background=color[0]+"FF",
       fontshadow=color[0],
@@ -74,10 +60,14 @@ def init_widgets_list():
       length=bar.STRETCH,
     ),
 
-    # widget.Visualizer(
-    #   fontshadow=color[0],
-    #   bar_colour=secondary_color[2],
-    # ),
+    widget.Visualiser(
+      bar_colour=secondary_color[2],
+      bars=30,
+      framerate=60,
+      spacing=0,
+      width=200,
+      channels='stereo',
+    ),
 
     widget.Mpris2(
       fontshadow=color[0],
@@ -101,7 +91,7 @@ def init_widgets_list():
        border_color=transparent,
        type='line',
        graph_color=secondary_color[1],
-       line_width=2,
+       line_width=1,
     ),
 
     widget.Spacer(

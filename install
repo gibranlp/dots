@@ -18,7 +18,7 @@ function install_base() {
         'python-pip' 'ranger' 'lxappearance' 'bmon' 'acpilight' 'lm_sensors'
         'nm-connection-editor' 'arandr' 'ttf-nerd-fonts-symbols' 'python-psutil' 'python-xdg'
         'python-iwlib' 'python-dateutil' 'ueberzug' 'xsettingsd' 'zsh' 'dunst'
-        'tk' 'transmission-cli' 'vlc' 'kdeconnect' 'reflector' 'rsync' 'curl'
+        'tk' 'transmission-cli' 'imagemagick' 'vlc' 'kdeconnect' 'reflector' 'rsync' 'curl'
         'cmus' 'bc' 'neofetch' 'firefox' 'xorg-xkill' 'xdg-user-dirs' 'bluez'
         'bluez-tools' 'bluez-utils' 'ripgrep' 'blueman' 'htop' 'jp2a' 'locate'
         'os-prober' 'gnome-disk-utility' 'networkmanager' 'unzip' 'xarchiver'
@@ -26,7 +26,8 @@ function install_base() {
         'ttf-dejavu' 'ttf-liberation' 'ttf-opensans' 'libayatana-appindicator'
         'tumbler' 'redshift' 'libmicrodns' 'protobuf' 'neovim' 'xorg-xdpyinfo'
         'fd' 'fzf' 'cups' 'thefuck' 'pamixer' 'gvfs-mtp' 'gvfs-nfs' 'gvfs-smb'
-        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky' 'peek' 'libreoffice-fresh' 'anytype-bin' 'picom' 'luarocks' 'neovim'
+        'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky' 
+        'peek' 'libreoffice-fresh' 'anytype-bin' 'picom' 'luarocks' 'neovim'
     )
 
     for packet in "${packets[@]}"; do
