@@ -41,13 +41,13 @@ def init_widgets_list():
       length=4,
     ),
     widget.Chord(
-      background=color[0]+"FF",
+      background=color[0]+"44",
       fontshadow=color[0],
       foreground=secondary_color[3],
     ),
     
     widget.Prompt(
-      background=color[0]+"DD",
+      background=color[0]+"44",
       fontshadow=color[0],
       prompt=prompt,
       foreground=secondary_color[4],
@@ -58,15 +58,6 @@ def init_widgets_list():
     
     widget.Spacer(
       length=bar.STRETCH,
-    ),
-
-    widget.Visualiser(
-      bar_colour=secondary_color[2],
-      bars=30,
-      framerate=60,
-      spacing=0,
-      width=200,
-      channels='stereo',
     ),
 
     widget.Mpris2(
@@ -99,7 +90,6 @@ def init_widgets_list():
     ),
 
     TemperatureIcon(
-       background=color[0]+"DD",
        fontshadow=color[0],
        fontsize=font_size+3,
        foreground=secondary_color[5],
@@ -109,7 +99,6 @@ def init_widgets_list():
     ),
     
     widget.ThermalSensor(
-      background=color[0]+"AA",
       fontshadow=color[0],
       format='{temp:.1f}{unit}',
       foreground=secondary_color[5],
@@ -145,7 +134,6 @@ def init_widgets_list():
     ),
     
     InternetIcon(
-      background=color[0]+"DD",
       fontshadow=color[0],
       update_interval=1,
       foreground=secondary_color[4],
@@ -154,7 +142,6 @@ def init_widgets_list():
     ),
     
     widget.Wlan(
-      background=color[0]+"AA",
       fontshadow=color[0],
       interface=wifi,
       format='{essid}',
@@ -176,7 +163,6 @@ def init_widgets_list():
       foreground=secondary_color[4],
       use_bits=True,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)},
-      background=color[0]+"AA",
       fontshadow=color[0],
     ),
 
@@ -199,7 +185,6 @@ def init_widgets_list():
     ),
 
     widget.Clock(
-      background=color[0]+"AA",
       fontshadow=color[0],
       foreground=color[6],
       format="%a %d %H:%M",
@@ -216,11 +201,9 @@ def init_widgets_list():
 
     widget.Spacer(
       length=4,
-      background=color[0]+"AA",
     ),
 
     widget.UPowerWidget(
-      background=color[0]+"AA",
       fontshadow=color[0],
       border_charge_colour=secondary_color[7],
       border_colour=secondary_color[3],
@@ -232,11 +215,10 @@ def init_widgets_list():
       percentage_critical=0.2,
       percentage_low=0.4,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
-      text_discharging=' ({percentage:.0f}%) {tte} Left',
+      text_discharging=' ({percentage:.0f}%) {tte} Left',
     ),
     widget.Spacer(
       length=4,
-      background=color[0]+"AA",
     ),
     ]
   return widgets_list
@@ -246,10 +228,10 @@ def screen1_widgets():
     return widgets_screen1
 
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"66",margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"00",margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"66",margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=color[0]+"00",margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
 
 if bar_position == "top":
     screens=init_screens_top()

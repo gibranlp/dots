@@ -178,7 +178,7 @@ labels = {
     6: [":","(",")","{",":","|",":","&","}",";"], # Fork Bomb
     7: ["","","","","","","","","",""], # Circles
     8: ["","","","","","","","","",""], # Squares
-    9: ["","","","","","","","",""], # Triangles
+    9: ["","","","","","","","","",""], # Triangles
     10: ["󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈"], # Hexagons
     11: ["󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞"], # Rectangles
     12: ["󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀"], # Square Ring
@@ -285,10 +285,9 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True

@@ -45,6 +45,11 @@ function install_paru(){
   rm -rf paru
 } 
 
+# Install variables
+function install_variables(){
+    cp -v ~/dots/variables.sh ~/
+}
+
 # Install VIM - IDE
 function install_vim(){
     mkdir -p ~/.config/nvim/autoload
@@ -489,6 +494,12 @@ for arg in "$@"; do
         --thunar)
             install_thunar
             ;;
+        --var)
+            install_variables
+            ;;
+        --vim)
+            install_vim
+            ;;
         --wallpapers)
             install_wallpapers
             ;;
@@ -498,8 +509,7 @@ for arg in "$@"; do
         --update)
             install_qtile
             install_bin
-            install_picom
-            install_neofetch
+            install_variables
         ;;
         --zsh)
             install_zsh

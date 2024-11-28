@@ -14,7 +14,7 @@
 variables=()
 while IFS= read -r line; do
    variables+=("$line")
-done < ~/.config/qtile/variables
+done < ~/variables
 
 # Directory containing wallpapers
 dir="$HOME/Pictures/Wallpapers/"

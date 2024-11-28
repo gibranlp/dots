@@ -15,7 +15,7 @@ variables=()
 # Read each line from the file and add it to the variables array
 while IFS= read -r line; do
    variables+=("$line")
-done < ~/.config/qtile/variables
+done < ~/variables
 
 # Function to set the wallpaper and perform additional configurations
 set_wall(){

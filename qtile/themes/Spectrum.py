@@ -330,7 +330,7 @@ def init_widgets_list():
       percentage_critical=0.2,
       percentage_low=0.4,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
-      text_discharging=' ({percentage:.0f}%) {tte} Left',
+      text_discharging=' ({percentage:.0f}%) {tte} Left',
     ),
     
     widget.Spacer(

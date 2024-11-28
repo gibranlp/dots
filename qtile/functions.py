@@ -47,7 +47,7 @@ alt = "mod1"
 #### Import Configuration File ####
 
 ## Import config
-file = open(home + "/.config/qtile/variables", "r")
+file = open(home + "/variables", "r")
 variables = file.readlines()
 
 ## Read picom.conf for blur in the bar
@@ -177,7 +177,7 @@ with open(home + "/.config/alacritty/alacritty.toml", "w") as file:
 
 # Make font smaller for cetain groups icons
 if int(variables[10]) in [5, 7, 8, 9, 10, 11, 12, 13]:
-    groups_font = font_size - 2
+    groups_font = font_size - 3
 else:
     groups_font = font_size + 3
 
@@ -386,7 +386,7 @@ def set_default_backend(qtile):
             ["cp", "-r", home + "/.local/share/themes/FlatColor", "/usr/local/themes/"]
         )
         variables[2] = backend[index] + "\n"
-        with open(home + "/.config/qtile/variables", "w") as file:
+        with open(home + "/variables", "w") as file:
             file.writelines(variables)
         qtile.restart()
         subprocess.run(
@@ -525,7 +525,7 @@ def show_groups(qtile):
         variables[8] = "True" + "\n"
         variables[9] = "" + "\n"
 
-    with open(home + "/.config/qtile/variables", "w") as file:
+    with open(home + "/variables", "w") as file:
         file.writelines(variables)
     qtile.reload_config()
 
@@ -553,7 +553,7 @@ def group_icon(qtile):
         rofi_left.close()
     else:
         variables[10] = str(index) + "\n"
-        with open(home + "/.config/qtile/variables", "w") as file:
+        with open(home + "/variables", "w") as file:
             file.writelines(variables)
         qtile.reload_config()
 
@@ -632,7 +632,7 @@ def dark_white(qtile):
         subprocess.run(
             ["cp", "-r", home + "/.local/share/themes/FlatColor", "/usr/local/themes/"]
         )
-        with open(home + "/.config/qtile/variables", "w") as file:
+        with open(home + "/variables", "w") as file:
             file.writelines(variables)
         qtile.restart()
         subprocess.run(
@@ -663,7 +663,7 @@ def bar_pos(qtile):
                     "/usr/local/themes/",
                 ]
             )
-            with open(home + "/.config/qtile/variables", "w") as file:
+            with open(home + "/variables", "w") as file:
                 file.writelines(variables)
             qtile.restart()
         elif index == 1:
@@ -676,7 +676,7 @@ def bar_pos(qtile):
                     "/usr/local/themes/",
                 ]
             )
-            with open(home + "/.config/qtile/variables", "w") as file:
+            with open(home + "/variables", "w") as file:
                 file.writelines(variables)
             qtile.restart()
         else:
@@ -697,7 +697,7 @@ def change_theme(qtile):
         subprocess.run(
             ["cp", themes_dir + "/" + new_theme, home + "/.config/qtile/theme.py"]
         )
-        with open(home + "/.config/qtile/variables", "w") as file:
+        with open(home + "/variables", "w") as file:
             file.writelines(variables)
         qtile.restart()
         subprocess.run(
@@ -771,15 +771,12 @@ def hide_chords(qtile):
 
 ## Support SpectrumOS
 def support_spectrumos(qtile):
-    options = [" Become a Patreon", " Buy me a Coffee"]
+    options = [" Buy me a Coffee"]
     index, key = SOS_Backend.select(" Support SpectrumOS", options)
     if key == -1 or index == 2:
         rofi_left.close()
     else:
-        if index == 0:
-            subprocess.run(["xdg-open", "https://www.patreon.com/user?u=48005915"])
-        else:
-            subprocess.run(["xdg-open", "https://www.buymeacoffee.com/gibranlp"])
+        subprocess.run(["xdg-open", "https://www.buymeacoffee.com/gibranlp"])
 
         subprocess.run(
             ["notify-send", "-a", "󰣇 SpectrumOS", "Thanks for supporting SpectrumOS"]
