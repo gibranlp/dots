@@ -23,3 +23,4 @@ do
 done
 
 rm -rf *.jpg
+echo "All .jpg Wallpapers converted to .png"
