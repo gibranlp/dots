@@ -13,45 +13,35 @@
 TODO_FILE=~/notable/to-do
 
 cd ~/notable
-git pull > /dev/null 2>&1
+git pull -q
 
 if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
 fi
 
-# Define a function to run the update script before exiting
-function update_notes() {
-    git add .
-    git commit -m "notes updated"
-    git push
-}
-
-# Set a trap to run the update_notes function on script exit
-trap update_notes EXIT
-
 function add_todo() {
-    echo -e "-> $*" >> "${TODO_FILE}"
+    echo -e " $*" >> "${TODO_FILE}"
 }
 
 function remove_todo() {
     if [[ ! -z "$DONE_FILE" ]]; then
-    	echo "${*}" >> "${DONE_FILE}"
+        echo "${*}" >> "${DONE_FILE}"
     fi
     sed -i "/^${*}$/d" "${TODO_FILE}"
-    
 }
 
 function get_todos() {
     echo "$(cat "${TODO_FILE}")"
 }
 
+# Check if there are arguments passed to determine if the script should run update_notes at the end
 if [ -z "$@" ]; then
     get_todos
 else
     LINE=$(echo "${@}" | sed "s/\([^a-zA-Z0-9]\)/\\\\\\1/g")
     LINE_UNESCAPED=${@}
     if [[ $LINE_UNESCAPED == +* ]]; then
-        LINE_UNESCAPED=$(echo $LINE_UNESCAPED | sed s/^+//g |sed s/^\s+//g )
+        LINE_UNESCAPED=$(echo $LINE_UNESCAPED | sed s/^+//g | sed s/^\s+//g )
         add_todo ${LINE_UNESCAPED}
     else
         MATCHING=$(grep "^${LINE_UNESCAPED}$" "${TODO_FILE}")
@@ -60,4 +50,7 @@ else
         fi
     fi
     get_todos
+
+    # Run update_notes only if the script was called with arguments (i.e., main logic completed)
+    ~/.local/bin/update_notes
 fi

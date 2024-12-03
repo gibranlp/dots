@@ -509,4 +509,9 @@
     format = "<b>󰺻 Evolution</b>\n%s %b"
     timeout = 10
 
+[Notes]
+    appname = notes
+    format = "<b>󱓵 Notes</b>\n%s %b"
+    timeout = 10
+
     

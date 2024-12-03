@@ -37,7 +37,7 @@ keys = [
        Key([],"6",lazy.function(show_groups)), # Toggle show all groups
        Key([],"7",lazy.function(group_icon)), # Change Groups Icons
        Key([],"8",lazy.function(toggle_bar_blur))], # Toggle Blur on Bar
-       name="Widgets",
+       name="Widgets 1-8",
     ),
 
     Key([mod], "Return", lazy.function(control_panel)), # Search for files and folders
@@ -59,9 +59,11 @@ keys = [
 
     #Sudo
     KeyChord([mod], "u", [
-       Key([], "x", lazy.layout.spawn_split(sudo_rofi_launcher, "x")), # Open Rofi launcher on X split as Sudo
+        Key([], "x", lazy.layout.spawn_split(sudo_rofi_launcher, "x")), # Open Rofi launcher on X split as Sudo
         Key([], "y", lazy.layout.spawn_split(sudo_rofi_launcher, "y")), # Open Rofi launcher on Y split as Sudo
-    ]),
+    ],
+    name="Srun: x-y"
+    ),
     # Apps
     #Key([mod],"e",lazy.layout.spawn_split('thunar', "x")),# Open Thunar
     #Key([mod, "shift"],"e",lazy.layout.spawn_split('thunar', "y")),# Open Thunar y

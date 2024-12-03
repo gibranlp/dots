@@ -271,6 +271,9 @@ function install_rofi(){
     rm -rfv *
     cp -v ~/dots/rofi/SOS_Colors.rasi ~/.config/wal/templates/
     cp -v ~/dots/rofi/*.rasi ~/.config/rofi/
+    sudo mkdir -pv /root/.config/rofi
+    sudo mkdir -pv /root/.cache/wal
+    sudo cp -v ~/dots/rofi/SOS_Launcher.rasi /root/.config/rofi/
 }
 
 # Copy Cava Files
@@ -509,7 +512,8 @@ for arg in "$@"; do
         --update)
             install_qtile
             install_bin
-            install_variables
+            install_rofi
+            install_dunst
         ;;
         --zsh)
             install_zsh

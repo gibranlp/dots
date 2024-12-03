@@ -13,8 +13,10 @@
 ## Single Monitor 4k
 #  xrandr --output DVI-D-0 --off --output HDMI-0 --off --output DP-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off
 ## Dual Monitor 4k + Ultrawide Right
-xrandr --output DVI-D-0 --off --output HDMI-0 --mode 2560x1080 --pos 3840x540 --rotate normal --output DP-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off
+#xrandr --output DVI-D-0 --off --output HDMI-0 --mode 2560x1080 --pos 3840x540 --rotate normal --output DP-0 --primary --mode 3840x2160 --pos 0x0 --rotate normal --output DP-1 --off
 # Laptop Layout
+## Single Monitor 1080p
+
 wal -R &
 setxkbmap -layout us -variant intl &
 sudo NetworkManager &
