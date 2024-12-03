@@ -115,10 +115,10 @@ widget_width = 200  # Width of widgets varies depending the resolution
 
 ## Margins
 layout_margin = 5  # Layout margins
-single_layout_margin = 0  # Single window margin
+single_layout_margin = 5  # Single window margin
 ## Borders
 layout_border_width = 3  # Layout border width
-single_border_width = 0  # Single border width
+single_border_width = 3  # Single border width
 
 ## Sensor for temperature
 temp_sensor = str(variables[13].strip())
@@ -546,7 +546,7 @@ def group_icon(qtile):
         "󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈",
         "󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞",
         "󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀",
-        "TERM DEV WWW SYS DOC VIRT MSG MUS VID GFX",
+        "DEV MAIL MSGs SYS DOC VIRT GAMES MUS VID GFX",
     ]
     index, key = SOS_Panel.select(" Group Icons ", options)
     if key == -1:

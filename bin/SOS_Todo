@@ -12,9 +12,22 @@
 # Define the path to the to-do file
 TODO_FILE=~/notable/to-do
 
+cd ~/notable
+git pull > /dev/null 2>&1
+
 if [[ ! -a "${TODO_FILE}" ]]; then
     touch "${TODO_FILE}"
 fi
+
+# Define a function to run the update script before exiting
+function update_notes() {
+    git add .
+    git commit -m "notes updated"
+    git push
+}
+
+# Set a trap to run the update_notes function on script exit
+trap update_notes EXIT
 
 function add_todo() {
     echo -e "-> $*" >> "${TODO_FILE}"

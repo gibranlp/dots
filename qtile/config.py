@@ -182,7 +182,7 @@ labels = {
     10: ["󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈"], # Hexagons
     11: ["󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞"], # Rectangles
     12: ["󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀"], # Square Ring
-    13: ["TERM","DEV","WWW","SYS","DOC","VIRT","MSG","MUS","VID","GFX"] # Custom Labels
+    13: ["DEV","MAIL","MSGs","SYS","DOC","VIRT","GAMES","MUS","VID","GFX"] # Custom Labels
 }
 
 selected_label = int(variables[10])
@@ -221,12 +221,12 @@ def init_layout_theme():
     "font":main_font,
     "fontsize":font_size,
     "margin":layout_margin,
-    "border_on_single":False,
+    "border_on_single":True,
     "border_width":layout_border_width,
     "border_normal":color[0],
     "border_focus":color[2],
-    "single_margin":0,
-    "single_border_width":0,
+    "single_margin":single_layout_margin,
+    "single_border_width":single_border_width,
     "change_ratio":0.05,
     "new_client_position":'bottom',
    }
@@ -285,7 +285,7 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
-follow_mouse_focus = False
+follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
