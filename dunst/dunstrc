@@ -35,7 +35,7 @@
     width =(0, 300)
 
     # The maximum height of a single notification, excluding the frame.
-    height =(0, 150)
+    height =(50, 150)
 
     # Position the notification in the top right corner
     origin = top-right
@@ -47,7 +47,7 @@
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 0
+    notification_limit = 5
 
     ### Progress bar ###
 

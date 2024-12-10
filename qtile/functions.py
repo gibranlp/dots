@@ -35,6 +35,8 @@ from qtile_extras.widget.decorations import (
     RectDecoration,
 )
 from rofi import Rofi
+import qtile_extras.hook
+from libqtile.utils import send_notification
 from colors import *
 
 
@@ -231,6 +233,17 @@ def follow_window_name(client):
             targetgroup.toscreen(toggle=False)
             break
 
+@qtile_extras.hook.subscribe.up_power_connected
+def plugged_in():
+    qtile.spawn("ffplay connected.mp3")
+
+@qtile_extras.hook.subscribe.up_power_disconnected
+def unplugged():
+    qtile.spawn("ffplay connected.mp3")
+
+@qtile_extras.hook.subscribe.volume_change
+def vol_change(volume, muted):
+    send_notification("Volume change", f"Volume is now {volume}%")
 
 #### Functions ####
 # Run i3-lock with Colors
