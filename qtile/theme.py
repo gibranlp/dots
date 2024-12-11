@@ -36,6 +36,25 @@ def init_widgets_list():
     ),
 
     widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+
+    widget.Prompt(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+      prompt=prompt,
+      foreground=secondary_color[4],
+      cursor_color=secondary_color[4],
+      visual_bell_color=[4],
+      visual_bell_time=0.2,
+    ),
+
+    widget.Chord(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=7, filled=True)],
+      foreground=color[1],
+    ),
+
+    widget.Spacer(
       length=bar.STRETCH,
       background=transparent,
     ),
@@ -80,7 +99,6 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[4], radius=5, filled=True)],
       update_interval=1,
       foreground=secondary_color[0],
-      fontshadow=secondary_color[1],
       font=symbols_font,
       mouse_callbacks={'Button1':lambda: qtile.function(network_widget)}
     ),
@@ -103,6 +121,7 @@ def init_widgets_list():
     ),
 
     widget.UPowerWidget(
+      decorations=[RectDecoration(colour=secondary_color[3], radius=5, filled=True)],
       border_charge_colour=secondary_color[7],
       border_colour=secondary_color[0],
       border_critical_colour='#cc0000',
@@ -114,7 +133,6 @@ def init_widgets_list():
       percentage_low=0.4,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
       text_discharging=' ({percentage:.0f}%) {tte} Left',
-      fontshadow=secondary_color[1],
     ),
     
     widget.Spacer(
