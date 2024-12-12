@@ -1,4 +1,3 @@
-@import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
 /*!
  * Bootswatch v3.1.1
  * Homepage: http://bootswatch.com
@@ -288,13 +287,11 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #18bc9c;
   text-decoration: none;
 }
 a:hover,
 a:focus {
-  color: #18bc9c;
-  text-decoration: underline;
+  
 }
 a:focus {
   outline: thin dotted;
@@ -365,7 +362,6 @@ h6,
   font-family: "Source Code Pro";
   font-weight: 600;
   line-height: 1;
-  color: inherit;
   letter-spacing: 5px;
 }
 h1 small,
@@ -402,8 +398,6 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 21px;
-  margin-bottom: 10.5px;
 }
 h1 small,
 .h1 small,
@@ -4601,16 +4595,11 @@ a.thumbnail.active {
   list-style: none;
 }
 .list-group {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding-left: 0;
 }
 .list-group-item {
-  position: relative;
-  display: block;
-  padding: 10px 15px;
-  margin-bottom: -1px;
-  background-color: #ffffff;
-  border: 1px solid #ecf0f1;
+  
 }
 .list-group-item:first-child {
   border-top-right-radius: 4px;

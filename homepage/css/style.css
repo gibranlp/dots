@@ -6,6 +6,7 @@ html,body {
     font-family: "Source Code Pro", monospace;
     margin: 0;
     background-image: url(/usr/local/backgrounds/background.png);
+    background-size: cover;
 }
 
 /* Logo */
@@ -24,28 +25,64 @@ svg {
     filter: drop-shadow(1px 1px 2px var(--color7));
 }
 
-.column {
+h1 {
+    font-size: 2em;
+    color: var(--color7);
+    text-align: center;
+    margin-top: 50px;
     background-color: var(--color0);
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    padding:5px;
+    border-radius:5px;
+    font-family: "Source Code Pro", monospace;
 }
-.column h2 {
-    margin-top: 0;
-    text-align:center;
+
+h2 {
+    font-size: 2em;
+    color: var(--color0);
+    text-align: center;
+    margin-top: 50px;
+    background-color: var(--color1);
+    padding:5px;
+    border-radius:5px;
+    font-family: "Source Code Pro", monospace;
+}
+
+.card-header{
+    background-color: var(--color2);
+    color: var(--color0);
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 1.5em;
+    text-align: center;
+    margin-top:50px;
+}
+
+.list-group{
+    border-radius: 5px;
+    background-color: var(--color0);
+}
+
+.list-group-item{
+    background-color: var(--color0);
     color: var(--color1);
+    border-radius: 5px;
+    margin: 5px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -11px;
+    text-align: center;
+    width:100%;
+    font-size: 1.2em;
 }
-.column ul {
-    list-style-type: none;
-    padding: 0;
-}
-.column ul li {
-    margin: 10px 0;
-}
-.column ul li a {
+
+a {
+    color: var(--color1);
     text-decoration: none;
-    color: var(--color3);
 }
-.column ul li a:hover {
+
+a:hover, a:focus {
+    color: var(--color2);
     text-decoration: underline;
 }

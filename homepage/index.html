@@ -10,77 +10,146 @@
     <script src="js/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap/colors.css" />
+    <link rel="stylesheet" type="text/css" href="/usr/share/lightdm-webkit/themes/SpectrumOS/css/colors.css" />
 </head>
 <body>
-    <div class="container margin-top:100px">
-        <div class="row">
-            <div class="col-md-3 col-lg-3 column">
-                <h2>Column 1</h2>
-            <ul>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-            </ul>
-            </div>
-            <div class="col-md-3 col-lg-3 column">
-                <h2>Column 1</h2>
-            <ul>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-            </ul>
-            </div>
-            <div class="col-md-3 col-lg-3 column">
-                <h2>Column 1</h2>
-            <ul>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-            </ul>
-            </div>
-            <div class="col-md-3 col-lg-3 column">
-                <h2>Column 1</h2>
-            <ul>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-                <li><a href="https://example.com/page1" target="_blank">Page 1</a></li>
-                <li><a href="https://example.com/page2" target="_blank">Page 2</a></li>
-                <li><a href="https://example.com/page3" target="_blank">Page 3</a></li>
-                <li><a href="https://example.com/page4" target="_blank">Page 4</a></li>
-            </ul>
-            </div>
-        </div>
+    <div class="container my-4">
+        <h1 class="text-center">Bookmarks</h1>
+    </div>
+    <div class="container my-4" id="sections-container">
+        <!-- Sections will be inserted here -->
     </div>
 
+    <!-- Embedded JSON Data -->
+    <script id="bookmark-data" type="application/json">
+    [
+      {
+        "sectionTitle": "Personal",
+        "groups": [
+          {
+            "title": "Communication",
+            "bookmarks": [
+              { "title": "WhatsApp", "url": "https://web.whatsapp.com/" },
+              { "title": "Telegram", "url": "https://web.telegram.org/a/" },
+              { "title": "Discord", "url": "https://discord.com/channels/@me" }
+            ]
+          },
+          {
+            "title": "Local",
+            "bookmarks": [
+              { "title": "Plex", "url": "http://localhost:32400/web/index.html#!/" },
+              { "title": "Transmission", "url": "http://localhost:9091/transmission/web/" }
+            ]
+          },
+          {
+            "title": "Communication",
+            "bookmarks": [
+              { "title": "Slack", "url": "https://slack.com" },
+              { "title": "Zoom", "url": "https://zoom.us" }
+            ]
+          },
+          {
+            "title": "Communication",
+            "bookmarks": [
+              { "title": "Slack", "url": "https://slack.com" },
+              { "title": "Zoom", "url": "https://zoom.us" }
+            ]
+          }
+        ]
+      },
+      {
+        "sectionTitle": "Helgen",
+        "groups": [
+          {
+            "title": "Helgen Sites",
+            "bookmarks": [
+              { "title": "Boards", "url": "https://boards.helgen.dev" },
+              { "title": "Dagster", "url": "https://dagster.helgen.dev" },
+              { "title": "DEVROSIE", "url": "https://devrosie.helgen.dev/apps/" },
+              { "title": "Falcon", "url": "https://falcondev.helgen.dev" },
+              { "title": "HelgenLabs", "url": "https://git.helgen.dev" },
+              { "title": "Navan", "url": "https://navan.helgen.dev/portal" },
+              { "title": "Retransmisión GPS", "url": "https://gpsapi.helgen.dev" },
+              { "title": "ROSIE", "url": "https://rosie.helgen.dev/apps/" },
+              { "title": "SVN", "url": "https://svn.helgen.dev/" },
+              { "title": "Verónica", "url": "https://veronica.helgen.dev/" }
+            ]
+          },
+          {
+            "title": "Platforms",
+            "bookmarks": [
+              { "title": "Wialon Hosting","url": "https://hosting.wialon.us/?lang=en" },
+              { "title": "Transmission", "url": "http://localhost:9091/transmission/web/" }
+            ]
+          },
+          {
+            "title": "Communication",
+            "bookmarks": [
+              { "title": "Slack", "url": "https://slack.com" },
+              { "title": "Zoom", "url": "https://zoom.us" }
+            ]
+          },
+          {
+            "title": "Communication",
+            "bookmarks": [
+              { "title": "Slack", "url": "https://slack.com" },
+              { "title": "Zoom", "url": "https://zoom.us" }
+            ]
+          }
+        ]
+      }
+    ]
+    </script>
+
+    <script>
+        // Function to render all sections
+        function renderSections(sections) {
+            const container = document.getElementById('sections-container');
+            container.innerHTML = ''; // Clear the container
+
+            sections.forEach(section => {
+                // Create section title
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.className = 'text-center my-4';
+                sectionTitle.textContent = section.sectionTitle;
+                container.appendChild(sectionTitle);
+
+                // Create a row for this section's groups
+                const row = document.createElement('div');
+                row.className = 'row mb-5';
+
+                section.groups.forEach(group => {
+                    // Create a column for each group
+                    const col = document.createElement('div');
+                    col.className = 'col-md-3 mb-4';
+
+                    // Create the card for the group
+                    const card = `
+                        <div class="card h-100">
+                            <div class="card-header text-center fw-bold">${group.title}</div>
+                            <ul class="list-group list-group-flush">
+                                ${group.bookmarks.map(bookmark => `
+                                    <li class="list-group-item">
+                                        <a href="${bookmark.url}" target="_blank" class="text-decoration-none">${bookmark.title}</a>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                    col.innerHTML = card;
+                    row.appendChild(col);
+                });
+
+                // Append row to the container
+                container.appendChild(row);
+            });
+        }
+
+        // Parse sections JSON from the embedded <script> tag
+        const sections = JSON.parse(document.getElementById('bookmark-data').textContent);
+        renderSections(sections);
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

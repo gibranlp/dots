@@ -269,8 +269,6 @@ def toggle_bar_blur(qtile):
     with open(home + "/.config/picom/picom.conf", "w") as file:
         file.writelines(bar_blur)
 
-    qtile.reload_config()
-
 
 # Transparent for bars and widgets
 transparent = "00000000"
