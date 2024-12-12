@@ -1,0 +1,51 @@
+@import url('file:///usr/share/lightdm-webkit/themes/SpectrumOS/css/colors.css');
+
+html,body {
+    height: 100%;
+    width: 100%;
+    font-family: "Source Code Pro", monospace;
+    margin: 0;
+    background-image: url(/usr/local/backgrounds/background.png);
+}
+
+/* Logo */
+.logo {
+    position: fixed;
+    right: 130px;
+    top:0;
+}
+.logo svg {
+    width: 100px;
+    position: absolute;
+    top: -50px;
+}
+
+svg {
+    filter: drop-shadow(1px 1px 2px var(--color7));
+}
+
+.column {
+    background-color: var(--color0);
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.column h2 {
+    margin-top: 0;
+    text-align:center;
+    color: var(--color1);
+}
+.column ul {
+    list-style-type: none;
+    padding: 0;
+}
+.column ul li {
+    margin: 10px 0;
+}
+.column ul li a {
+    text-decoration: none;
+    color: var(--color3);
+}
+.column ul li a:hover {
+    text-decoration: underline;
+}

@@ -9,7 +9,7 @@ function authentication_complete() {
         writeDebugMessage("User is authenticated. Session: " + selectedSession.name);
         lightdm.login(lightdm.authentication_user, selectedSession.key);
     } else {
-        showMessage("Access Denied");
+        showMessage("Try again, genius...");
         jQuery("#password").val('');
     }
 }

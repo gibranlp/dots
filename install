@@ -245,7 +245,7 @@ function install_dunst(){
 
 # Function to install Lightdm
 function install_lightdm(){
-    sudo pacman -S lightdm lightdm-webkit2-greeter --noconfirm
+    #sudo pacman -S lightdm lightdm-webkit2-greeter --noconfirm
     sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
