@@ -40,34 +40,30 @@ h2 {
     font-size: 2em;
     color: var(--color0);
     text-align: center;
-    margin-top: 50px;
-    background-color: var(--color1);
+    background-color: var(--color3);
     padding:5px;
     border-radius:5px;
     font-family: "Source Code Pro", monospace;
 }
 
 .card-header{
-    background-color: var(--color2);
+    background-color: var(--color4);
     color: var(--color0);
     padding: 5px;
     border-radius: 5px;
     margin: 10px;
     font-size: 1.5em;
     text-align: center;
-    margin-top:50px;
 }
 
 .list-group{
     border-radius: 5px;
-    background-color: var(--color0);
 }
 
 .list-group-item{
-    background-color: var(--color0);
     color: var(--color1);
     border-radius: 5px;
-    margin: 5px;
+    margin-top: -7%;
     position: relative;
     display: block;
     padding: 10px 15px;
@@ -80,9 +76,14 @@ h2 {
 a {
     color: var(--color1);
     text-decoration: none;
+    background-color: var(--color0);
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 a:hover, a:focus {
-    color: var(--color2);
+    color: var(--color0);
     text-decoration: underline;
+    background-color: var(--color1);
 }
