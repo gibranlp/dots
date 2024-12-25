@@ -23,6 +23,7 @@ sudo NetworkManager &
 caffeine-indicator &
 xsettingsd &
 conky &
+dunst &
 transmission-daemon &
 kdeconnect-indicator &
 blueman-applet &
