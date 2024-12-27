@@ -52,11 +52,11 @@ function install_variables(){
 
 # Install VIM - IDE
 function install_vim(){
+    git clone https://github.com/LazyVim/starter ~/.config/nvim
     mkdir -p ~/.config/nvim/autoload
-    git clone https://github.com/LazyVim/starter ~/.config/nvim
-    git clone https://github.com/LazyVim/starter ~/.config/nvim
     mkdir -p ~/.config/nvim/lua/plugins/
-    cp ~/dots/nvim/plugins/colorscheme.lua ~/.config/nvim/lua/plugins
+    cp ~/dots/nvim/lua/plugins/colorscheme.lua ~/.config/nvim/lua/plugins
+    rm -rf ~/.config/nvim/.git
     nvim
 }
 
