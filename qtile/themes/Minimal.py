@@ -90,14 +90,14 @@ def init_widgets_list():
       length=bar.STRETCH,
     ),
     
-    widget.Wttr(
-        decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
-        foreground=secondary_color[1],
-        location={'':''},
-        update_interval=300,
-        format='%c',
-        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-      ),
+    # widget.Wttr(
+    #   decorations=[RectDecoration(colour=secondary_color[0]+"dd", radius=5, filled=True,padding=2)],
+    #   foreground=secondary_color[1],
+    #   location={'':''},
+    #   update_interval=300,
+    #   format='%c',
+    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    # ),
     
     InternetIcon(
       font=symbols_font,
