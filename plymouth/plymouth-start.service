@@ -1,13 +1,10 @@
 [Unit]
-Description=Start Plymouth Boot Screen
-DefaultDependencies=no
-After=systemd-udev-settle.service
-Before=sysinit.target
+Description=Terminate Plymouth Boot Screen
+After=rc-local.service plymouth-start.service systemd-user-sessions.service
 
 [Service]
-ExecStart=/usr/bin/plymouthd --mode=boot --pid-file=/run/plymouth/pid
-ExecStartPost=-/usr/bin/plymouth --show-splash
-Type=forking
-
-[Install]
-WantedBy=sysinit.target
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=-/usr/bin/plymouth quit
+Type=oneshot
+RemainAfterExit=yes
+TimeoutSec=20
