@@ -69,16 +69,17 @@ def init_widgets_list():
 
     ),
 
-    widget.Visualizer(
-      decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],
+    widget.Visualiser(
+      # decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],
+      background=secondary_color[3],
       bar_colour=secondary_color[0],
-      hide=True,
-      bars=30,
-      framerate=60,
-      spacing=2,
-      width=300,
-      channels='stereo',
-      mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
+      # hide=True,
+      # bars=30,
+      # framerate=60,
+      # spacing=2,
+      #width=300,
+      # channels='stereo',
+      # mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
     ),
 
     widget.TextBox(

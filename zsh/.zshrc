@@ -93,6 +93,6 @@ alias podcensura="poddl http://www.poderato.com/mesembriarecords/_feed/1 /media/
 export PATH=~/.local/bin:$PATH
 setxkbmap -layout us -variant intl
 wal -R -q
-#echo " "$(( (`date +%s` - `date +%s -d '2003/08/1'`) / 86400)) " "$(( (`date +%s` - `date +%s -d '2022/02/19'`) / 86400)) " "$(( (`date +%s` - `date +%s -d '2022/08/15'`) / 86400 )) " "$(( (`date +%s` - `date +%s -d '2023/08/14'`) / 86400 )) 
-#neofetch
+echo " "$(( (`date +%s` - `date +%s -d '2003/08/1'`) / 86400)) "󱚦 "$(( (`date +%s` - `date +%s -d '2022/02/19'`) / 86400)) " "$(( (`date +%s` - `date +%s -d '2022/08/15'`) / 86400 )) " "$(( (`date +%s` - `date +%s -d '2023/08/14'`) / 86400 )) 
+neofetch
 echo

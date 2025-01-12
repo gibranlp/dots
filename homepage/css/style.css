@@ -9,21 +9,10 @@ html,body {
     background-size: cover;
 }
 
-/* Logo */
-.logo {
-    position: fixed;
-    right: 130px;
-    top:0;
-}
-.logo svg {
-    width: 100px;
-    position: absolute;
-    top: -50px;
+h1, h2, .card-header, .list-group-item, a {
+    transition: all 0.3s ease-in-out;
 }
 
-svg {
-    filter: drop-shadow(1px 1px 2px var(--color7));
-}
 
 h1 {
     font-size: 2em;
@@ -99,9 +88,11 @@ a:hover, a:focus {
 
 #svgContainer svg {
     position: absolute;
+    transition: all 0.3s ease;
 }
 svg {
      filter: drop-shadow(1px 1px 2px var(--color7));
+     transition: all 0.3s ease;
 }
 
 .title {
@@ -112,5 +103,132 @@ svg {
     background-color:#00000000;
     margin-top:123px;
     margin-left:-92px;
+
+}
+
+/* Logo */
+.logo {
+    position: fixed;
+    right: 130px;
+    top:0;
+}
+.logo svg {
+    width: 100px;
+    position: absolute;
+    top: -50px;
+}
+
+svg {
+    filter: drop-shadow(1px 1px 2px var(--color7));
+    width:150px;
+    height: 150px;
+}
+
+.svg-icon {
+    position: absolute;
+  }
+  
+  .svg1 {
+    left: -75px;
+    top: -40px;
+  }
+  
+  .svg2 {
+    left: -72px;
+    top: -37px;
+  }
+  
+  .svg3 {
+    left: -69px;
+    top: -34px;
+  }
+  
+  .svg4 {
+    left: -66px;
+    top: -31px;
+  }
+  
+  .svg5 {
+    left: -63px;
+    top: -28px;
+  }
+  
+  .svg6 {
+    left: -60px;
+    top: -25px;
+  }
+  
+  .svg7 {
+    left: -57px;
+    top: -22px;
+  }
+  
+  .svg8 {
+    left: -54px;
+    top: -19px;
+  }
+
+  .svg1, .svg2, .svg3, .svg4, .svg5, .svg6, .svg7, .svg8 {
+    transition: left 0.3s ease, top 0.3s ease; /* Smooth movement of SVG icons */
+}
+
+@media screen and (max-width: 1500px) {
+
+    svg {
+        filter: drop-shadow(1px 1px 2px var(--color7));
+        width:100px;
+        height: 100px;
+    }
+
+    .title {
+        margin-top:73px;
+    }
+
+    .svg1 {
+        left: -56px;
+        top: -36px;
+      }
+      
+      .svg2 {
+        left: -54px;
+        top: -32px;
+      }
+      
+      .svg3 {
+        left: -54px;
+        top: -30px;
+      }
+      
+      .svg4 {
+        left: -52px;
+        top: -28px;
+      }
+      
+      .svg5 {
+        left: -50px;
+        top: -26px;
+      }
+      
+      .svg6 {
+        left: -48px;
+        top: -24px;
+      }
+      
+      .svg7 {
+        left: -46px;
+        top: -22px;
+      }
+      
+      .svg8 {
+        left: -44px;
+        top: -20px;
+      }
+}
+
+@media screen and (max-width: 768px) {
+
+.list-group-item{
+    margin-top:-5%;
+}
 
 }

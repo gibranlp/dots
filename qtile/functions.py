@@ -769,7 +769,7 @@ def hide_chords(qtile):
 ## Support SpectrumOS
 def support_spectrumos(qtile):
     options = [" Buy me a Coffee"]
-    index, key = SOS_Backend.select(" Support SpectrumOS", options)
+    index, key = SOS_Backend.select(" Support SpectrumOS", options)
     if key == -1 or index == 2:
         rofi_left.close()
     else:
