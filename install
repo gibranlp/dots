@@ -69,7 +69,7 @@ function install_aur_packages() {
         'thunar-volman' 'thunar-archive-plugins' 'hugo' 'gromit-mpx-git' 'nbfc' 'ntfs-3g'
         'i3lock-color' 'i3lock-fancy-git' 'lazy-docker'
         'rofi-emoji' 'zathura-pdf-mupdf' 'zathura-pywal-git' 'zathura-ps'
-        'python-rofi-git' 'lyrics-in-terminal'
+        'python-rofi-git' 'sptlrx-bin'
         'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
         'whatsdesk-bin' 'lyrics-in-terminal' 'ponymix' 'zen-browser-bin' 'minder-git'
     )

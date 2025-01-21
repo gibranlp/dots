@@ -178,7 +178,7 @@ with open(home + "/.config/alacritty/alacritty.toml", "w") as file:
     file.writelines(term_size)
 
 # Make font smaller for cetain groups icons
-if int(variables[10]) in [5, 7, 8, 9, 10, 11, 12, 13]:
+if int(variables[10]) in [5,7,8,9,10,11,13]:
     groups_font = font_size - 3
 else:
     groups_font = font_size + 3
@@ -542,7 +542,7 @@ def group_icon(qtile):
         "         ",
         "󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈 󰫈",
         "󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞 󰹞",
-        "󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀 󱔀",
+        " 󰺻 󱥁  󰈙 󰢔 󰊖 󰎄  ",
         "DEV MAIL MSGs SYS DOC VIRT GAMES MUS VID GFX",
     ]
     index, key = SOS_Panel.select(" Group Icons ", options)

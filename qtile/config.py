@@ -183,7 +183,7 @@ labels = {
     9: ["","","","","","","","","",""], # Triangles
     10: ["󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈","󰫈"], # Hexagons
     11: ["󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞","󰹞"], # Rectangles
-    12: ["󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀","󱔀"], # Square Ring
+    12: ["","󰺻","󱥁","","󰈙","󰢔","󰊖","󰎅","",""], # Icons
     13: ["DEV","MAIL","MSGs","SYS","DOC","VIRT","GAMES","MUS","VID","GFX"] # Custom Labels
 }
 
@@ -203,7 +203,7 @@ for i in groups:
 
 # Scratchpads
 groups.append(ScratchPad("scratchpad", [
-   DropDown("lyrics", "alacritty -e bash -c 'source ~/.zshrc; lyrics'",
+   DropDown("lyrics", "alacritty -e bash -c 'source ~/.zshrc; sptlrx'",
       x=0.75, y=0.05, width=0.20, height=0.9, opacity=0.9,
       on_focus_lost_hide=False),
 
