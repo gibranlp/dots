@@ -181,7 +181,7 @@ footer {
   font-size: 14px; 
   border-top: 1px solid var(--color4);
   color: var(--color7);
-  position: fixed;
+  position: sticky;
   width:100%;
   bottom:0px;
   }
