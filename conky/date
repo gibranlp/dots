@@ -108,4 +108,3 @@ ${{alignr}}${{color5}}${{font2}}${{time %d/%m/%y - %H:%M}}${{font2}}${{color}}
 ${{alignc}}${{color1}}${{font}}${{voffset -20}}${{time %A}}${{font}}${{color}}
 
 ]]
-

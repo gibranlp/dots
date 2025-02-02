@@ -60,9 +60,9 @@ def init_widgets_list():
     ),
 
     widget.TextBox(
-      decorations=[RectDecoration(colour=secondary_color[3], radius=[5,0,0,5], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[5,0,0,5], filled=True)],
       text="󰒮",
-      foreground=secondary_color[0],
+      foreground=secondary_color[2],
       mouse_callbacks={'Button1': lambda: qtile.spawn("playerctl --player=%any previous")},
       font=symbols_font,
       fontsize=font_size+3,
@@ -70,22 +70,21 @@ def init_widgets_list():
     ),
 
     widget.Visualiser(
-      # decorations=[RectDecoration(colour=secondary_color[3], radius=0, filled=True)],
       background=secondary_color[3],
       bar_colour=secondary_color[0],
       hide=True,
       bars=30,
-      framerate=10,
+      framerate=60,
       spacing=2,
-      width=300,
+      width=350,
       channels='stereo',
       mouse_callbacks={'Button1': lazy.group['scratchpad'].dropdown_toggle("music")},
     ),
 
     widget.TextBox(
-      decorations=[RectDecoration(colour=secondary_color[3], radius=[0,5,5,0], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[0,5,5,0], filled=True)],
       text="󰒭",
-      foreground=secondary_color[0],
+      foreground=secondary_color[2],
       mouse_callbacks={'Button1': lambda: qtile.spawn("playerctl --player=%any next")},
       font=symbols_font,
       fontsize=font_size+3,
