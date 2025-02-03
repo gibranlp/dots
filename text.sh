@@ -1,6 +1,6 @@
 #!/bin/bash
 
-target="</IPGOC>"
+target="Te Amito Muchito!"
 target_length=${#target}
 
 generate_random_letter() {
