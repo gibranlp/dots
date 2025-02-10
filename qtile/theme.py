@@ -69,7 +69,7 @@ def init_widgets_list():
 
     ),
 
-    widget.Visualiser(
+    widget.Visualizer(
       background=secondary_color[3],
       bar_colour=secondary_color[0],
       hide=True,
