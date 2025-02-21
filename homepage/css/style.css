@@ -65,9 +65,9 @@ h2 {
 }
 
 a {
-    color: var(--color1);
+    color: var(--color7);
     text-decoration: none;
-    background-color: var(--color0);
+    background-color: var(--color1);
     display: block;
     border-radius: 5px;
     padding: 5px;
@@ -175,19 +175,19 @@ svg {
 }
 
 footer { 
-  background-color: var(--color0); 
+  background-color: var(--color5); 
   text-align: center; 
   padding: 20px; 
   font-size: 14px; 
   border-top: 1px solid var(--color4);
-  color: var(--color7);
+  color: var(--color0);
   position: sticky;
   width:100%;
   bottom:0px;
   }
 
 footer span{
-  color:var(--color1);
+  color:var(--color3);
 }
 
 @media screen and (max-width: 1920px) {
