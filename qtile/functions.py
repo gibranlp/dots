@@ -119,8 +119,8 @@ widget_width = 200  # Width of widgets varies depending the resolution
 layout_margin = 5  # Layout margins
 single_layout_margin = 5  # Single window margin
 ## Borders
-layout_border_width = 3  # Layout border width
-single_border_width = 3  # Single border width
+layout_border_width = 4  # Layout border width
+single_border_width = 4  # Single border width
 
 ## Sensor for temperature
 temp_sensor = str(variables[13].strip())

@@ -245,7 +245,7 @@ def init_layouts():
          "window.margin":layout_margin,
          "window.border_color": color[0],
          "window.active.border_color": color[1],
-         "window.default_add_mode": "tab",
+         "window.default_add_mode": "split_x",
          "auto_cwd_for_terminals": False,
          "tab_bar.height": 10,
          "tab_bar.bg_color": color[0],
