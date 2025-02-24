@@ -103,8 +103,6 @@ def init_widgets_list():
       scroll_delay=0.1,
     ),
     
-    
-    
     widget.Spacer(
       length=5,
       background=transparent,
@@ -194,6 +192,18 @@ def init_widgets_list():
     
     widget.Spacer(
       length=bar.STRETCH,
+      background=transparent,
+    ),
+
+    widget.DoNotDisturb(
+      decorations=[RectDecoration(colour=secondary_color[4], radius=[7,0,0,7], filled=True)],
+      foreground=color[0],
+      enabled_icon="󰂛",
+      disabled_icon="󰂞",
+    ),
+
+    widget.Spacer(
+      length=5,
       background=transparent,
     ),
     
