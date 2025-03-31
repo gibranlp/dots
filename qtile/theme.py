@@ -338,7 +338,7 @@ def init_widgets_list():
       foreground=secondary_color[3],
       decorations=[RectDecoration(colour=secondary_color[0],radius=7,filled=True)],
       percentage_critical=0.2,
-      percentage_low=0.4,
+      percentage_low=0.3,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
       text_discharging=' ({percentage:.0f}%) {tte} Left',
     ),

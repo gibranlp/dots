@@ -139,7 +139,7 @@ def init_widgets_list():
       fill_normal=secondary_color[3],
       foreground=secondary_color[3],
       percentage_critical=0.2,
-      percentage_low=0.4,
+      percentage_low=0.3,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
       text_discharging=' ({percentage:.0f}%) {tte} Left',
     )

@@ -120,6 +120,19 @@ def init_widgets_list():
       background=transparent,
     ),
 
+    widget.Clock(
+      foreground=secondary_color[0],
+      format="%H:%M",
+      update_interval=1,
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
+    ),
+
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+
     widget.UPowerWidget(
       decorations=[RectDecoration(colour=secondary_color[3], radius=5, filled=True)],
       border_charge_colour=secondary_color[7],
@@ -130,7 +143,7 @@ def init_widgets_list():
       fill_normal=secondary_color[0],
       foreground=secondary_color[0],
       percentage_critical=0.2,
-      percentage_low=0.4,
+      percentage_low=0.3,
       text_charging=' ({percentage:.0f}%) {ttf} to ',
       text_discharging=' ({percentage:.0f}%) {tte} Left',
     ),
@@ -138,6 +151,19 @@ def init_widgets_list():
     widget.Spacer(
       length=5,
       background=transparent,
+    ),
+
+    widget.WidgetBox(
+      decorations=[RectDecoration(colour=secondary_color[5], radius=4, filled=True)],
+      text_closed='',
+      text_open='',
+      foreground=secondary_color[0],
+      widgets=[
+          widget.Spacer(
+          length=5,
+          background=transparent,
+      ),
+      widget.Systray(),]
     ),
     ]
   return widgets_list
