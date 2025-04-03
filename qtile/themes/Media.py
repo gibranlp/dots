@@ -95,6 +95,36 @@ def init_widgets_list():
       background=transparent,
     ),
 
+    widget.CheckUpdates(
+       decorations=[RectDecoration(colour=color[1], radius=5, filled=True)],
+       distro='Arch_paru',
+       colour_have_updates=color[0],
+       colour_no_updates=color[0],
+       display_format='󰁠',
+       no_update_string='󱧧',
+       update_interval=60,
+       execute='paru -Syu',
+       fontsize=font_size+3,
+       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && paru -Syu --noconfirm --nocheck; exec zsh'")},
+    ),
+
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+
+    widget.DoNotDisturb(
+      decorations=[RectDecoration(colour=secondary_color[5], radius=5, filled=True)],
+      foreground=color[0],
+      enabled_icon="󰂛",
+      disabled_icon="󰂞",
+    ),
+
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+
     InternetIcon(
       decorations=[RectDecoration(colour=secondary_color[4], radius=5, filled=True)],
       update_interval=1,
@@ -124,7 +154,7 @@ def init_widgets_list():
       foreground=secondary_color[0],
       format="%H:%M",
       update_interval=1,
-      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[1], radius=5, filled=True)],
       mouse_callbacks={'Button1': lambda: qtile.function(calendar_notification),'Button4': lambda: qtile.function(calendar_notification_prev),'Button5': lambda: qtile.function(calendar_notification_next)},              
     ),
 
@@ -154,7 +184,7 @@ def init_widgets_list():
     ),
 
     widget.WidgetBox(
-      decorations=[RectDecoration(colour=secondary_color[5], radius=4, filled=True)],
+      decorations=[RectDecoration(colour=secondary_color[5], radius=5, filled=True)],
       text_closed='',
       text_open='',
       foreground=secondary_color[0],

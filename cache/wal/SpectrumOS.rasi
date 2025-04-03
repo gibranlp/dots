@@ -36,5 +36,5 @@
     foreground: #f3f0e2;
     border-color: @background;
     
-    font:"Courier Prime Medium 13";
+    font:"Courier Prime Medium 16";
 }

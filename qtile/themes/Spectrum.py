@@ -195,6 +195,24 @@ def init_widgets_list():
       background=transparent,
     ),
 
+    widget.CheckUpdates(
+       decorations=[RectDecoration(colour=color[2], radius=7, filled=True)],
+       distro='Arch_paru',
+       colour_have_updates=color[0],
+       colour_no_updates=color[0],
+       display_format='󰁠',
+       no_update_string='󱧧',
+       update_interval=60,
+       execute='paru -Syu',
+       fontsize=font_size+3,
+       mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && paru -Syu --noconfirm --nocheck; exec zsh'")},
+    ),
+
+    widget.Spacer(
+      length=5,
+      background=transparent,
+    ),
+
     widget.DoNotDisturb(
       decorations=[RectDecoration(colour=secondary_color[4], radius=7, filled=True)],
       foreground=color[0],

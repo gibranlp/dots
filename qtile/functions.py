@@ -184,11 +184,12 @@ else:
     groups_font = font_size + 3
 
 # Rofi Configuration Files
-SOS_Backend = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Backend.rasi"])
-SOS_Themes = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Themes.rasi"])
-SOS_Panel = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Panel.rasi"])
-SOS_Network = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Network.rasi"])
 SOS_Audio = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Faudio.rasi"])
+SOS_Backend = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Backend.rasi"])
+SOS_Network = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Network.rasi"])
+SOS_Panel = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Panel.rasi"])
+SOS_Session = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Session.rasi"])
+SOS_Themes = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Themes.rasi"])
 
 # Weather
 w_appkey = str(
@@ -465,11 +466,11 @@ def draw_widget(qtile):
 
 
 # Logout widget
-def session_widget(qtile):
-    options = ["", "󰒲", "󰈆", "󰜉", "⏻"]
-    index, key = SOS_Backend.select("  Session", options)
+def SOS_Logout(qtile):
+    options = ["", "󰒲", "󰈆", "󰜉","󰤆"]
+    index, key = SOS_Session.select("  Session", options)
     if key == -1:
-        SOS_Backend.close()
+        SOS_Session.close()
     else:
         if index == 0:
             qtile.function(i3lock_colors)
@@ -488,7 +489,7 @@ def audio_widget(qtile):
     options = [" Input", "󰓃 Output"]
     index, key = SOS_Audio.select(" 󱡫 Audio Selection:", options)
     if key == -1:
-        SOS_Backend.close()
+        SOS_Audio.close()
     else:
         if index == 0:
             qtile.spawn(home + "/.local/bin/SOS_Audio source")
@@ -547,7 +548,7 @@ def group_icon(qtile):
     ]
     index, key = SOS_Panel.select(" Group Icons ", options)
     if key == -1:
-        rofi_left.close()
+        SOS_Panel.close()
     else:
         variables[10] = str(index) + "\n"
         with open(home + "/variables", "w") as file:
@@ -562,7 +563,7 @@ def dark_white(qtile):
         "󰔎 Dark/White -> " + str(variables[7].strip()), options
     )
     if key == -1 or index == 2:
-        rofi_left.close()
+        SOS_Backend.close()
     else:
         if index == 0:
             variables[4] = "-c" + "\n"
@@ -648,7 +649,7 @@ def bar_pos(qtile):
     options = ["󰃑 Top", "󰃈 Bottom", "󰃊 Toggle Bar"]
     index, key = SOS_Backend.select(" Bar -> " + bar_position, options)
     if key == -1:
-        rofi_left.close()
+        SOS_Backend.close()
     else:
         if index == 0:
             variables[6] = "top" + "\n"
@@ -685,7 +686,7 @@ def change_theme(qtile):
     options = theme
     index, key = SOS_Themes.select("󰇜 Bar Theme -> " + current_theme, options)
     if key == -1:
-        rofi_left.close()
+        SOS_Themes.close()
         subprocess.run(["notify-send", "-a", "󰣇 SpectrumOS", "No Theme Selected!"])
     else:
         subprocess.run("rm -rf ~/.config/qtile/theme.py", shell=True)
@@ -707,7 +708,7 @@ def screenshot(qtile):
     options = [" Area", " Screen", " Window", " 5s Screen"]
     index, key = SOS_Backend.select("  Screenshot", options)
     if key == -1:
-        rofi_left.close()
+        SOS_Backend.close()
     else:
         if index == 0:
             subprocess.run(
@@ -771,7 +772,7 @@ def support_spectrumos(qtile):
     options = [" Buy me a Coffee"]
     index, key = SOS_Backend.select(" Support SpectrumOS", options)
     if key == -1 or index == 2:
-        rofi_left.close()
+        SOS_Backend.close()
     else:
         subprocess.run(["xdg-open", "https://www.buymeacoffee.com/gibranlp"])
 

@@ -51,7 +51,7 @@ keys = [
     Key([mod, "shift"], "b", lazy.spawn(home + '/.local/bin/SOS_Bluetooth')), # Bluetooth widget
     Key([mod],"v", lazy.function(emojis)), # Open Rofi Emojis
     Key([mod],"f",lazy.spawn(home + '/.local/bin/SOS_Search')),# Find Files
-    Key(["control"],"q",lazy.function(session_widget)), # Log out
+    Key(["control"],"q",lazy.function(SOS_Logout)), # Log out
      
     Key([mod, "shift"],"o",lazy.function(nightLight_widget)), # Set night light
     Key([mod],"p",lazy.function(fargewidget)), # Color Picker Widget
@@ -62,7 +62,7 @@ keys = [
         Key([], "x", lazy.layout.spawn_split(sudo_rofi_launcher, "x")), # Open Rofi launcher on X split as Sudo
         Key([], "y", lazy.layout.spawn_split(sudo_rofi_launcher, "y")), # Open Rofi launcher on Y split as Sudo
     ],
-    name="Srun: x-y"
+    name="Sudo: x-y"
     ),
     # Apps
     #Key([mod],"e",lazy.layout.spawn_split('thunar', "x")),# Open Thunar
