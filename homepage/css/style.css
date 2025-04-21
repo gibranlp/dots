@@ -9,6 +9,11 @@ html,body {
     background-size: cover;
 }
 
+.row{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
 h1, h2, .card-header, .list-group-item, a {
     transition: all 0.3s ease-in-out;
 }
@@ -105,7 +110,7 @@ h2 {
     top: 0;
     left: 0;
     z-index: 9999;
-    left: 90px;
+    left: 64px;
     top: 60px;
   }
 
@@ -315,6 +320,13 @@ footer span{
         left: -44px;
         top: -20px;
       }
+}
+
+@media screen and (max-width: 990px) {
+
+  .list-group-item {
+    margin-top: -4%;
+}
 }
 
 @media screen and (max-width: 768px) {
