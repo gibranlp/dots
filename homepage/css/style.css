@@ -39,7 +39,7 @@ h2 {
     border-radius:5px;
     font-family: "Source Code Pro", monospace;
     font-weight: 700;
-    backdrop-filter: blur(100px);
+    backdrop-filter: blur(10px);
     text-shadow: 1px 1px var(--color7);
     
 }
