@@ -1,11 +1,12 @@
 @import url('file:///usr/share/lightdm-webkit/themes/SpectrumOS/css/colors.css');
+@import url('colors.css');
 
 html,body {
     height: 100%;
     width: 100%;
     font-family: "Source Code Pro", monospace;
     margin: 0;
-    background-image: url(/usr/local/backgrounds/background.png);
+    background-image: url(/usr/local/backgrounds/background.png), url(../background.png);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -18,7 +19,6 @@ html,body {
 h1, h2, .card-header, .list-group-item, a {
     transition: all 0.3s ease-in-out;
 }
-
 
 h1 {
     font-size: 2em;
