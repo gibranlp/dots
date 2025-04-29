@@ -1,12 +1,10 @@
 #!/bin/bash
 
-target="Te Amito Muchito!"
+# Fetch the file and select a random line as the target
+target=$(curl -s https://ipgoc.gibranlp.dev/ipgoc | shuf -n 1)
 target_length=${#target}
 
 generate_random_letter() {
-  # change into following for simplicity / speed
-  # printf "\\x$(printf %x $((RANDOM % 94 + 32)))"
-
   local random_byte
   random_byte=$(od -An -N1 -i /dev/random 2>/dev/null)
   printf "\\x$(printf %x $((random_byte % 94 + 32)))"
