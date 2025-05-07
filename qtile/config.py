@@ -149,6 +149,7 @@ keys = [
 
     # Screenshots
     Key([], "Print", lazy.function(screenshot)),
+    Key(["shift"], "Print", lazy.spawn(f"flameshot full --path {home}/Pictures/Screenshot.png --delay 500")),
 
     # Lock Screen
     Key(["control", alt],"l",lazy.function(i3lock_colors)), # Run i3lock 

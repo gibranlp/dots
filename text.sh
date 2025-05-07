@@ -33,7 +33,7 @@ evolve_message() {
 
     message="${current_message}"
     printf "\r%s" "${message}"
-    sleep 0.001
+    sleep 0.0001
   done
 
   echo ""
