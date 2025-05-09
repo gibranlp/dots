@@ -371,6 +371,12 @@ function install_optimus(){
   sudo pacman -S primus --noconfirm
 }
 
+# Function to install Latex
+
+function install_latex(){
+    sudo pacman -S texlive-core texlive-bin texlive-latexextra biber --noconfirm
+}
+
 # Function to Install Steam on Nvidia
 
 function install_steam(){
@@ -407,7 +413,7 @@ function run_all() {
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--latex] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
     exit 1
 }
 
@@ -456,6 +462,9 @@ for arg in "$@"; do
             ;;
         --grub)
             grub_update
+            ;;
+        --latex)
+            install_latex
             ;;
         --lightdm)
             install_lightdm
