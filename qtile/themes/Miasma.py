@@ -155,7 +155,7 @@ def init_widgets_list():
       text="▓▒░",
     ),
     widget.WidgetBox(
-      decorations=[RectDecoration(colour=color[0], radius=8, filled=True, padding_x=4, padding_y=8)],
+      decorations=[RectDecoration(colour=color[0], radius=9, filled=True, padding_x=4, padding_y=8)],
       text_closed='',
       text_open='',
       foreground=color[2],
@@ -278,7 +278,7 @@ def init_widgets_list():
     ),
     widget.TextBox(
       foreground=color[3],
-      background=secondary_color[2],
+      background=secondary_color[5],
       padding=-1,
       fontsize=font_size+5,
       text="░",
