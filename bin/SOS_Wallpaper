@@ -7,7 +7,7 @@
 # SpectrumOS - Embrace the Chromatic Symphony!
 # By: gibranlp <thisdoesnotwork@gibranlp.dev>
 # MIT licence 
-# 
+#
 #
 
 # Read variables from the config file
@@ -54,18 +54,17 @@ done
 
 # Function to set the wallpaper
 set_wall() {
-  if [ -z "$wall" ]; then
-      wpg "${variables[4]}" -s "${path}" --backend "${variables[2]}" # Wal sets wallpaper and generates new color scheme
-      cp "${path}" "/usr/local/backgrounds/background.png"
-      rm -r ~/.config/qtile/__pycache__
+  if [ "${variables[14]}" = "No Theme" ]; then
+    gowall convert "${path}" --output "/usr/local/backgrounds/background.png"
   else
-      wpg "${variables[4]}" -s "${dir}${wall}" --backend "${variables[2]}" # Wal sets wallpaper and generates new color scheme
-      cp "${dir}${wall}" "/usr/local/backgrounds/background.png"
-      rm -r ~/.config/qtile/__pycache__
+    gowall convert "${path}" -t "${variables[14]}" --output "/usr/local/backgrounds/background.png"
   fi
+
+  wpg "${variables[4]}" -s "/usr/local/backgrounds/background.png" --backend "${variables[2]}"
+  rm -r ~/.config/qtile/__pycache__
 }
+
 
 # Set the wallpaper and restart Qtile
 set_wall
 qtile cmd-obj -o cmd -f restart
-#pkill -SIGUSR1 qtile # Reload Qtile

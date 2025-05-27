@@ -32,7 +32,7 @@ keys = [
        Key([],"1",lazy.spawn(home + '/.local/bin/SOS_Select_Wallpaper')), # Select Wallpaper
        Key([],"2",lazy.function(change_theme)), # Change Theme
        Key([],"3",lazy.function(set_default_backend)), # Set Default Color Scheme
-       Key([],"4",lazy.function(dark_white)), # Select Dark or Light Theme
+       Key([],"4",lazy.function(set_default_wall_theme)), # Select Dark or Light Theme
        Key([],"5",lazy.function(bar_pos)), # Set Position of Bar Top / Bottom
        Key([],"6",lazy.function(show_groups)), # Toggle show all groups
        Key([],"7",lazy.function(group_icon)), # Change Groups Icons

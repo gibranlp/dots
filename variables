@@ -1,14 +1,15 @@
 3.1.1
-Spectrum
+Miasma
 wal
 
 -c
 /.config/qtile/themes/dark
 bottom
 Dark
-
+ 
 
-0
+12
 Courier Prime Medium
 21
-Core 0
+Composite
+Dracula

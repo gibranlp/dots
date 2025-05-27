@@ -106,6 +106,8 @@ theme_file = themes_dir + "/" + current_theme
 # Pywal Backends Options: Wal, Colorz, Colorthief, Haishoku
 def_backend = str(variables[2].strip())
 backend = ["wal", "colorz", "colorthief", "haishoku"]
+def_wall_theme = str(variables[14].strip())
+wall_theme = ["No Theme","arcdark", "atomdark", "cat-frappe", "cat-latte", "catppuccin", "cyberpunk", "dracula", "everforest", "github-light", "gruvbox", "kanagawa", "material", "monokai", "night-owl", "nord", "oceanic-next", "onedark", "rose-pine", "shades-of-purple", "solarized", "srcery", "sunset-aurant", "sunset-saffron", "sunset-tangerine", "synthwave-84", "tokyo-dark", "tokyo-moon", "tokyo-storm"]
 
 # Bar Position
 bar_position = str(variables[6].strip())
@@ -352,7 +354,6 @@ def calendar_notification_next(qtile):
 
 ## Rofi Widgets
 
-
 ## Set default backend
 def set_default_backend(qtile):
     options = backend
@@ -397,6 +398,25 @@ def set_default_backend(qtile):
             ]
         )
 
+## Set default Gowal Theme for Wallpaper
+def set_default_wall_theme(qtile):
+    options = wall_theme
+    index, key = SOS_Backend.select("󰉦 Wallpaper Theme -> " + def_wall_theme.capitalize(), options)
+    if key == -1 or index == 4:
+        rofi_left.close()
+    else:
+        variables[14] = wall_theme[index] + "\n"
+        with open(home + "/variables", "w") as file:
+            file.writelines(variables)
+        subprocess.run(
+            [
+                "notify-send",
+                "-a",
+                "󰣇 SpectrumOS",
+                "Wallpaper Theme: ",
+                " %s" % wall_theme[index],
+            ]
+        )
 
 # Display Shortcuts widget
 def shortcuts(qtile):

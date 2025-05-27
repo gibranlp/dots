@@ -178,7 +178,7 @@ def init_widgets_list():
       text="░▒▓",
     ),
     widget.GroupBox(
-      background=color[0],
+      background=secondary_color[0],
       fontsize=groups_font,
       disable_drag=True,
       hide_unused=hide_unused_groups,

@@ -7,8 +7,7 @@
 # SpectrumOS - Embrace the Chromatic Symphony!
 # By: gibranlp <thisdoesnotwork@gibranlp.dev>
 # MIT licence 
-# 
-#
+
 # Array to store the variables read from the file
 variables=()
 
@@ -19,26 +18,34 @@ done < ~/variables
 
 # Function to set the wallpaper and perform additional configurations
 set_wall(){
-  # Set the wallpaper using wpg and generate a new color scheme
-  wpg ${variables[4]} -s $WALLPAPER --backend ${variables[2]}
-  
-  # Copy the selected wallpaper to the specified directory
-  cp $WALLPAPER "/usr/local/backgrounds/background.png"
-  
-  # Reload qtile configuration to apply changes
-  #pkill -SIGUSR1 qtile
+  local theme="${variables[14]}"
+  local output="/usr/local/backgrounds/background.png"
+
+  # Conditionally build gowall command with or without theme
+  if [ "$theme" = "No Theme" ]; then
+    gowall convert "$WALLPAPER" --output "$output"
+  else
+    gowall convert "$WALLPAPER" -t "$theme" --output "$output"
+  fi
+
+  # Set the wallpaper using wpg with backend and color scheme
+  wpg "${variables[4]}" -s "$output" --backend "${variables[2]}"
+
+  # (Optional) Copy the wallpaper again if needed
+  cp "$output" "$output"
+
+  # Restart qtile to apply new theme
   qtile cmd-obj -o cmd -f restart
 }
 
 # Function to get the wallpaper path using rofi
 get_wall(){
-  # Use rofi to select a wallpaper from the specified directory
   rofi -show file-browser-extended -theme ~/.config/rofi/SOS_Wallpaper.rasi \
        -file-browser-exclude *.sh \
        -file-browser-dir ~/Pictures/Wallpapers \
        -file-browser-disable-status \
        -file-browser-stdout \
-       -file-browser-hide-parent \
+       -file-browser-hide-parent
 }
 
 # Get the selected wallpaper path
@@ -46,9 +53,7 @@ WALLPAPER=$(get_wall)
 
 # Check if a wallpaper was selected
 if [ -z "$WALLPAPER" ]; then
-      # Notify the user if no wallpaper was selected
-      notify-send -a ' SpectrumOS' "󱐘 No Wallpaper Selected!" 
+  notify-send -a ' SpectrumOS' "󱐘 No Wallpaper Selected!" 
 else
-      # Set the wallpaper if one was selected
-      set_wall
+  set_wall
 fi
