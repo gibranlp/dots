@@ -55,15 +55,15 @@ variables = file.readlines()
 ## Read picom.conf for blur in the bar
 file = open(home + "/.config/picom/picom.conf", "r")
 bar_blur = file.readlines()
-current_blur = bar_blur[307].strip()
+current_blur = bar_blur[320].strip()
 
 if current_blur == '"QTILE_INTERNAL:32c = 0"':
     new_blur = '"QTILE_INTERNAL:32c = 1"' + "\n"
-    bar_blur[307] = new_blur
+    bar_blur[320] = new_blur
     blur_icon = "󰂵"
 else:
     new_blur = '"QTILE_INTERNAL:32c = 0"' + "\n"
-    bar_blur[307] = new_blur
+    bar_blur[320] = new_blur
     blur_icon = "󰂷"
 
 ## Get Terminal Fontsize
@@ -809,13 +809,14 @@ def control_panel(qtile):
         "     Select Wallpaper (❖ + E) + 1",
         "󱍖 Theme Options",  # 3
         "    󰸌 Set Color Scheme (❖ + E) + 3",
-        "    󰔎 Dark/Light Theme (❖ + E) + 4",
+        "    󰸉 Select Wallpaper Theme (❖ + E) + 4",
+        "    󰔎 Dark/Light Theme (❖ + E) + 5",
         " Bar Options",  # 6
-        "     Bar Position (❖ + E) + 5",
+        "     Bar Position (❖ + E) + 6",
         "     Change Bar Theme (❖ + E) + 2",
-        "    %s Toggle Bar Blur (❖ + E) + 8" % blur_icon,
-        "    %s Toggle Groups (❖ + E) + 6" % str(variables[9].strip()),
-        "     Group Icons (❖ + E) + 7",
+        "    %s Toggle Bar Blur (❖ + E) + 9" % blur_icon,
+        "    %s Toggle Groups (❖ + E) + 7" % str(variables[9].strip()),
+        "     Group Icons (❖ + E) + 8",
         " Tools",  # 12
         "    󰈞 Find / Open Files (❖ + F)",
         "     Todo List (❖ + N)",
@@ -841,56 +842,54 @@ def control_panel(qtile):
         SOS_Panel.close()
     else:
         if index == 1:
-            qtile.run(home + "/.local/bin/SOS_Wallpaper")
+            qtile.spawn(home + "/.local/bin/SOS_Wallpaper")
         elif index == 2:
             qtile.spawn(home + "/.local/bin/SOS_Select_Wallpaper")
         elif index == 4:
             qtile.function(set_default_backend)
         elif index == 5:
+            qtile.function(set_default_wall_theme)
+        elif index == 6:
             qtile.function(dark_white)
-        elif index == 7:
-            qtile.function(bar_pos)
         elif index == 8:
-            qtile.function(change_theme)
+            qtile.function(bar_pos)
         elif index == 9:
-            qtile.function(toggle_bar_blur)
+            qtile.function(change_theme)
         elif index == 10:
-            qtile.function(show_groups)
+            qtile.function(toggle_bar_blur)
         elif index == 11:
+            qtile.function(show_groups)
+        elif index == 12:
             qtile.function(group_icon)
-        elif index == 13:
-            subprocess.run(home + "/.local/bin/SOS_Search")
         elif index == 14:
-            qtile.spawn(
-                "rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi"
-            )
+            subprocess.run(home + "/.local/bin/SOS_Search")
         elif index == 15:
-            qtile.spawn(
-                'sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"'
-            )
+            qtile.spawn("rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi")
         elif index == 16:
-            subprocess.run(home + "/.local/bin/SOS_Calculator")
+            qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')
         elif index == 17:
-            qtile.function(network_widget)
+            subprocess.run(home + "/.local/bin/SOS_Calculator")
         elif index == 18:
-            qtile.function(screenshot)
+            qtile.function(network_widget)
         elif index == 19:
-            qtile.function(nightLight_widget)
+            qtile.function(screenshot)
         elif index == 20:
-            subprocess.run(home + "/.local/bin/SOS_Multimonitor")
+            qtile.function(nightLight_widget)
         elif index == 21:
+            subprocess.run(home + "/.local/bin/SOS_Multimonitor")
+        elif index == 22:
             subprocess.run(home + "/.local/bin/SOS_Bluetooth")
-        elif index == 23:
-            qtile.function(draw_widget)
         elif index == 24:
-            qtile.function(fargewidget)
+            qtile.function(draw_widget)
         elif index == 25:
-            qtile.function(shortcuts)
+            qtile.function(fargewidget)
         elif index == 26:
-            qtile.function(emojis)
+            qtile.function(shortcuts)
         elif index == 27:
-            qtile.spawn(home + "/.local/bin/SOS_Clean_System")
+            qtile.function(emojis)
         elif index == 28:
-            qtile.function(session_widget)
+            qtile.spawn(home + "/.local/bin/SOS_Clean_System")
         elif index == 29:
+            qtile.function(session_widget)
+        elif index == 30:
             qtile.function(support_spectrumos)

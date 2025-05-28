@@ -33,11 +33,12 @@ keys = [
        Key([],"2",lazy.function(change_theme)), # Change Theme
        Key([],"3",lazy.function(set_default_backend)), # Set Default Color Scheme
        Key([],"4",lazy.function(set_default_wall_theme)), # Select Dark or Light Theme
-       Key([],"5",lazy.function(bar_pos)), # Set Position of Bar Top / Bottom
-       Key([],"6",lazy.function(show_groups)), # Toggle show all groups
-       Key([],"7",lazy.function(group_icon)), # Change Groups Icons
-       Key([],"8",lazy.function(toggle_bar_blur))], # Toggle Blur on Bar
-       name="Widgets 1-8",
+       Key([],"5",lazy.function(dark_white)), # Select Dark or Light Theme
+       Key([],"6",lazy.function(bar_pos)), # Set Position of Bar Top / Bottom
+       Key([],"7",lazy.function(show_groups)), # Toggle show all groups
+       Key([],"8",lazy.function(group_icon)), # Change Groups Icons
+       Key([],"9",lazy.function(toggle_bar_blur))], # Toggle Blur on Bar
+       name="Widgets 1-9",
     ),
 
     Key([mod], "Return", lazy.function(control_panel)), # Search for files and folders
