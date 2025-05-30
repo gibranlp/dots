@@ -358,16 +358,21 @@ def init_widgets_list():
     
   return widgets_list
 
+def get_screen_count():
+    output = subprocess.check_output(["xrandr", "--listmonitors"]).decode()
+    lines = output.strip().splitlines()
+    return int(lines[0].split(":")[1].strip())
+
 def screen1_widgets():
   widgets_screen1=init_widgets_list()
   return widgets_screen1
 
 
 def init_screens_bottom():
-  return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+  return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))for i in range(get_screen_count())]
 
 def init_screens_top():
-  return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+  return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))for i in range(get_screen_count())]
 
 if bar_position == "top":
   screens=init_screens_top()
