@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Ensure environment is set
+export HOME="/Users/gibranlp"
+export PATH="$HOME/.local/bin:$PATH"
+
+WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
+
+# Log for debugging
+LOGFILE="$HOME/wallpaper_debug.log"
+echo "===== $(date) =====" >> "$LOGFILE"
+
+# Pick or use provided wallpaper
+if [ -n "$1" ]; then
+    if [ -f "$1" ]; then
+        WALLPAPER="$1"
+    elif [ -f "$WALLPAPER_DIR/$1" ]; then
+        WALLPAPER="$WALLPAPER_DIR/$1"
+    else
+        echo "File not found: $1" >> "$LOGFILE"
+        exit 1
+    fi
+else
+    WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+fi
+
+# Set wallpaper
+osascript -e 'tell application "System Events" to tell every desktop to set picture to POSIX file "'"$WALLPAPER"'"'
+
+# Run wal with full path
+echo "Running wal on: $WALLPAPER" >> "$LOGFILE"
+/Users/gibranlp/.local/bin/wal -i "$WALLPAPER" >> "$LOGFILE" 2>&1
+
+echo "Wallpaper set to: $WALLPAPER" >> "$LOGFILE"
