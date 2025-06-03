@@ -210,19 +210,19 @@ def init_widgets_list():
       background=transparent,
     ),
 
-    widget.Wttr(
-      decorations=[RectDecoration(colour=secondary_color[0], radius=3, filled=True)],
-      foreground=secondary_color[3],
-      location={'': ''},
-      update_interval=300,
-      format='%c %t',
-      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-    ),
+    # widget.Wttr(
+    #   decorations=[RectDecoration(colour=secondary_color[0], radius=3, filled=True)],
+    #   foreground=secondary_color[3],
+    #   location={'': ''},
+    #   update_interval=300,
+    #   format='%c %t',
+    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    # ),
 
-    widget.Spacer(
-      length=4,
-      background=transparent,
-    ),
+    # widget.Spacer(
+    #   length=4,
+    #   background=transparent,
+    # ),
     
     InternetIcon(
       decorations=[RectDecoration(colour=secondary_color[6], radius=[3,0,0,3], filled=True)],
@@ -347,11 +347,29 @@ def screen1_widgets():
     widgets_screen1=init_widgets_list()
     return widgets_screen1
 
+def bar_config(position):
+    bar_instance = bar.Bar(
+        widgets=screen1_widgets(),
+        size=bar_size,
+        background=transparent,
+        margin=[bar_margin[0],
+                bar_margin[1],
+                bar_margin[2],
+                bar_margin[3]]
+    )
+    return {position: bar_instance}
+
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]])),Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+    if single_monitor:
+        return [Screen(**bar_config("bottom"))]
+    else:
+        return [Screen(**bar_config("bottom")) for _ in range(get_screen_count())]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]])),Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+    if single_monitor:
+        return [Screen(**bar_config("top"))]
+    else:
+        return [Screen(**bar_config("top")) for _ in range(get_screen_count())]
 
 if bar_position == "top":
     screens=init_screens_top()

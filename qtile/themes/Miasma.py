@@ -28,30 +28,16 @@ def init_widgets_list():
       fontsize=font_size+5,
       text="░▒▓",
     ),
-    widget.CurrentLayout(
-      decorations=[BorderDecoration(colour=color[0], border_width=2)],
-      padding=5,
-      background=color[1],
-      foreground=color[0],
-      scale=0.8,
-    ),
-    widget.TextBox(
-      foreground=color[2],
-      background=color[1],
-      padding=-1,
-      fontsize=font_size+5,
-      text="░",
-    ),
     widget.CPU(
-      foreground=color[0],
-      background=color[2],
-      format='{load_percent}%',
       decorations=[BorderDecoration(colour=color[0], border_width=2)],
       padding=5,
+      background=color[1],
+      foreground=color[0],
+      format='{load_percent}%'
     ),
     widget.TextBox(
       foreground=color[3],
-      background=color[2],
+      background=color[1],
       padding=-1,
       fontsize=font_size+5,
       text="░",
@@ -184,7 +170,7 @@ def init_widgets_list():
       hide_unused=hide_unused_groups,
       borderwidth=0,
       active=color[6], #Program opened in that group
-      inactive=secondary_color[0], # Empty Group
+      inactive=third_color[0], # Empty Group
       rounded=False,
       highlight_method="block",
       this_current_screen_border=color[1],
@@ -329,12 +315,26 @@ def screen1_widgets():
     widgets_screen1=init_widgets_list()
     return widgets_screen1
 
+def bar_config(position):
+    bar_instance = bar.Bar(
+        widgets=screen1_widgets(),
+        size=bar_size,
+        background=transparent,
+        margin=bar_margin
+    )
+    return {position: bar_instance}
 
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=bar_margin)),Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=bar_margin))]
+    if single_monitor:
+        return [Screen(**bar_config("bottom"))]
+    else:
+        return [Screen(**bar_config("bottom")) for _ in range(get_screen_count())]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=bar_margin)),Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=bar_margin))]
+    if single_monitor:
+        return [Screen(**bar_config("top"))]
+    else:
+        return [Screen(**bar_config("top")) for _ in range(get_screen_count())]
 
 if bar_position == "top":
     screens=init_screens_top()

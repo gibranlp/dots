@@ -202,11 +202,30 @@ def screen1_widgets():
     widgets_screen1=init_widgets_list()
     return widgets_screen1
 
+def bar_config(position):
+    bar_instance = bar.Bar(
+        widgets=screen1_widgets(),
+        size=bar_size,
+        background=transparent,
+        margin=[bar_margin[0],
+                bar_margin[1],
+                bar_margin[2],
+                bar_margin[3]]
+    )
+    return {position: bar_instance}
+
 def init_screens_bottom():
-    return[Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]])),Screen(bottom=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+    if single_monitor:
+        return [Screen(**bar_config("bottom"))]
+    else:
+        return [Screen(**bar_config("bottom")) for _ in range(get_screen_count())]
 
 def init_screens_top():
-    return[Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]])),Screen(top=bar.Bar(widgets=screen1_widgets(),size=bar_size,background=transparent,margin=[bar_margin[0], bar_margin[1],bar_margin[2],bar_margin[3]]))]
+    if single_monitor:
+        return [Screen(**bar_config("top"))]
+    else:
+        return [Screen(**bar_config("top")) for _ in range(get_screen_count())]
+
 
 if bar_position == "top":
     screens=init_screens_top()

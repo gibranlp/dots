@@ -52,6 +52,9 @@ alt = "mod1"
 file = open(home + "/variables", "r")
 variables = file.readlines()
 
+# Bar in all monitors?
+single_monitor = str(variables[3].strip())
+
 ## Read picom.conf for blur in the bar
 file = open(home + "/.config/picom/picom.conf", "r")
 bar_blur = file.readlines()
