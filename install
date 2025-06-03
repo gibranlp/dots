@@ -27,7 +27,7 @@ function install_base() {
         'tumbler' 'redshift' 'libmicrodns' 'protobuf' 'neovim' 'xorg-xdpyinfo'
         'fd' 'fzf' 'cups' 'thefuck' 'pamixer' 'gvfs-mtp' 'gvfs-nfs' 'gvfs-smb'
         'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky' 
-        'peek' 'libreoffice-fresh' 'anytype-bin' 'picom' 'luarocks' 'neovim'
+        'peek' 'libreoffice-fresh' 'anytype-bin' 'picom' 'luarocks' 'neovim' 'python-dbus'
     )
 
     for packet in "${packets[@]}"; do
@@ -63,7 +63,7 @@ function install_vim(){
 # Install AUR Packages
 function install_aur_packages() {
     packets=(
-        'qtile-git' 'farge' 'qtile-extras-git' 'caffeine'
+        'qtile-git' 'ponymix' 'farge' 'qtile-extras-git' 'caffeine'
         'visual-studio-code-bin' 'pulseaudio-bluetooth' 'telegram-desktop'
         'google-chrome' 'wpgtk-git' 'insect' 'cava-git' 'thunar-extended'
         'thunar-volman' 'thunar-archive-plugins' 'hugo' 'gromit-mpx-git' 'nbfc' 'ntfs-3g'
@@ -71,7 +71,7 @@ function install_aur_packages() {
         'rofi-emoji' 'zathura-pdf-mupdf' 'zathura-pywal-git' 'zathura-ps'
         'python-rofi-git' 'sptlrx-bin'
         'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
-        'whatsdesk-bin' 'lyrics-in-terminal' 'ponymix' 'zen-browser-bin' 'minder-git'
+        'whatsdesk-bin' 'lyrics-in-terminal'  'zen-browser-bin' 'minder-git'
     )
 
     for packet in "${packets[@]}"; do
