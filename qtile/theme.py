@@ -207,28 +207,28 @@ def init_widgets_list():
       background=transparent,
     ),
     
-    # widget.Wttr(
-    #   decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
-    #   foreground=secondary_color[1],
-    #   location={'': ''},
-    #   update_interval=300,
-    #   format='%c',
-    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-    # ),
+    *([widget.Wttr(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
+      foreground=secondary_color[1],
+      location={'': ''},
+      update_interval=300,
+      format='%c',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    )] if weather_widget else []),
 
-    # widget.Wttr(
-    #   decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
-    #   foreground=secondary_color[0],
-    #   location={'':''},
-    #   update_interval=300,
-    #   format='%t',
-    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-    # ),
+    *([widget.Wttr(
+      decorations=[RectDecoration(colour=secondary_color[1], radius=[0,7,7,0], filled=True)],
+      foreground=secondary_color[0],
+      location={'':''},
+      update_interval=300,
+      format='%t',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    )] if weather_widget else []),
     
-    # widget.Spacer(
-    #   length=5,
-    #   background=transparent,
-    # ),
+    *([widget.Spacer(
+      length=5,
+      background=transparent,
+    )] if weather_widget else []),
 
     InternetIcon(
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],

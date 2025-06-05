@@ -39,7 +39,6 @@ import qtile_extras.hook
 from libqtile.utils import send_notification
 from colors import *
 
-
 #### Variables ####
 home = os.path.expanduser("~")  # Path for use in folders
 # Modifiers
@@ -52,6 +51,9 @@ alt = "mod1"
 file = open(home + "/variables", "r")
 variables = file.readlines()
 
+# Display Weather?
+weather_widget = str(variables[16].strip()) == "True"
+#
 # Bar in all monitors?
 single_monitor = str(variables[3].strip())
 
@@ -119,7 +121,6 @@ bar_position = str(variables[6].strip())
 widget_width = 200  # Width of widgets varies depending the resolution
 
 # Set Bar and font sizes for different resolutions
-
 ## Margins
 layout_margin = 5  # Layout margins
 single_layout_margin = 5  # Single window margin
@@ -196,11 +197,11 @@ SOS_Panel = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Panel.rasi"])
 SOS_Session = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Session.rasi"])
 SOS_Themes = Rofi(rofi_args=["-theme", "~/.config/rofi/SOS_Themes.rasi"])
 
-# Weather
-w_appkey = str(
-    variables[3].strip()
-)  # Get a key here https://home.openweathermap.org/users/sign_up
-w_cityid = "3995402"  # "3514783" Veracruz, "3995402" Morelia, "3521342" Playa del Carmen https://openweathermap.org/city/
+# # Weather not used anymore using wttr instead
+# w_appkey = str(
+#     variables[3].strip()
+# )  # Get a key here https://home.openweathermap.org/users/sign_up
+# w_cityid = "3995402"  # "3514783" Veracruz, "3995402" Morelia, "3521342" Playa del Carmen https://openweathermap.org/city/
 
 # Rofi Launcher
 rofi_launcher = 'rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"'
@@ -208,17 +209,14 @@ sudo_rofi_launcher = (
     'sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"'
 )
 
-
 #### Hooks ####
 @hook.subscribe.startup
 def start():
     subprocess.call(home + "/.local/bin/SOS_Restart")
 
-
 @hook.subscribe.startup_once
 def start_once():
     subprocess.call(home + "/.local/bin/SOS_Start")
-
 
 @hook.subscribe.client_new
 def follow_window(client):
@@ -228,7 +226,6 @@ def follow_window(client):
             targetgroup = qtile.groups_map[group.name]
             targetgroup.toscreen(toggle=False)
             break
-
 
 @hook.subscribe.client_name_updated
 def follow_window_name(client):
@@ -269,16 +266,13 @@ def i3lock_colors(qtile):
         ]
     )
 
-
 # Toggle Bar Blur
 def toggle_bar_blur(qtile):
     with open(home + "/.config/picom/picom.conf", "w") as file:
         file.writelines(bar_blur)
 
-
 # Transparent for bars and widgets
 transparent = "00000000"
-
 
 ## Get network device in use
 def get_net_dev():
@@ -289,9 +283,7 @@ def get_net_dev():
     output = ps.communicate()[0].decode("ascii").strip()
     return output
 
-
 wifi = get_net_dev()
-
 
 ## Get local IP Address
 def get_private_ip():
@@ -301,7 +293,6 @@ def get_private_ip():
         # Alternative method if gethostbyname fails
         ip = get_private_ip_alternative()
     return ip
-
 
 def get_private_ip_alternative():
     # Using an alternative method to get the private IP address
@@ -316,9 +307,7 @@ def get_private_ip_alternative():
         s.close()
     return ip
 
-
 private_ip = get_private_ip()
-
 
 ## Get Public IP Address
 def get_public_ip(timeout=2):
@@ -337,26 +326,19 @@ def get_public_ip(timeout=2):
     else:
         return answer
 
-
 public_ip = get_public_ip()
 
 # Call Calendar Notification
-
-
 def calendar_notification(qtile):
     {subprocess.call(home + "/.local/bin/SOS_Calendar")}
-
 
 def calendar_notification_prev(qtile):
     {subprocess.call([home + "/.local/bin/SOS_Calendar", "prev"])}
 
-
 def calendar_notification_next(qtile):
     {subprocess.call([home + "/.local/bin/SOS_Calendar", "next"])}
 
-
 ## Rofi Widgets
-
 ## Set default backend
 def set_default_backend(qtile):
     options = backend
@@ -428,14 +410,12 @@ def shortcuts(qtile):
         shell=True,
     )
 
-
 # Display Emojis
 def emojis(qtile):
     subprocess.run(
         "rofi -modi emoji -show emoji -theme '~/.config/rofi/SOS_Emoji.rasi' -emoji-format {emoji}",
         shell=True,
     )
-
 
 # NightLight widget
 def nightLight_widget(qtile):
@@ -460,7 +440,6 @@ def nightLight_widget(qtile):
                 ["notify-send", "-a", "󰣇 SpectrumOS", "Temperature Set to Cool"]
             )
 
-
 # Farge Widget
 def fargewidget(qtile):
     options = [" Hex", " RGB"]
@@ -472,7 +451,6 @@ def fargewidget(qtile):
             subprocess.run("farge --notify --expire-time 20000", shell=True)
         else:
             subprocess.run("farge --notify --rgb --expire-time 20000", shell=True)
-
 
 # Draw Widget
 def draw_widget(qtile):
@@ -486,7 +464,6 @@ def draw_widget(qtile):
             subprocess.run(["notify-send", "-a", "󰣇 SpectrumOS", "You can Draw Now"])
         else:
             subprocess.run("gromit-mpx -q", shell=True)
-
 
 # Logout widget
 def SOS_Logout(qtile):
@@ -506,7 +483,6 @@ def SOS_Logout(qtile):
         else:
             os.system("systemctl poweroff")
 
-
 # Audio widget
 def audio_widget(qtile):
     options = [" Input", "󰓃 Output"]
@@ -518,7 +494,6 @@ def audio_widget(qtile):
             qtile.spawn(home + "/.local/bin/SOS_Audio source")
         else:
             qtile.spawn(home + "/.local/bin/SOS_Audio sink")
-
 
 # Network Widget
 def network_widget(qtile):
@@ -536,7 +511,6 @@ def network_widget(qtile):
         ]
         qtile.spawn(commands[index][1])
 
-
 ## Show / Hide all Groups
 def show_groups(qtile):
     if hide_unused_groups == True:
@@ -550,6 +524,17 @@ def show_groups(qtile):
         file.writelines(variables)
     qtile.reload_config()
 
+## Toggle Weather Widget
+def toggle_weather_widget(qtile):
+    if variables[16].strip() == "True":
+        variables[16] = "False\n"
+    else:
+        variables[16] = "True\n"
+
+    with open(home + "/variables", "w") as file:
+        file.writelines(variables)
+
+    qtile.restart()
 
 ## groups_icon_select
 def group_icon(qtile):
@@ -577,7 +562,6 @@ def group_icon(qtile):
         with open(home + "/variables", "w") as file:
             file.writelines(variables)
         qtile.reload_config()
-
 
 ## Select Dark or Light Theming
 def dark_white(qtile):
@@ -666,7 +650,6 @@ def dark_white(qtile):
             ]
         )
 
-
 ## Select Bar Position Top or Bottom
 def bar_pos(qtile):
     options = ["󰃑 Top", "󰃈 Bottom", "󰃊 Toggle Bar"]
@@ -703,7 +686,6 @@ def bar_pos(qtile):
         else:
             qtile.hide_show_bar()
 
-
 # Change Theme widget
 def change_theme(qtile):
     options = theme
@@ -724,7 +706,6 @@ def change_theme(qtile):
         subprocess.run(
             ["notify-send", "-a", "󰣇 SpectrumOS", "󰇜 Bar Theme: ", "%s" % theme[index]]
         )
-
 
 # Screenshot widget
 def screenshot(qtile):
@@ -754,7 +735,6 @@ def screenshot(qtile):
                 shell=True,
             )
 
-
 # Popup Widgets
 def show_chords(qtile):
     controls = [
@@ -783,12 +763,10 @@ def show_chords(qtile):
     )
     layout.show(centered=True)
 
-
 def hide_chords(qtile):
     if hasattr(qtile, "current_popup"):
         qtile.current_popup.hide()
         del qtile.current_popup
-
 
 ## Support SpectrumOS
 def support_spectrumos(qtile):
@@ -836,6 +814,7 @@ def control_panel(qtile):
         "     View Shortcuts (❖ + 󰘶 + 󰌑)",
         "     Emojis (❖ + V)",
         "     System Cleaner",
+        "    󰖕 Toggle Weather Widget",
         " Session Menu (Ctrl + Q)",
         " Support SpectrumOS",
     ]
@@ -893,6 +872,8 @@ def control_panel(qtile):
         elif index == 28:
             qtile.spawn(home + "/.local/bin/SOS_Clean_System")
         elif index == 29:
-            qtile.function(session_widget)
+            qtile.function(toggle_weather_widget)
         elif index == 30:
+            qtile.function(session_widget)
+        elif index == 31:
             qtile.function(support_spectrumos)

@@ -111,27 +111,27 @@ def init_widgets_list():
       length=4,
     ),
 
-    # widget.Wttr(
-    #   fontshadow=color[0],
-    #   foreground=secondary_color[3],
-    #   location={'': ''},
-    #   update_interval=300,
-    #   format='%c',
-    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-    # ),
+    *([widget.Wttr(
+      fontshadow=color[0],
+      foreground=secondary_color[3],
+      location={'': ''},
+      update_interval=300,
+      format='%c',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    )] if weather_widget else []),
 
-    # widget.Wttr(
-    #   fontshadow=color[0],
-    #   foreground=secondary_color[3],
-    #   location={'':''},
-    #   update_interval=300,
-    #   format='%t',
-    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-    # ),
+    *([widget.Wttr(
+      fontshadow=color[0],
+      foreground=secondary_color[3],
+      location={'':''},
+      update_interval=300,
+      format='%t',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    )] if weather_widget else []),
 
-    # widget.Spacer(
-    #   length=4,
-    # ),
+    *([widget.Spacer(
+      length=4,
+    )] if weather_widget else []),
     
     InternetIcon(
       fontshadow=color[0],

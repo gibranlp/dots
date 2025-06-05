@@ -1,17 +1,10 @@
 [Unit]
-Description=Show Plymouth Boot Screen
-DefaultDependencies=no
-Wants=systemd-ask-password-plymouth.path systemd-vconsole-setup.service
-After=systemd-vconsole-setup.service systemd-udev-trigger.service systemd-udevd.service
-Before=systemd-ask-password-plymouth.service
-ConditionKernelCommandLine=!plymouth.enable=0
-ConditionVirtualization=!container
-IgnoreOnIsolate=true
+Description=Terminate Plymouth Boot Screen
+After=rc-local.service plymouth-start.service systemd-user-sessions.service
 
 [Service]
-ExecStart=/usr/bin/plymouthd --mode=boot --pid-file=/run/plymouth/pid --attach-to-session
-ExecStartPost=-/usr/bin/plymouth show-splash
-Type=forking
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=-/usr/bin/plymouth quit
+Type=oneshot
 RemainAfterExit=yes
-KillMode=mixed
-SendSIGKILL=no
+TimeoutSec=20

@@ -210,19 +210,19 @@ def init_widgets_list():
       background=transparent,
     ),
 
-    # widget.Wttr(
-    #   decorations=[RectDecoration(colour=secondary_color[0], radius=3, filled=True)],
-    #   foreground=secondary_color[3],
-    #   location={'': ''},
-    #   update_interval=300,
-    #   format='%c %t',
-    #   mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
-    # ),
+    *([widget.Wttr(
+      decorations=[RectDecoration(colour=secondary_color[0], radius=3, filled=True)],
+      foreground=secondary_color[3],
+      location={'': ''},
+      update_interval=300,
+      format='%c %t',
+      mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'curl wttr.in; exec zsh'")},
+    )] if weather_widget else []),
 
-    # widget.Spacer(
-    #   length=4,
-    #   background=transparent,
-    # ),
+    *([widget.Spacer(
+      length=4,
+      background=transparent,
+    )] if weather_widget else []),
     
     InternetIcon(
       decorations=[RectDecoration(colour=secondary_color[6], radius=[3,0,0,3], filled=True)],
