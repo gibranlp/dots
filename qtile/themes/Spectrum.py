@@ -142,7 +142,7 @@ def init_widgets_list():
           background=transparent,
     ),
     
-    widget.Systray(),]
+    widget.StatusNotifier(),]
     ),
     
     widget.Spacer(

@@ -150,7 +150,7 @@ def init_widgets_list():
           length=5,
           background=transparent,
     ),
-          widget.Systray(),]
+          widget.StatusNotifier(),]
     ),
     widget.Spacer(
       length=bar.STRETCH,

@@ -786,37 +786,37 @@ def support_spectrumos(qtile):
 def control_panel(qtile):
     options = [
         "󰸉 Wallpaper Options",  # 0
-        "     Set Random Wallpaper (❖ + Z)",
-        "     Select Wallpaper (❖ + E) + 1",
+        "     Set Random Wallpaper (❖ + Z)", #1
+        "     Select Wallpaper (❖ + E) + 1", #2
         "󱍖 Theme Options",  # 3
-        "    󰸌 Set Color Scheme (❖ + E) + 3",
-        "    󰸉 Select Wallpaper Theme (❖ + E) + 4",
-        "    󰔎 Dark/Light Theme (❖ + E) + 5",
-        " Bar Options",  # 6
-        "     Bar Position (❖ + E) + 6",
-        "     Change Bar Theme (❖ + E) + 2",
-        "    %s Toggle Bar Blur (❖ + E) + 9" % blur_icon,
-        "    %s Toggle Groups (❖ + E) + 7" % str(variables[9].strip()),
-        "     Group Icons (❖ + E) + 8",
-        " Tools",  # 12
-        "    󰈞 Find / Open Files (❖ + F)",
-        "     Todo List (❖ + N)",
-        "     Apps as Sudo (❖ + U) + X or Y",
-        "     Calculator (❖ + C)",
-        "     Network Manager (❖ + B)",
-        "     Screenshot (prtnsc)",
-        "     Monitor Temperature (❖ + 󰘶 + O)",
-        "     Monitor Layout (❖ + M)",
-        "     Bluetooth Manager (❖ + 󰘶 + B)",
-        " Miscelaneous",  # 23
-        "    󰽉 Screen Draw (❖ + 󰘶 + P)",
-        "     Pick Color (❖ + P)",
-        "     View Shortcuts (❖ + 󰘶 + 󰌑)",
-        "     Emojis (❖ + V)",
-        "     System Cleaner",
-        "    󰖕 Toggle Weather Widget",
-        " Session Menu (Ctrl + Q)",
-        " Support SpectrumOS",
+        "    󰸌 Set Color Scheme (❖ + E) + 3", #4
+        "    󰸉 Select Wallpaper Theme (❖ + E) + 4", #5
+        "    󰔎 Dark/Light Theme (❖ + E) + 5", #6
+        " Bar Options",  # 7
+        "     Bar Position (❖ + E) + 6", #8
+        "     Change Bar Theme (❖ + E) + 2", #9 
+        "    %s Toggle Bar Blur (❖ + E) + 9" % blur_icon, #10
+        "    %s Toggle Groups (❖ + E) + 7" % str(variables[9].strip()), #11
+        "     Group Icons (❖ + E) + 8", #12
+        "    󰖕 Toggle Weather Widget", #13
+        " Tools",  # 14
+        "    󰈞 Find / Open Files (❖ + F)", #15
+        "     Todo List (❖ + N)", #16
+        "     Apps as Sudo (❖ + U) + X or Y", #17
+        "     Calculator (❖ + C)", #18
+        "     Network Manager (❖ + B)", #19
+        "     Screenshot (prtnsc)", #20
+        "     Monitor Temperature (❖ + 󰘶 + O)", #21
+        "     Monitor Layout (❖ + M)", #22
+        "     Bluetooth Manager (❖ + 󰘶 + B)", #23
+        " Miscelaneous",  # 24
+        "    󰽉 Screen Draw (❖ + 󰘶 + P)", #25
+        "     Pick Color (❖ + P)",#26 
+        "     View Shortcuts (❖ + 󰘶 + 󰌑)", #27
+        "     Emojis (❖ + V)", #28 
+        "     System Cleaner", #29
+        " Session Menu (Ctrl + Q)", #30
+        " Support SpectrumOS", #31
     ]
 
     index, key = SOS_Panel.select(" 󱂪 Control Panel", options)
@@ -843,37 +843,37 @@ def control_panel(qtile):
             qtile.function(show_groups)
         elif index == 12:
             qtile.function(group_icon)
-        elif index == 14:
-            subprocess.run(home + "/.local/bin/SOS_Search")
-        elif index == 15:
-            qtile.spawn("rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi")
-        elif index == 16:
-            qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')
-        elif index == 17:
-            subprocess.run(home + "/.local/bin/SOS_Calculator")
-        elif index == 18:
-            qtile.function(network_widget)
-        elif index == 19:
-            qtile.function(screenshot)
-        elif index == 20:
-            qtile.function(nightLight_widget)
-        elif index == 21:
-            subprocess.run(home + "/.local/bin/SOS_Multimonitor")
-        elif index == 22:
-            subprocess.run(home + "/.local/bin/SOS_Bluetooth")
-        elif index == 24:
-            qtile.function(draw_widget)
-        elif index == 25:
-            qtile.function(fargewidget)
-        elif index == 26:
-            qtile.function(shortcuts)
-        elif index == 27:
-            qtile.function(emojis)
-        elif index == 28:
-            qtile.spawn(home + "/.local/bin/SOS_Clean_System")
-        elif index == 29:
+        elif index == 13:
             qtile.function(toggle_weather_widget)
+        elif index == 15:
+            subprocess.run(home + "/.local/bin/SOS_Search")
+        elif index == 16:
+            qtile.spawn("rofi -modi TODO:~/.local/bin/SOS_Todo -show TODO -theme ~/.config/rofi/SOS_Todo.rasi")
+        elif index == 17:
+            qtile.spawn('sudo rofi -show drun -show-icons -theme "~/.config/rofi/SOS_Launcher.rasi"')
+        elif index == 18:
+            subprocess.run(home + "/.local/bin/SOS_Calculator")
+        elif index == 19:
+            qtile.function(network_widget)
+        elif index == 20:
+            qtile.function(screenshot)
+        elif index == 21:
+            qtile.function(nightLight_widget)
+        elif index == 22:
+            subprocess.run(home + "/.local/bin/SOS_Multimonitor")
+        elif index == 23:
+            subprocess.run(home + "/.local/bin/SOS_Bluetooth")
+        elif index == 25:
+            qtile.function(draw_widget)
+        elif index == 26:
+            qtile.function(fargewidget)
+        elif index == 27:
+            qtile.function(shortcuts)
+        elif index == 28:
+            qtile.function(emojis)
+        elif index == 29:
+            qtile.spawn(home + "/.local/bin/SOS_Clean_System")
         elif index == 30:
-            qtile.function(session_widget)
+            qtile.function(session_widget)  
         elif index == 31:
             qtile.function(support_spectrumos)

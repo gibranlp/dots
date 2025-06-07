@@ -193,7 +193,7 @@ def init_widgets_list():
           length=5,
           background=transparent,
       ),
-      widget.Systray(),]
+      widget.StatusNotifier(),]
     ),
     ]
   return widgets_list
