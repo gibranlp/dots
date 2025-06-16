@@ -51,7 +51,7 @@ function install_variables(){
 }
 
 # Install VIM - IDE
-function install_vim(){
+function install_nvim(){
     git clone https://github.com/LazyVim/starter ~/.config/nvim
     mkdir -p ~/.config/nvim/autoload
     mkdir -p ~/.config/nvim/lua/plugins/
@@ -413,7 +413,7 @@ function run_all() {
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--latex] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--latex] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--nvim] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
     exit 1
 }
 
@@ -471,6 +471,9 @@ for arg in "$@"; do
             ;;
         --neofetch)
             install_neofetch
+            ;;
+         --nvim)
+            install_nvim
             ;;
         --optimus)
             install_optimus
