@@ -7,30 +7,24 @@
 # SpectrumOS - Embrace the Chromatic Symphony!
 # By: gibranlp <thisdoesnotwork@gibranlp.dev>
 # MIT licence 
-#
-#
 
-# Read variables from the config file
+# ─── Load variables from ~/variables ───────────────────────────────────────────
 variables=()
 while IFS= read -r line; do
    variables+=("$line")
 done < ~/variables
 
-# Directory containing wallpapers
+# ─── Define paths ─────────────────────────────────────────────────────────────
 dir="$HOME/Pictures/Wallpapers/"
-# File to keep track of the last used wallpaper
 last_wallpaper_file="$HOME/.config/qtile/last_wallpaper"
-
-# Ensure the last wallpaper file exists
 touch "$last_wallpaper_file"
 last_wallpaper=$(cat "$last_wallpaper_file")
 
-# Function to get a new random wallpaper that is different from the last used one
+# ─── Function: Get new random wallpaper different from last ───────────────────
 get_new_wallpaper() {
     local file
     while true; do
         file=$(ls -1 "$dir" | sort --random-sort | head -1)
-        # Check if the file is the same as the last used wallpaper
         if [ "$file" != "$last_wallpaper" ]; then
             echo "$file" > "$last_wallpaper_file"
             break
@@ -39,32 +33,50 @@ get_new_wallpaper() {
     echo "$file"
 }
 
-# Select a new random wallpaper
+# ─── Pick wallpaper ───────────────────────────────────────────────────────────
 file=$(get_new_wallpaper)
-path=$(readlink --canonicalize "$dir/$file") # Convert to full path
+path=$(readlink --canonicalize "$dir/$file")
 
-# Parse options
-while getopts "w:t:l" opt; do
-  case "$opt" in
-    w) wall=$OPTARG ;;
-    t) back=$OPTARG ;;
-    l) light="-L" ;;
-  esac
-done
+# ─── Determine light/dark mode with override (from line 8) ────────────────────
+override="${variables[7],,}"  # line 8 (index 7), force lowercase
 
-# Function to set the wallpaper
+HOUR=$(date +"%H")
+MIN=$(date +"%M")
+TIME=$((10#$HOUR * 60 + 10#$MIN))
+
+case "$override" in
+    light)
+        light_flag="-L"
+        echo "Overridden to light theme (from line 8 override)"
+        ;;
+    dark)
+        light_flag=""
+        echo "Overridden to dark theme (from line 8 override)"
+        ;;
+    time|*)
+        if (( TIME >= 421 && TIME <= 1140 )); then
+            light_flag="-L"
+            echo "Time-based: light theme (time: $HOUR:$MIN)"
+        else
+            light_flag=""
+            echo "Time-based: dark theme (time: $HOUR:$MIN)"
+        fi
+        ;;
+esac
+
+# ─── Function: Set wallpaper and restart Qtile ────────────────────────────────
 set_wall() {
-  if [ "${variables[14]}" = "No Theme" ]; then
-    gowall convert "${path}" --output "/usr/local/backgrounds/background.png"
-  else
-    gowall convert "${path}" -t "${variables[14]}" --output "/usr/local/backgrounds/background.png"
-  fi
+    if [ "${variables[14]}" = "No Theme" ]; then
+        gowall convert "${path}" --output "/usr/local/backgrounds/background.png"
+    else
+        gowall convert "${path}" -t "${variables[14]}" --output "/usr/local/backgrounds/background.png"
+    fi
 
-  wpg "${variables[4]}" -s "/usr/local/backgrounds/background.png" --backend "${variables[2]}"
-  rm -r ~/.config/qtile/__pycache__
+    wpg "${variables[4]}" $light_flag -s "/usr/local/backgrounds/background.png" --backend "${variables[2]}"
+
+    rm -r ~/.config/qtile/__pycache__
 }
 
-
-# Set the wallpaper and restart Qtile
+# ─── Run everything ───────────────────────────────────────────────────────────
 set_wall
 qtile cmd-obj -o cmd -f restart

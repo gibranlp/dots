@@ -8,37 +8,70 @@
 # By: gibranlp <thisdoesnotwork@gibranlp.dev>
 # MIT licence 
 
-# Array to store the variables read from the file
+# ─── Load variables from ~/variables ───────────────────────────────────────────
 variables=()
-
-# Read each line from the file and add it to the variables array
 while IFS= read -r line; do
    variables+=("$line")
 done < ~/variables
 
-# Function to set the wallpaper and perform additional configurations
+# ─── Get current time and decide if light mode is needed ──────────────────────
+HOUR=$(date +"%H")
+MIN=$(date +"%M")
+TIME=$((10#$HOUR * 60 + 10#$MIN))
+
+# ─── Determine Light/Dark Mode from Variables or Auto ─────────────────────────
+user_pref="${variables[6]}"  # Assuming this line is "Dark", "Light", or "Auto"
+light_flag=""
+
+case "$user_pref" in
+  Light)
+    light_flag="-L"
+    echo "User preference: Light"
+    ;;
+  Dark)
+    light_flag=""
+    echo "User preference: Dark"
+    ;;
+  Auto)
+    HOUR=$(date +"%H")
+    MIN=$(date +"%M")
+    TIME=$((10#$HOUR * 60 + 10#$MIN))
+    if (( TIME >= 421 && TIME <= 1140 )); then
+      light_flag="-L"
+      echo "Auto mode: Light ($HOUR:$MIN)"
+    else
+      light_flag=""
+      echo "Auto mode: Dark ($HOUR:$MIN)"
+    fi
+    ;;
+  *)
+    echo "Unknown theme setting in variables[6]: $user_pref"
+    ;;
+esac
+
+
+# ─── Function: Set wallpaper and theme ─────────────────────────────────────────
 set_wall(){
   local theme="${variables[14]}"
   local output="/usr/local/backgrounds/background.png"
 
-  # Conditionally build gowall command with or without theme
   if [ "$theme" = "No Theme" ]; then
     gowall convert "$WALLPAPER" --output "$output"
   else
     gowall convert "$WALLPAPER" -t "$theme" --output "$output"
   fi
 
-  # Set the wallpaper using wpg with backend and color scheme
-  wpg "${variables[4]}" -s "$output" --backend "${variables[2]}"
+  # Apply wallpaper with or without -L flag
+  wpg "${variables[4]}" $light_flag -s "$output" --backend "${variables[2]}"
 
-  # (Optional) Copy the wallpaper again if needed
+  # Optional: copy again (if placeholder for future use)
   cp "$output" "$output"
 
-  # Restart qtile to apply new theme
+  # Restart Qtile to apply changes
   qtile cmd-obj -o cmd -f restart
 }
 
-# Function to get the wallpaper path using rofi
+# ─── Function: Use rofi to select a wallpaper ─────────────────────────────────
 get_wall(){
   rofi -show file-browser-extended -theme ~/.config/rofi/SOS_Wallpaper.rasi \
        -file-browser-exclude *.sh \
@@ -48,10 +81,9 @@ get_wall(){
        -file-browser-hide-parent
 }
 
-# Get the selected wallpaper path
+# ─── Main: Get wallpaper and apply ────────────────────────────────────────────
 WALLPAPER=$(get_wall)
 
-# Check if a wallpaper was selected
 if [ -z "$WALLPAPER" ]; then
   notify-send -a ' SpectrumOS' "󱐘 No Wallpaper Selected!" 
 else
