@@ -3,7 +3,7 @@ Miasma
 wal
 True
 -c
-/.config/qtile/themes/dark
+/.config/qtile/themes/dark/
 bottom
 Dark
  

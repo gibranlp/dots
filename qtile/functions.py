@@ -122,11 +122,11 @@ widget_width = 200  # Width of widgets varies depending the resolution
 
 # Set Bar and font sizes for different resolutions
 ## Margins
-layout_margin = 5  # Layout margins
-single_layout_margin = 5  # Single window margin
+layout_margin = 2  # Layout margins
+single_layout_margin = 2  # Single window margin
 ## Borders
-layout_border_width = 4  # Layout border width
-single_border_width = 4  # Single border width
+layout_border_width = 3  # Layout border width
+single_border_width = 3  # Single border width
 
 ## Sensor for temperature
 temp_sensor = str(variables[13].strip())
@@ -563,92 +563,75 @@ def group_icon(qtile):
             file.writelines(variables)
         qtile.reload_config()
 
-## Select Dark or Light Theming
 def dark_white(qtile):
-    options = [" Dark", " Light"]
+    options = [" Dark", " Light", " Time"]
     index, key = SOS_Backend.select(
         "󰔎 Dark/White -> " + str(variables[7].strip()), options
     )
-    if key == -1 or index == 2:
+    if key == -1:
         SOS_Backend.close()
-    else:
-        if index == 0:
-            variables[4] = "-c" + "\n"
-            variables[7] = "Dark" + "\n"
-            variables[5] = "/.config/qtile/themes/dark" + "\n"
-            subprocess.run(
-                [
-                    "cp",
-                    home + "/.config/qtile/themes/dark/" + current_theme + ".py",
-                    home + "/.config/qtile/theme.py",
-                ]
-            )
-            subprocess.run(
-                [
-                    "wal",
-                    "-i",
-                    "/usr/local/backgrounds/background.png",
-                    "--backend",
-                    "%s" % def_backend,
-                ]
-            )
-            subprocess.run(
-                [
-                    "wpg",
-                    "-s",
-                    "/usr/local/backgrounds/background.png",
-                    "--backend",
-                    "%s" % def_backend,
-                ]
-            )
-        else:
-            variables[4] = "-L" + "\n"
-            variables[7] = "Light" + "\n"
-            variables[5] = "/.config/qtile/themes/light" + "\n"
-            subprocess.run(
-                [
-                    "cp",
-                    home + "/.config/qtile/themes/light/" + current_theme + ".py",
-                    home + "/.config/qtile/theme.py",
-                ]
-            )
-            subprocess.run(
-                [
-                    "wal",
-                    "-l",
-                    "-i",
-                    "/usr/local/backgrounds/background.png",
-                    "--backend",
-                    "%s" % def_backend,
-                ]
-            )
-            subprocess.run(
-                [
-                    "wpg",
-                    "-L",
-                    "-A",
-                    "-s",
-                    "/usr/local/backgrounds/background.png",
-                    "--backend",
-                    "%s" % def_backend,
-                ]
-            )
+        return
 
-        subprocess.run(
-            ["cp", "-r", home + "/.local/share/themes/FlatColor", "/usr/local/themes/"]
-        )
-        with open(home + "/variables", "w") as file:
-            file.writelines(variables)
-        qtile.restart()
-        subprocess.run(
-            [
-                "notify-send",
-                "-a",
-                "󰣇 SpectrumOS",
-                "󰔎 Theme changed to: ",
-                "%s" % options[index],
-            ]
-        )
+    # Determine base theme name and directory
+    theme_name = variables[1].strip()  # line 2 (index 1)
+    theme_file = theme_name + ".py"
+
+    if index == 0:  # Dark
+        variables[7] = "Dark\n"
+        variables[5] = "/.config/qtile/themes/dark/\n"
+        theme_path = home + "/.config/qtile/themes/dark/" + theme_file
+        wal_args = ["wal", "-i", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+        wpg_args = ["wpg", "-s", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+
+    elif index == 1:  # Light
+        variables[7] = "Light\n"
+        variables[5] = "/.config/qtile/themes/light/\n"
+        theme_path = home + "/.config/qtile/themes/light/" + theme_file
+        wal_args = ["wal", "-l", "-i", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+        wpg_args = ["wpg", "-L", "-A", "-s", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+
+    elif index == 2:  # Time
+        variables[7] = "Time\n"
+        from datetime import datetime
+        hour = datetime.now().hour
+        if 7 <= hour <= 18:
+            variables[5] = "/.config/qtile/themes/light/\n"
+            theme_path = home + "/.config/qtile/themes/light/" + theme_file
+            wal_args = ["wal", "-l", "-i", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+            wpg_args = ["wpg", "-L", "-A", "-s", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+        else:
+            variables[5] = "/.config/qtile/themes/dark/\n"
+            theme_path = home + "/.config/qtile/themes/dark/" + theme_file
+            wal_args = ["wal", "-i", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+            wpg_args = ["wpg", "-s", "/usr/local/backgrounds/background.png", "--backend", def_backend]
+
+    # Copy theme file to ~/.config/qtile/theme.py
+    subprocess.run(["cp", theme_path, home + "/.config/qtile/theme.py"])
+
+    # Save updated variables
+    with open(home + "/variables", "w") as file:
+        file.writelines(variables)
+
+    # Apply theme with wal and wpg (faster)
+    subprocess.run(wal_args)
+    subprocess.run(wpg_args)
+
+    # Restart Qtile
+    qtile.restart()
+
+    # Notify
+    subprocess.run(
+        [
+            "notify-send",
+            "-a",
+            "󰣇 SpectrumOS",
+            "󰔎 Theme:",
+            options[index],
+        ]
+    )
+
+    SOS_Backend.close()
+
 
 ## Select Bar Position Top or Bottom
 def bar_pos(qtile):
@@ -690,22 +673,58 @@ def bar_pos(qtile):
 def change_theme(qtile):
     options = theme
     index, key = SOS_Themes.select("󰇜 Bar Theme -> " + current_theme, options)
+
     if key == -1:
         SOS_Themes.close()
         subprocess.run(["notify-send", "-a", "󰣇 SpectrumOS", "No Theme Selected!"])
+        return
+
+    # Update selected theme name
+    selected_theme = theme[index]
+    variables[1] = selected_theme + "\n"
+    theme_file = selected_theme + ".py"
+
+    # Determine override setting (line 8)
+    override = variables[7].strip().lower()
+    from datetime import datetime
+
+    if override == "light":
+        theme_dir = "/.config/qtile/themes/light/"
+    elif override == "dark":
+        theme_dir = "/.config/qtile/themes/dark/"
+    elif override == "time":
+        hour = datetime.now().hour
+        if 7 <= hour <= 18:
+            theme_dir = "/.config/qtile/themes/light/"
+        else:
+            theme_dir = "/.config/qtile/themes/dark/"
     else:
-        subprocess.run("rm -rf ~/.config/qtile/theme.py", shell=True)
-        variables[1] = theme[index] + "\n"
-        new_theme = theme[index] + ".py"
-        subprocess.run(
-            ["cp", themes_dir + "/" + new_theme, home + "/.config/qtile/theme.py"]
-        )
-        with open(home + "/variables", "w") as file:
-            file.writelines(variables)
-        qtile.restart()
-        subprocess.run(
-            ["notify-send", "-a", "󰣇 SpectrumOS", "󰇜 Bar Theme: ", "%s" % theme[index]]
-        )
+        # fallback
+        theme_dir = "/.config/qtile/themes/dark/"
+
+    variables[5] = theme_dir + "\n"
+
+    # Remove and copy correct theme file
+    subprocess.run(["rm", "-f", home + "/.config/qtile/theme.py"])
+    subprocess.run(
+        ["cp", home + theme_dir + theme_file, home + "/.config/qtile/theme.py"]
+    )
+
+    # Save variables
+    with open(home + "/variables", "w") as file:
+        file.writelines(variables)
+
+    qtile.restart()
+    subprocess.run(
+        [
+            "notify-send",
+            "-a",
+            "󰣇 SpectrumOS",
+            "󰇜 Bar Theme: ",
+            selected_theme,
+        ]
+    )
+
 
 # Screenshot widget
 def screenshot(qtile):
