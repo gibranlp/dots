@@ -60,15 +60,15 @@ single_monitor = str(variables[3].strip())
 ## Read picom.conf for blur in the bar
 file = open(home + "/.config/picom/picom.conf", "r")
 bar_blur = file.readlines()
-current_blur = bar_blur[320].strip()
+current_blur = bar_blur[319].strip()
 
 if current_blur == '"QTILE_INTERNAL:32c = 0"':
-    new_blur = '"QTILE_INTERNAL:32c = 1"' + "\n"
-    bar_blur[320] = new_blur
+    new_blur = '  "QTILE_INTERNAL:32c = 1"' + "\n"
+    bar_blur[319] = new_blur
     blur_icon = "󰂵"
 else:
-    new_blur = '"QTILE_INTERNAL:32c = 0"' + "\n"
-    bar_blur[320] = new_blur
+    new_blur = '  "QTILE_INTERNAL:32c = 0"' + "\n"
+    bar_blur[319] = new_blur
     blur_icon = "󰂷"
 
 ## Get Terminal Fontsize
@@ -100,7 +100,7 @@ hide_unused_groups = bool(str(variables[8].strip()))
 
 # Themes
 current_theme = str(variables[1].strip())
-themes_dir = os.path.expanduser("~/.config/qtile/themes")
+themes_dir = os.path.expanduser("~/.config/qtile/themes/dark")
 theme_files = [
     f for f in os.listdir(themes_dir) if os.path.isfile(os.path.join(themes_dir, f))
 ]
