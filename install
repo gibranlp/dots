@@ -341,6 +341,9 @@ function post_operations(){
   sudo timedatectl set-ntp true
   xdg-settings set default-web-browser zen.desktop
   
+  sudo localectl set-x11-keymap us pc105 intl
+  sudo localectl set-x11-keymap us intl
+
   setxkbmap -layout us -variant intl
   #timedatectl set-timezone America/Mexico_City
   

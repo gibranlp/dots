@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Find Vesktop Window
+vesktop_window=$(xdotool search --class "vesktop" | head -n1)
+
+# Activate window and reload.
+if [ -n "$vesktop_window" ]; then
+    xdotool windowactivate "$vesktop_window"
+    sleep 0.3
+    xdotool key --window "$vesktop_window" ctrl+r
+    echo "Vesktop reloaded."
+else
+    echo "Vesktop not found."
+    exit 1
+fi
