@@ -4,7 +4,7 @@
 html,body {
     height: 100%;
     width: 100%;
-    font-family: "Source Code Pro", monospace;
+    font-family: "Courier Prime";
     margin: 0;
     background-image: url(/usr/local/backgrounds/background.png), url(../background.png);
     background-size: cover;

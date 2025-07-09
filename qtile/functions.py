@@ -213,7 +213,7 @@ sudo_rofi_launcher = (
 @hook.subscribe.startup
 def start():
     subprocess.Popen(home + "/.local/bin/SOS_Restart")
-    subprocess.Popen(home + "/.local/bin/vesktop-reload")
+    subprocess.Popen(home + "/.local/bin/vesktop")
 
 @hook.subscribe.startup_once
 def start_once():

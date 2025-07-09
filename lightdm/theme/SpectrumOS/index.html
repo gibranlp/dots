@@ -139,32 +139,38 @@
         }
     </style>
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            const imgElement = document.querySelector('#userpic img');
-            const usernameInput = document.querySelector('input[type="text"]'); // Adjust if your input has an ID or class
-            const basePath = "/usr/share/lightdm-webkit/themes/SpectrumOS/";
-            const fallbackImage = "login.png";
-    
-            function updateUserImage(username) {
-                const imgPath = basePath + username + ".png";
-                const testImg = new Image();
-                testImg.onload = () => imgElement.src = imgPath;
-                testImg.onerror = () => imgElement.src = basePath + fallbackImage;
-                testImg.src = imgPath;
+    window.addEventListener('DOMContentLoaded', () => {
+        const imgElement = document.querySelector('#userpic img');
+        const usernameInput = document.querySelector('input[type="text"]'); // Adjust if needed
+        const basePath = "/usr/share/lightdm-webkit/themes/SpectrumOS/";
+        const fallbackImage = "login.png";
+
+        function updateUserImage(username) {
+            const imgPath = basePath + username + ".png";
+            const testImg = new Image();
+            testImg.onload = () => imgElement.src = imgPath;
+            testImg.onerror = () => imgElement.src = basePath + fallbackImage;
+            testImg.src = imgPath;
+        }
+
+        if (usernameInput) {
+            const initialValue = usernameInput.value.trim();
+            if (initialValue.length > 0) {
+                updateUserImage(initialValue);
             }
-    
-            if (usernameInput) {
-                usernameInput.addEventListener('input', () => {
-                    const value = usernameInput.value.trim();
-                    if (value.length > 0) {
-                        updateUserImage(value);
-                    } else {
-                        imgElement.src = basePath + fallbackImage;
-                    }
-                });
-            }
-        });
-    </script>
+
+            usernameInput.addEventListener('input', () => {
+                const value = usernameInput.value.trim();
+                if (value.length > 0) {
+                    updateUserImage(value);
+                } else {
+                    imgElement.src = basePath + fallbackImage;
+                }
+            });
+        }
+    });
+</script>
+
 </head>
 <body>
     <div id="bottombar">

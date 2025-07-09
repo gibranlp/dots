@@ -53,6 +53,7 @@ keys = [
     Key([mod],"v", lazy.function(emojis)), # Open Rofi Emojis
     Key([mod],"f",lazy.spawn(home + '/.local/bin/SOS_Search')),# Find Files
     Key(["control"],"q",lazy.function(SOS_Logout)), # Log out
+    Key([mod],"g",lazy.spawn(home + '/.local/bin/SOS_Pass_Generator')), #Password Generator
      
     Key([mod, "shift"],"o",lazy.function(nightLight_widget)), # Set night light
     Key([mod],"p",lazy.function(fargewidget)), # Color Picker Widget

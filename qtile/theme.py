@@ -133,7 +133,7 @@ def init_widgets_list():
     ),
     widget.WidgetBox(
       decorations=[RectDecoration(colour=secondary_color[5], radius=4, filled=True)],
-      text_closed='',
+      text_closed='󰦖',
       text_open='',
       foreground=secondary_color[0],
       widgets=[

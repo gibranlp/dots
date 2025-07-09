@@ -28,6 +28,7 @@ function install_base() {
         'fd' 'fzf' 'cups' 'thefuck' 'pamixer' 'gvfs-mtp' 'gvfs-nfs' 'gvfs-smb'
         'exa' 'xclip' 'xdotool' 'cups-pdf' 'man' 'avahi' 'xorg-server-xephyr' 'conky' 
         'peek' 'libreoffice-fresh' 'anytype-bin' 'picom' 'luarocks' 'neovim' 'python-dbus'
+        'xsel' 'xcopy'
     )
 
     for packet in "${packets[@]}"; do
@@ -72,6 +73,7 @@ function install_aur_packages() {
         'python-rofi-git' 'sptlrx-bin'
         'rofi-file-browser-extended-git' 'walogram' 'ttf-courier-prime'
         'whatsdesk-bin' 'lyrics-in-terminal'  'zen-browser-bin' 'minder-git'
+        'gowall'
     )
 
     for packet in "${packets[@]}"; do
@@ -236,6 +238,12 @@ function install_plymouth(){
   sudo mkinitcpio -P
 }
 
+# Install gowall
+function install_gowall(){
+  mkdir -p ~/.config/gowall
+  cp ~/dots/gowall/config.yml ~/.config/gowall
+  }
+
 # Copy Dunst Files
 function install_dunst(){
     mkdir -pv ~/.config/wal/templates
@@ -243,9 +251,15 @@ function install_dunst(){
     cp -v ~/dots/dunst/dunstrc ~/.config/wal/templates/
 }
 
+# Copy Dunst Files
+function install_vesktop(){
+    cp ~/dots/Vesktop/colors-discord.css ~/.config/wal/templates
+    ln -s $HOME/.cache/wal/colors-discord.css $HOME/.config/vesktop/themes/pywal-vencord.theme.css
+}
+
 # Function to install Lightdm
 function install_lightdm(){
-    #sudo pacman -S lightdm lightdm-webkit2-greeter --noconfirm
+    sudo pacman -S lightdm lightdm-webkit2-greeter --noconfirm
     sudo cp -v ~/dots/lightdm/lightdm.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-webkit2-greeter.conf /etc/lightdm/
     sudo cp -v ~/dots/lightdm/lightdm-gtk-greeter.conf /etc/lightdm
@@ -416,7 +430,7 @@ function run_all() {
 
 # Function to display usage information
 function usage() {
-    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--latex] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--nvim] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
+    echo "Usage: $0 [--all] [--alacritty] [--aur-packages] [--base] [--bin] [--cava] [--dependencies] [--docker] [--dunst] [--fonts] [--gowall] [--latex] [--pip] [--flameshot] [--grub] [--lightdm] [--neofetch] [--nvim] [--optimus] [--paru] [--picom] [--plymouth] [--post] [--pulseaudio] [--qtile] [--ranger] [--rofi] [--thunar] [--wallpapers] [--xsettings] [--update]"
     exit 1
 }
 
@@ -462,6 +476,9 @@ for arg in "$@"; do
             ;;
         --fonts)
             install_fonts
+            ;;
+        --gowall)
+            install_gowall
             ;;
         --grub)
             grub_update

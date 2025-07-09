@@ -116,6 +116,7 @@ def init_widgets_list():
        execute='paru -Syu',
        fontsize=font_size+3,
        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && paru -Syu --noconfirm --nocheck; exec zsh'")},
+       padding_x = 5
     ),
 
     widget.Spacer(
