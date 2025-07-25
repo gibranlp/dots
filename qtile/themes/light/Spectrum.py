@@ -136,6 +136,7 @@ def init_widgets_list():
       text_closed='',
       text_open='',
       foreground=secondary_color[0],
+      width=26,
       widgets=[
           widget.Spacer(
           length=5,
@@ -206,6 +207,7 @@ def init_widgets_list():
        execute='paru -Syu',
        fontsize=font_size+3,
        mouse_callbacks={'Button1': lambda: qtile.spawn(terminal + " -e zsh -c 'source ~/.zshrc && paru -Syu --noconfirm --nocheck; exec zsh'")},
+       width=24
     ),
 
     widget.Spacer(
@@ -218,6 +220,7 @@ def init_widgets_list():
       foreground=color[0],
       enabled_icon="󰂛",
       disabled_icon="󰂞",
+      width=24,
     ),
 
     widget.Spacer(
@@ -290,6 +293,7 @@ def init_widgets_list():
       decorations=[RectDecoration(colour=secondary_color[0], radius=[7,0,0,7], filled=True)],
       foreground=secondary_color[4],
       mouse_callbacks={'Button1': lambda: qtile.function(audio_widget),'Button4': lambda: qtile.spawn("amixer -q set Master 5%+ && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True),'Button5': lambda: qtile.spawn("amixer -q set Master 5%- && dunstify -a Volume ' '$(pamixer --get-volume-human) -h int:value:$(pamixer --get-volume)", shell=True)},
+      width=23
     ),
     
     widget.ALSAWidget(
@@ -372,6 +376,7 @@ def init_widgets_list():
       foreground=secondary_color[0],
       text="",
       mouse_callbacks={'Button1': lambda: qtile.function(session_widget)},
+      width=24
     )]
     
   return widgets_list

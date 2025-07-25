@@ -31,8 +31,6 @@ setxkbmap -layout us -variant intl &
 unclutter -idle 5 & 
 dunst &
 walogram &
-pywal-discord &
-pywalfox update &
 picom -b &
 xsettingsd &
 conky -d &
