@@ -11,8 +11,8 @@ from functions import *
 from custom_widgets import InternetIcon, VolumeIcon
 from qtile_extras import widget
 
-accent=2
-background=0
+accent=0
+background=2
 tbg = third_color[background]
 tfg = third_color[accent]
 bg = secondary_color[background]

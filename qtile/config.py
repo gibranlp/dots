@@ -102,7 +102,6 @@ keys = [
     Key([alt, "shift"], "s",lazy.layout.push_in("down")),
     Key([alt, "shift"], "d",lazy.layout.push_in("right")),
 
-    
     # Layout Pull Out
     Key([alt, "control"], "a",lazy.layout.pull_out(position="previous")),
     Key([alt, "control"], "Left",lazy.layout.pull_out(position="previous")),
@@ -119,10 +118,10 @@ keys = [
     Key([mod], 'period', lazy.next_screen()), # Send Cursor to next screen
 
     # Brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn("sudo xbacklight -inc 5")), # Aument Brightness
-    Key(["control", alt], "p", lazy.spawn("sudo xbacklight -inc 5")), # Aument Brightness
-    Key([], "XF86MonBrightnessDown", lazy.spawn("sudo xbacklight -dec 5")), # Lower Brightness
-    Key(["control", alt], "o", lazy.spawn("sudo xbacklight -dec 5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +5%")), # Aument Brightness
+    Key(["control", alt], "p", lazy.spawn("brightnessctl set +5%")), # Aument Brightness
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 5%-")), # Lower Brightness
+    Key(["control", alt], "o", lazy.spawn("brightnessctl set 5%-")),
 
     # Volume
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")), # Mute
