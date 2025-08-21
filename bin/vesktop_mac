@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check if Vesktop is running
+if pgrep -x "Vesktop" > /dev/null; then
+    # Bring Vesktop to front and send Cmd+R
+    osascript <<EOF
+        tell application "Vesktop"
+            activate
+        end tell
+        delay 0.3
+        tell application "System Events"
+            keystroke "r" using {command down}
+        end tell
+EOF
+    echo "Vesktop reloaded."
+else
+    echo "Vesktop not running."
+    exit 1
+fi

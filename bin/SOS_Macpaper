@@ -6,20 +6,38 @@ export PATH="$HOME/.local/bin:$PATH"
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
 LOGFILE="$HOME/wallpaper_debug.log"
+VARIABLES_FILE="$HOME/variables"
 
 echo "===== $(date) =====" >> "$LOGFILE"
 
-# Get current time
+# Read variables from file (line 1 = theme override, line 2 = wal backend)
+THEME_OVERRIDE=""
+WAL_BACKEND=""
+
+if [ -f "$VARIABLES_FILE" ]; then
+    THEME_OVERRIDE=$(sed -n '1p' "$VARIABLES_FILE" | tr '[:upper:]' '[:lower:]')
+    WAL_BACKEND=$(sed -n '2p' "$VARIABLES_FILE" | tr -d '[:space:]')
+    echo "Theme override: $THEME_OVERRIDE" >> "$LOGFILE"
+    echo "Wal backend override: $WAL_BACKEND" >> "$LOGFILE"
+fi
+
+# Determine theme
 HOUR=$(date +"%H")
 MIN=$(date +"%M")
 TIME=$((10#$HOUR * 60 + 10#$MIN))
 
 USE_LIGHT=false
-if (( TIME >= 421 && TIME <= 1140 )); then
+if [[ "$THEME_OVERRIDE" == "light" ]]; then
     USE_LIGHT=true
-    echo "Time $HOUR:$MIN – Using light theme" >> "$LOGFILE"
+    echo "Overridden to light theme" >> "$LOGFILE"
+elif [[ "$THEME_OVERRIDE" == "dark" ]]; then
+    USE_LIGHT=false
+    echo "Overridden to dark theme" >> "$LOGFILE"
+elif (( TIME >= 421 && TIME <= 1140 )); then
+    USE_LIGHT=true
+    echo "Time $HOUR:$MIN – Using light theme (default logic)" >> "$LOGFILE"
 else
-    echo "Time $HOUR:$MIN – Using dark theme" >> "$LOGFILE"
+    echo "Time $HOUR:$MIN – Using dark theme (default logic)" >> "$LOGFILE"
 fi
 
 # Determine wallpaper
@@ -40,13 +58,31 @@ fi
 # Set wallpaper
 osascript -e 'tell application "System Events" to tell every desktop to set picture to POSIX file "'"$WALLPAPER"'"'
 
-# Run wal (with or without -l)
-if [ "$USE_LIGHT" = true ]; then
-    echo "Running wal on: $WALLPAPER with -l" >> "$LOGFILE"
-    /Users/gibranlp/.local/bin/wal -i "$WALLPAPER" -l >> "$LOGFILE" 2>&1
-else
-    echo "Running wal on: $WALLPAPER" >> "$LOGFILE"
-    /Users/gibranlp/.local/bin/wal -i "$WALLPAPER" >> "$LOGFILE" 2>&1
-fi
+cp $WALLPAPER ~/.cache/wal/background.png
+
+# Build wal command
+WAL_CMD=("wal" "-n" "-i" "$WALLPAPER")
+[ "$USE_LIGHT" = true ] && WAL_CMD+=("-l")
+[ -n "$WAL_BACKEND" ] && WAL_CMD+=("--backend" "$WAL_BACKEND")
+
+echo "Running wal command: ${WAL_CMD[*]}" >> "$LOGFILE"
+"${WAL_CMD[@]}" >> "$LOGFILE" 2>&1
+#brew services restart sketchybar
 
 echo "Wallpaper set to: $WALLPAPER" >> "$LOGFILE"
+
+# Reload Vesktop with Cmd+R
+if pgrep -x "Vesktop" > /dev/null; then
+    osascript <<EOF
+        tell application "Vesktop"
+            activate
+        end tell
+        delay 0.3
+        tell application "System Events"
+            keystroke "r" using {command down}
+        end tell
+EOF
+    echo "Vesktop reloaded." >> "$LOGFILE"
+else
+    echo "Vesktop not running." >> "$LOGFILE"
+fi

@@ -1,12 +1,16 @@
-@import url('file:///usr/share/lightdm-webkit/themes/SpectrumOS/css/colors.css');
-@import url('colors.css');
+@import url('/usr/share/lightdm-webkit/themes/SpectrumOS/css/colors.css');
+@import url('/Users/gibranlp/.cache/wal/colors.css');
+
 
 html,body {
     height: 100%;
     width: 100%;
     font-family: "Courier Prime";
     margin: 0;
-    background-image: url(/usr/local/backgrounds/background.png), url(../background.png);
+    background-image: 
+      url(/usr/local/backgrounds/background.png), 
+      url(/Users/gibranlp/.cache/wal/background.png),
+      url(../background.png);
     background-size: cover;
     background-attachment: fixed;
 }

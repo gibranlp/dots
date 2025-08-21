@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # _____             _                 _____ _____ 
 #|   __|___ ___ ___| |_ ___ _ _ _____|     |   __|
 #|__   | . | -_|  _|  _|  _| | |     |  |  |__   |
@@ -13,13 +13,14 @@ shopt -s nullglob
 jpg_files=(*.jpg)
 
 if [ ${#jpg_files[@]} -eq 0 ]; then
-    echo "No .jpg Wallpapers found, ending script"
+    echo "No .jpg Wallpapers found"
     exit 1
 fi
 
 for image in "${jpg_files[@]}" ;
 do
     magick "$image" "${image%.*}.png" ;
+    echo "$image converted";
 done
 
 rm -rf *.jpg
