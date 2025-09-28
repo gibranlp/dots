@@ -1,4 +1,4 @@
-@import url('/usr/share/lightdm-webkit/themes/SpectrumOS/css/colors.css');
+@import url('/home/gibranlp/.cache/wal/colors.css');
 @import url('/Users/gibranlp/.cache/wal/colors.css');
 
 
@@ -8,7 +8,7 @@ html,body {
     font-family: "Courier Prime";
     margin: 0;
     background-image: 
-      url(/usr/local/backgrounds/background.png), 
+      var(--wallpaper),
       url(/Users/gibranlp/.cache/wal/background.png),
       url(../background.png);
     background-size: cover;
